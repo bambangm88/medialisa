@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">koperasi</string>
+    <string name="baseImageUrl">http://45.112.125.33/WebApiKoperasiApp/foto_pribadi/</string>
+    <string name="baseImageProduct">http://45.112.125.33/WebApiKoperasiApp/product/</string>
+</resources>
