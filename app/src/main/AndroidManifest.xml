@@ -22,14 +22,13 @@
         <activity android:name=".Menu.Barang.MenuBarang" />
         <activity android:name=".Menu.Barang.DetailBarang" />
         <activity android:name=".Menu.Barang.Barang" />
+        <activity android:name=".Auth.RegisterNew" />
+        <activity android:name=".Auth.Register_Next_Simpan_New" />
         <activity android:name=".Menu.Profile.Profile" />
         <activity android:name=".Auth.Upload_Foto.Foto_PRIBADI" />
         <activity android:name=".Auth.Upload_Foto.Foto_ID_CARD" />
         <activity android:name=".Menu.Pengaturan" />
-        <activity android:name=".Auth.Register_Next" />
-        <activity android:name=".Auth.Register_Next_Simpan" />
         <activity android:name=".Menu.ChangePassword" />
-        <activity android:name=".Auth.Register" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Auth.Login">
             <intent-filter>

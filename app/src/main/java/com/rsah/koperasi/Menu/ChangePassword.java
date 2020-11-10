@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.rsah.koperasi.Model.ResponseData;
+import com.rsah.koperasi.Constant.Constant;
+import com.rsah.koperasi.Model.Json.JsonUbahPwd;
+import com.rsah.koperasi.Model.Response.ResponseUbahPwd;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
@@ -77,7 +79,11 @@ public class ChangePassword extends AppCompatActivity {
 
                 } else {
 
-                    UbahPwd(pwdOld,pwdbaru,MID);
+                    JsonUbahPwd json = new JsonUbahPwd();
+                    json.setEmail(MID);
+                    json.setPass_baru(pwdbaru);
+                    json.setPass_old(pwdOld);
+                    UbahPwd(json);
 
 
                 }
@@ -91,35 +97,34 @@ public class ChangePassword extends AppCompatActivity {
 
 
 
-    private void UbahPwd(String pwdOld, String pwdbaru , String mID){
+    private void UbahPwd(JsonUbahPwd json){
 
         pDialog.show();
-        Call<ResponseData> call = API.ubahPwd(mID,pwdOld,pwdbaru);
-        call.enqueue(new Callback<ResponseData>() {
+        Call<ResponseUbahPwd> call = API.ubahPwd(json);
+        call.enqueue(new Callback<ResponseUbahPwd>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponseUbahPwd> call, Response<ResponseUbahPwd> response) {
                 if(response.isSuccessful()) {
-                    if (response.body().getSuccess() != null) {
 
-                        if(response.body().getSuccess().equals("0")){
+                    if (response.body().getMetadata() != null) {
 
+                        String message = response.body().getMetadata().getMessage();
+                        String status = response.body().getMetadata().getCode();
+
+                        if (status.equals(Constant.ERR_200)) {
                             pDialog.cancel();
-                            Toast.makeText(mContext, "Password Sebelumnya Salah", Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         }else{
                             pDialog.cancel();
-
-                            Toast.makeText(mContext, "Ubah Password Berhasil", Toast.LENGTH_LONG).show();
-                            finish();
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         }
-
-
 
                     }else{
                         pDialog.cancel();
-
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
+
+
 
                 }else{
                     pDialog.cancel();
@@ -128,11 +133,11 @@ public class ChangePassword extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponseUbahPwd> call, Throwable t) {
 
                 pDialog.cancel();
 
-                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: "+t.getMessage() );
             }
         });

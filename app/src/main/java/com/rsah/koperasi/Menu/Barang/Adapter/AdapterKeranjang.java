@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.rsah.koperasi.Helper.Helper;
-import com.rsah.koperasi.Model.ResponseEntityBarang;
+import com.rsah.koperasi.Model.Data.DataBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
@@ -25,13 +25,13 @@ import butterknife.ButterKnife;
 
 public class AdapterKeranjang extends RecyclerView.Adapter< AdapterKeranjang.AdapterHolder>{
 
-    private List<ResponseEntityBarang> AllReportList;
+    private List<DataBarang> AllReportList;
     private Context mContext;
 
     private SessionManager sessionManager ;
 
 
-    public AdapterKeranjang(Context context, List<ResponseEntityBarang> reportList){
+    public AdapterKeranjang(Context context, List<DataBarang> reportList){
         this.mContext = context;
         AllReportList = reportList;
         sessionManager = new SessionManager(mContext);
@@ -46,7 +46,7 @@ public class AdapterKeranjang extends RecyclerView.Adapter< AdapterKeranjang.Ada
 
     @Override
     public void onBindViewHolder(AdapterHolder holder, int position) {
-        final ResponseEntityBarang barang = AllReportList.get(position);
+        final DataBarang barang = AllReportList.get(position);
 
        String title = barang.getNamaBarang();
        String price = barang.getHarga();

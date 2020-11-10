@@ -2,6 +2,12 @@ package com.rsah.koperasi.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.rsah.koperasi.Model.Data.DataLogin;
+import com.rsah.koperasi.Model.Data.DataSaldo;
+import com.rsah.koperasi.Model.Data.DataPeserta;
+import com.rsah.koperasi.Model.Data.DataBarang;
+import com.rsah.koperasi.Model.Data.DataCompany;
+import com.rsah.koperasi.Model.Response.ResponseRegister;
 
 import java.util.List;
 
@@ -22,25 +28,25 @@ public class ResponseData {
 
     @SerializedName("dataCompany")
     @Expose
-    private List<ResponseCompany> dataCompany = null;
+    private List<DataCompany> dataCompany = null;
 
-    public List<ResponseCompany> getDataCompany() {
+    public List<DataCompany> getDataCompany() {
         return dataCompany;
     }
 
-    public void setDataCompany(List<ResponseCompany> dataCompany) {
+    public void setDataCompany(List<DataCompany> dataCompany) {
         this.dataCompany = dataCompany;
     }
 
     @SerializedName("dataLogin")
     @Expose
-    private List<ResponseEntityLogin> dataLogin = null;
+    private List<DataLogin> dataLogin = null;
 
-    public List<ResponseEntityLogin> getDataLogin() {
+    public List<DataLogin> getDataLogin() {
         return dataLogin;
     }
 
-    public void setDataLogin(List<ResponseEntityLogin> dataLogin) {
+    public void setDataLogin(List<DataLogin> dataLogin) {
         this.dataLogin = dataLogin;
     }
 
@@ -88,51 +94,51 @@ public class ResponseData {
 
     @SerializedName("dataBarang")
     @Expose
-    private List<ResponseEntityBarang> dataBarang = null;
-    public List<ResponseEntityBarang> getDataBarang() {
+    private List<DataBarang> dataBarang = null;
+    public List<DataBarang> getDataBarang() {
         return dataBarang;
     }
 
-    public void setDataBarang(List<ResponseEntityBarang> dataBarang) {
+    public void setDataBarang(List<DataBarang> dataBarang) {
         this.dataBarang = dataBarang;
     }
 
 
     @SerializedName("dataSaldo")
     @Expose
-    private List<ResponseEntitySaldo> dataSaldo = null;
+    private List<DataSaldo> dataSaldo = null;
 
-    public List<ResponseEntitySaldo> getDataSaldo() {
+    public List<DataSaldo> getDataSaldo() {
         return dataSaldo;
     }
 
-    public void setDataSaldo(List<ResponseEntitySaldo> dataSaldo) {
+    public void setDataSaldo(List<DataSaldo> dataSaldo) {
         this.dataSaldo = dataSaldo;
     }
 
 
     @SerializedName("dataPeserta")
     @Expose
-    private List<ResponseEntityPeserta> dataPeserta = null;
+    private List<DataPeserta> dataPeserta = null;
 
-    public List<ResponseEntityPeserta> getDataPeserta() {
+    public List<DataPeserta> getDataPeserta() {
         return dataPeserta;
     }
 
-    public void setDataPeserta(List<ResponseEntityPeserta> dataPeserta) {
+    public void setDataPeserta(List<DataPeserta> dataPeserta) {
         this.dataPeserta = dataPeserta;
     }
 
     @SerializedName("dataKeranjang")
     @Expose
-    private List<ResponseEntityBarang> dataKeranjang = null;
+    private List<DataBarang> dataKeranjang = null;
 
 
-    public List<ResponseEntityBarang> getDataKeranjang() {
+    public List<DataBarang> getDataKeranjang() {
         return dataKeranjang;
     }
 
-    public void setDataKeranjang(List<ResponseEntityBarang> dataKeranjang) {
+    public void setDataKeranjang(List<DataBarang> dataKeranjang) {
         this.dataKeranjang = dataKeranjang;
     }
 
@@ -141,13 +147,13 @@ public class ResponseData {
 
     @SerializedName("dataPesanan")
     @Expose
-    private List<ResponseEntityBarang> dataPesanan= null;
+    private List<DataBarang> dataPesanan= null;
 
-    public List<ResponseEntityBarang> getDataPesanan() {
+    public List<DataBarang> getDataPesanan() {
         return dataPesanan;
     }
 
-    public void setDataPesanan(List<ResponseEntityBarang> dataPesanan) {
+    public void setDataPesanan(List<DataBarang> dataPesanan) {
         this.dataPesanan = dataPesanan;
     }
 

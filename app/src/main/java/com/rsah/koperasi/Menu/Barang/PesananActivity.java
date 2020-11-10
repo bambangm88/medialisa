@@ -15,10 +15,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Menu.Barang.Adapter.AdapterKeranjang;
 import com.rsah.koperasi.Menu.Barang.Adapter.AdapterPesanan;
+import com.rsah.koperasi.Model.Json.JsonKeranjang;
+import com.rsah.koperasi.Model.Json.JsonPesanan;
+import com.rsah.koperasi.Model.Response.ResponsePesanan;
 import com.rsah.koperasi.Model.ResponseData;
-import com.rsah.koperasi.Model.ResponseEntityBarang;
+import com.rsah.koperasi.Model.Data.DataBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
@@ -34,7 +38,7 @@ import retrofit2.Response;
 public class PesananActivity extends AppCompatActivity {
 
     private RecyclerView rvHistoriTrx;
-    private List<ResponseEntityBarang> AllReportList = new ArrayList<>();
+    private List<DataBarang> AllReportList = new ArrayList<>();
     private ApiService API;
     private Context mContext;
 
@@ -72,52 +76,61 @@ public class PesananActivity extends AppCompatActivity {
 
         Adapter = new AdapterPesanan(this, AllReportList);
 
-        String memberID = sessionManager.getKeyId();
-        getPesanan(memberID);
 
-
-
+        getPesanan();
 
     }
 
 
-    private void getPesanan(String memberID) {
+    private void getPesanan() {
 
         showProgress(true);
-
-        Call<ResponseData> call = API.getPesanan(memberID);
-        call.enqueue(new Callback<ResponseData>() {
+        JsonPesanan json = new JsonPesanan();
+        json.setMemberID(sessionManager.getKeyId());
+        Call<ResponsePesanan> call = API.getPesanan(json);
+        call.enqueue(new Callback<ResponsePesanan>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponsePesanan> call, Response<ResponsePesanan> response) {
                 if (response.isSuccessful()) {
-                    showProgress(false);
-                    if (response.body().getDataPesanan() != null) {
 
-                        if (!response.body().getDataPesanan().isEmpty()) {
-                            AllReportList.addAll(response.body().getDataPesanan());
+                    showProgress(false);
+
+
+                    if (response.body().getMetadata() != null) {
+
+                        String message = response.body().getMetadata().getMessage();
+                        String status = response.body().getMetadata().getCode();
+
+                        if (status.equals(Constant.ERR_200)) {
+
+                            AllReportList.addAll(response.body().getResponse().getData());
                             rvHistoriTrx.setAdapter(new AdapterPesanan(mContext, AllReportList));
                             Adapter.notifyDataSetChanged();
 
-                        } else {
-
-                            Toast.makeText(mContext, "Tidak ada Pesanan", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                             finish();
                         }
 
-
-                    } else {
-
+                    }else{
+                        showProgress(false);
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
+
+
 
                 } else {
                     showProgress(false);
                     Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                 }
+
+
+
+
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponsePesanan> call, Throwable t) {
                 showProgress(false);
                 Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: " + t.getMessage());
@@ -125,6 +138,7 @@ public class PesananActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private void addPesanan(String memberID) {
 
         showProgress(true);
@@ -168,8 +182,7 @@ public class PesananActivity extends AppCompatActivity {
             }
         });
     }
-
-
+    */
     private void showProgress(Boolean bool) {
 
         if (bool) {

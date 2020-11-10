@@ -14,9 +14,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Menu.Barang.Adapter.BarangAdapter;
-import com.rsah.koperasi.Model.ResponseData;
-import com.rsah.koperasi.Model.ResponseEntityBarang;
+import com.rsah.koperasi.Model.Data.DataBarang;
+import com.rsah.koperasi.Model.Response.ResponseBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
@@ -39,7 +40,7 @@ public class Barang extends AppCompatActivity {
     private SessionManager sessionManager ;
 
     private RecyclerView rvTeam;
-    private List<ResponseEntityBarang> AllBarangList = new ArrayList<>();
+    private List<DataBarang> AllBarangList = new ArrayList<>();
     private BarangAdapter Adapter;
 
     private Context mContext;
@@ -76,34 +77,31 @@ public class Barang extends AppCompatActivity {
 
     private void getBarang(){
 
-
         pDialog.show();
-
-
-        Call<ResponseData> call = API.getBarang();
-        call.enqueue(new Callback<ResponseData>() {
+        Call<ResponseBarang> call = API.getBarang();
+        call.enqueue(new Callback<ResponseBarang>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponseBarang> call, Response<ResponseBarang> response) {
                 if(response.isSuccessful()) {
-                    if (response.body().getDataBarang() != null) {
 
-                        if(!response.body().getDataBarang().isEmpty()){
+                    if (response.body().getMetadata() != null) {
+
+                        String message = response.body().getMetadata().getMessage();
+                        String status = response.body().getMetadata().getCode();
+
+                        if (status.equals(Constant.ERR_200)) {
 
                             pDialog.cancel();
-                            AllBarangList.addAll(response.body().getDataBarang());
+                            AllBarangList.addAll(response.body().getResponse().getData());
                             rvTeam.setAdapter(new BarangAdapter(mContext, AllBarangList));
                             Adapter.notifyDataSetChanged();
 
                         }else{
-
                             pDialog.cancel();
-                            finish();
-                            Toast.makeText(mContext, "Team Tidak Ditemukan", Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         }
 
-
-                    }else{
+                    }else {
                         pDialog.cancel();
                         finish();
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
@@ -117,11 +115,11 @@ public class Barang extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponseBarang> call, Throwable t) {
 
                 pDialog.cancel();
                 finish();
-                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: "+t.getMessage() );
             }
         });

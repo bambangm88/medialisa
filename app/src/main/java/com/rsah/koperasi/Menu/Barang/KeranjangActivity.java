@@ -15,9 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Menu.Barang.Adapter.AdapterKeranjang;
+import com.rsah.koperasi.Model.Json.JsonKeranjang;
+import com.rsah.koperasi.Model.Json.JsonProfile;
+import com.rsah.koperasi.Model.Response.ResponseKeranjang;
 import com.rsah.koperasi.Model.ResponseData;
-import com.rsah.koperasi.Model.ResponseEntityBarang;
+import com.rsah.koperasi.Model.Data.DataBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
@@ -33,7 +37,7 @@ import retrofit2.Response;
 public class KeranjangActivity extends AppCompatActivity {
 
     private RecyclerView rvHistoriTrx;
-    private List<ResponseEntityBarang> AllReportList = new ArrayList<>();
+    private List<DataBarang> AllReportList = new ArrayList<>();
     private ApiService API;
     private Context mContext;
 
@@ -83,31 +87,38 @@ public class KeranjangActivity extends AppCompatActivity {
     private void getKeranjang(String memberID) {
 
         showProgress(true);
+        JsonKeranjang json = new JsonKeranjang();
+        json.setMemberID(sessionManager.getKeyId());
 
-        Call<ResponseData> call = API.getKeranjang(memberID);
-        call.enqueue(new Callback<ResponseData>() {
+        Call<ResponseKeranjang> call = API.getKeranjang(json);
+        call.enqueue(new Callback<ResponseKeranjang>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponseKeranjang> call, Response<ResponseKeranjang> response) {
                 if (response.isSuccessful()) {
                     showProgress(false);
-                    if (response.body().getDataKeranjang() != null) {
 
-                        if (!response.body().getDataKeranjang().isEmpty()) {
-                            AllReportList.addAll(response.body().getDataKeranjang());
+
+                    if (response.body().getMetadata() != null) {
+
+                        String message = response.body().getMetadata().getMessage();
+                        String status = response.body().getMetadata().getCode();
+
+                        if (status.equals(Constant.ERR_200)) {
+
+                            AllReportList.addAll(response.body().getResponse().getData());
                             rvHistoriTrx.setAdapter(new AdapterKeranjang(mContext, AllReportList));
                             Adapter.notifyDataSetChanged();
 
-                        } else {
-
-                            Toast.makeText(mContext, "Tidak ada barang di keranjang", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                             finish();
                         }
 
-
-                    } else {
-
+                    }else{
+                        showProgress(false);
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
+
 
                 } else {
                     showProgress(false);
@@ -116,7 +127,7 @@ public class KeranjangActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponseKeranjang> call, Throwable t) {
                 showProgress(false);
                 Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: " + t.getMessage());
@@ -124,6 +135,7 @@ public class KeranjangActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private void addPesanan(String memberID) {
 
         showProgress(true);
@@ -168,6 +180,7 @@ public class KeranjangActivity extends AppCompatActivity {
         });
     }
 
+    */
 
     private void showProgress(Boolean bool) {
 

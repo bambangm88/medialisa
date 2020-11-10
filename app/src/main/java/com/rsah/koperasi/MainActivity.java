@@ -20,13 +20,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.rsah.koperasi.Auth.Login;
-import com.rsah.koperasi.Menu.Barang.Barang;
+import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Menu.Barang.MenuBarang;
 import com.rsah.koperasi.Menu.Pengaturan;
 import com.rsah.koperasi.Menu.Profile.Profile;
 import com.rsah.koperasi.Menu.Saldo.DetailSaldo;
-import com.rsah.koperasi.Model.ResponseData;
-import com.rsah.koperasi.Model.ResponseEntityLogin;
+
+import com.rsah.koperasi.Model.Json.JsonSaldo;
+import com.rsah.koperasi.Model.Response.ResponseSaldo;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
 import com.rsah.koperasi.sessionManager.SessionManager;
@@ -145,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         checkSaldo();
 
 
@@ -214,37 +217,39 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkSaldo(){
 
-
+        JsonSaldo json = new JsonSaldo();
+        json.setMemberID(sessionManager.getKeyId());
         pDialog.show();
-        Call<ResponseData> call = API.getSaldo();
-        call.enqueue(new Callback<ResponseData>() {
+        Call<ResponseSaldo> call = API.getSaldo(json);
+        call.enqueue(new Callback<ResponseSaldo>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponseSaldo> call, Response<ResponseSaldo> response) {
                 if(response.isSuccessful()) {
-                    if (response.body().getDataSaldo() != null) {
+                    if (response.body().getMetadata() != null) {
 
 
-                        if(response.body().getDataSaldo().isEmpty()){
+                        String message = response.body().getMetadata().getMessage() ;
+                        String status = response.body().getMetadata().getCode() ;
+
+                        if(status.equals(Constant.ERR_200)){
 
                             pDialog.cancel();
-                            //Toast.makeText(mContext, "Email / Password salah", Toast.LENGTH_LONG).show();
-                            saldo = "Rp 0";
-
-                        }else{
-                            pDialog.cancel();
-                            String sal = response.body().getDataSaldo().get(0).getSaldo();
+                            String sal = response.body().getResponse().getData().get(0).getSaldo();
                             if (sal == null || sal.equals("null")){
                                 saldo = "Rp 0";
                             }else {
                                 saldo = sal ;
                             }
                             //saldo.setText("Rp "+response.body().getDataSaldo().get(0).getSaldo());
-                        }
 
+                        }else{
+                            pDialog.cancel();
+                            //Toast.makeText(mContext, "Email / Password salah", Toast.LENGTH_LONG).show();
+                            saldo = "Rp 0";
+                        }
 
                     }else{
                         pDialog.cancel();
-
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
 
@@ -255,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponseSaldo> call, Throwable t) {
 
                 pDialog.cancel();
 

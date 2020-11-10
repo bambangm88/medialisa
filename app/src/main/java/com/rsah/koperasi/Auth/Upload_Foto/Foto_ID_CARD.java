@@ -14,14 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.rsah.koperasi.Auth.Register_Next_Simpan;
 import com.rsah.koperasi.R;
 
 import java.io.IOException;
 
-import static com.rsah.koperasi.Auth.Register_Next_Simpan.bitmapUpload;
-import static com.rsah.koperasi.Auth.Register_Next_Simpan.chooseUpload;
-import static com.rsah.koperasi.Auth.Register_Next_Simpan.chooseUpload_set;
+import static com.rsah.koperasi.Auth.Register_Next_Simpan_New.bitmapUpload;
+import static com.rsah.koperasi.Auth.Register_Next_Simpan_New.chooseUpload_set;
+
 
 public class Foto_ID_CARD extends AppCompatActivity {
 
@@ -145,6 +144,7 @@ public class Foto_ID_CARD extends AppCompatActivity {
 
                 bitmapUpload = thumbnail ;
                 chooseUpload_set = "1";
+
 
                // fotoIdCard.setImageBitmap(thumbnail);
                 finish();

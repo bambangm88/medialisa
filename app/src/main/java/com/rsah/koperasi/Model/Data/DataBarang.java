@@ -1,8 +1,8 @@
-package com.rsah.koperasi.Model;
+package com.rsah.koperasi.Model.Data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseEntityBarang {
+public class DataBarang {
 
 
     @SerializedName("IDBarang")
@@ -91,15 +91,6 @@ public class ResponseEntityBarang {
     }
 
 
-
-
-
-
-
-
-
-
-
     public String getDescBarang() {
         return DescBarang;
     }
@@ -116,8 +107,6 @@ public class ResponseEntityBarang {
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
-
-
 
     public String getIDBarang() {
         return IDBarang;

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Menu.Barang.DetailBarang;
-import com.rsah.koperasi.Model.ResponseEntityBarang;
+import com.rsah.koperasi.Model.Data.DataBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
@@ -29,13 +29,13 @@ import butterknife.ButterKnife;
 
 public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.AdapterHolder>{
 
-    List<ResponseEntityBarang> AllPaymentItemList;
+    List<DataBarang> AllPaymentItemList;
     Context mContext;
 
     SessionManager sessionManager ;
 
 
-    public BarangAdapter(Context context, List<ResponseEntityBarang> paymentList){
+    public BarangAdapter(Context context, List<DataBarang> paymentList){
         this.mContext = context;
         AllPaymentItemList = paymentList;
         sessionManager = new SessionManager(mContext);
@@ -50,7 +50,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.AdapterHol
 
     @Override
     public void onBindViewHolder(AdapterHolder holder, int position) {
-        final ResponseEntityBarang responsePaymentMethod = AllPaymentItemList.get(position);
+        final DataBarang responsePaymentMethod = AllPaymentItemList.get(position);
 
         String title = responsePaymentMethod.getNamaBarang();
         String price = responsePaymentMethod.getHarga();

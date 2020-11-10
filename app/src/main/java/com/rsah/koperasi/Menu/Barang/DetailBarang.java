@@ -3,8 +3,6 @@ package com.rsah.koperasi.Menu.Barang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,16 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.rsah.koperasi.Auth.Login;
-import com.rsah.koperasi.MainActivity;
-import com.rsah.koperasi.Model.ResponseData;
-import com.rsah.koperasi.Model.ResponseEntityLogin;
+import com.rsah.koperasi.Constant.Constant;
+import com.rsah.koperasi.Model.Json.JsonInsertBarang;
+
+import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
 import com.rsah.koperasi.sessionManager.SessionManager;
-
-import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,8 +74,11 @@ public class DetailBarang extends AppCompatActivity {
             public void onClick(View v) {
 
                 String idMember  = session.getKeyId();
+                JsonInsertBarang json = new JsonInsertBarang();
+                json.setIDBarang(idBarang);
+                json.setIDMember(idMember);
+                requestToKeranjang(json);
 
-                requestToKeranjang(idMember,idBarang);
             }
         });
 
@@ -91,35 +90,33 @@ public class DetailBarang extends AppCompatActivity {
 
     }
 
-    private void requestToKeranjang(String memberID, String barangID){
-
+    private void requestToKeranjang(JsonInsertBarang json) {
 
         showProgress(true);
-        Call<ResponseData> call = API.requestInsertKrj(memberID,barangID);
-        call.enqueue(new Callback<ResponseData>() {
+        Call<ResponseInsertBarang> call = API.requestInsertKrj(json);
+        call.enqueue(new Callback<ResponseInsertBarang>() {
             @Override
-            public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
+            public void onResponse(Call<ResponseInsertBarang> call, Response<ResponseInsertBarang> response) {
                 if(response.isSuccessful()) {
                     showProgress(false);
-                    if (response.body().getSuccess() != null) {
 
-                        String success = response.body().getSuccess() ;
+                    if (response.body().getMetadata() != null) {
 
-                        if (success.equals("0")){
+                        String message = response.body().getMetadata().getMessage();
+                        String status = response.body().getMetadata().getCode();
+
+                        if (status.equals(Constant.ERR_200)) {
                             Toast.makeText(mContext, "Berhasil Memasukan Ke Keranjang", Toast.LENGTH_LONG).show();
                             finish();
                         }else{
-                            Toast.makeText(mContext, "Gagal Memasukan Ke Keranjang", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         }
-
-
-
 
                     }else{
                         showProgress(false);
-
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
+
 
                 }else{
                     showProgress(false);
@@ -128,7 +125,7 @@ public class DetailBarang extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseData> call, Throwable t) {
+            public void onFailure(Call<ResponseInsertBarang> call, Throwable t) {
 
                 showProgress(false);
                 Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();

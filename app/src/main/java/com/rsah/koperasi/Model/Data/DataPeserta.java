@@ -1,8 +1,8 @@
-package com.rsah.koperasi.Model;
+package com.rsah.koperasi.Model.Data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseEntityPeserta {
+public class DataPeserta {
 
 
     @SerializedName("MemberID")

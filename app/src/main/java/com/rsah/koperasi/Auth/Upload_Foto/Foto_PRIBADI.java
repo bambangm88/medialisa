@@ -18,8 +18,9 @@ import com.rsah.koperasi.R;
 
 import java.io.IOException;
 
-import static com.rsah.koperasi.Auth.Register_Next_Simpan.bitmapUpload;
-import static com.rsah.koperasi.Auth.Register_Next_Simpan.chooseUpload_set;
+import static com.rsah.koperasi.Auth.Register_Next_Simpan_New.bitmapUpload;
+import static com.rsah.koperasi.Auth.Register_Next_Simpan_New.chooseUpload_set;
+
 
 public class Foto_PRIBADI extends AppCompatActivity {
 
@@ -144,7 +145,9 @@ public class Foto_PRIBADI extends AppCompatActivity {
                 bitmapUpload = thumbnail ;
                 chooseUpload_set = "2";
 
-               // fotoIdCard.setImageBitmap(thumbnail);
+
+
+            // fotoIdCard.setImageBitmap(thumbnail);
                 finish();
 
 
