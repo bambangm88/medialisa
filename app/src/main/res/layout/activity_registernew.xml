@@ -99,7 +99,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/gradientbg"
-            android:text="Search"
+            android:text="Verifikasi"
             android:textColor="#fff"
             android:textStyle="bold" />
 

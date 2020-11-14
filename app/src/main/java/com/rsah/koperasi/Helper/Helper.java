@@ -1,5 +1,12 @@
 package com.rsah.koperasi.Helper;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.developer.kalert.KAlertDialog;
+import com.rsah.koperasi.Auth.Login;
+import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
+
 import java.security.MessageDigest;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -125,6 +132,20 @@ public class Helper {
     }
 
 
+
+    public static void notifikasi_warning(String message , Context context){
+        new KAlertDialog(context, KAlertDialog.WARNING_TYPE)
+                .setTitleText("Notification")
+                .setContentText(message)
+                .setConfirmText("OK")
+                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+    }
 
 
 

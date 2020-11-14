@@ -1,5 +1,6 @@
 package com.rsah.koperasi.Auth;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rsah.koperasi.Constant.Constant;
+import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Model.Json.JsonRegistrasiEmpID;
 import com.rsah.koperasi.Model.Response.ResponseRegistrasiEmpID;
 import com.rsah.koperasi.R;
@@ -28,7 +30,7 @@ public class RegisterNew extends AppCompatActivity {
     private RelativeLayout rlprogress , rlprogressLoading;
     EditText nik ;
     Button searchNik ;
-
+    Context mcontext ;
 
 
 
@@ -40,6 +42,7 @@ public class RegisterNew extends AppCompatActivity {
         rlprogress = findViewById(R.id.rlprogress);
         nik = findViewById(R.id.nik);
         searchNik = findViewById(R.id.btn_search);
+        mcontext = this ;
 
         searchNik.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +87,8 @@ public class RegisterNew extends AppCompatActivity {
                             Intent i = new Intent(RegisterNew.this,Register_Next_Simpan_New.class);
                             i.putExtra("nama", response.body().getResponse().getData().get(0).getsFisrtName());
                             i.putExtra("jk", response.body().getResponse().getData().get(0).getaGender());
-                            i.putExtra("agama", response.body().getResponse().getData().get(0).getaReligion());
+                            i.putExtra("agama", response.body().getResponse().getData().get(0).getAgama());
+                            i.putExtra("idagama", response.body().getResponse().getData().get(0).getaReligion());
                             i.putExtra("tempatlahir", response.body().getResponse().getData().get(0).getsPlaceOfBirthDay());
                             i.putExtra("tanggallahir", response.body().getResponse().getData().get(0).getdDateOfBirthDay());
                             i.putExtra("alamat", response.body().getResponse().getData().get(0).getsAddress());
@@ -96,22 +100,27 @@ public class RegisterNew extends AppCompatActivity {
                             startActivity(i);
 
                         }else{
-                            Toast.makeText(RegisterNew.this,message, Toast.LENGTH_SHORT).show();
+
+                            Helper.notifikasi_warning(message,mcontext);
+
                         }
 
+                    }else {
+                        showProgress(false);
+                        Helper.notifikasi_warning("Terjadi Gangguan",mcontext);
                     }
 
 
                 }else {
                     showProgress(false);
-                    Toast.makeText(RegisterNew.this,"Server Error", Toast.LENGTH_SHORT).show();
+                    Helper.notifikasi_warning("Terjadi Gangguan",mcontext);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseRegistrasiEmpID> call, Throwable t) {
                 showProgress(false);
-                Toast.makeText(RegisterNew.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                Helper.notifikasi_warning(t.getMessage(),mcontext);
             }
         });
     }

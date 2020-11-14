@@ -16,12 +16,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.developer.kalert.KAlertDialog;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -32,6 +34,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.rsah.koperasi.Auth.Upload_Foto.Foto_ID_CARD;
 import com.rsah.koperasi.Auth.Upload_Foto.Foto_PRIBADI;
 import com.rsah.koperasi.Constant.Constant;
+import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Model.Data.DataCompany;
 import com.rsah.koperasi.Model.Json.JsonRegister;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
@@ -85,6 +88,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
     public String TAG_Kecamatan = "";
     public String TAG_City = "";
     public String TAG_Province = "";
+    public String TAG_AGAMA = "";
     public String TAG_CompanyCode = "";
     public String TAG_Email = "";
     public String TAG_MobilePhone = "";
@@ -95,7 +99,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
     TextView nama , jk , agama , tl , ttl , phone , alamat ;
     EditText et_email , et_pwd ;
     Spinner company ;
-
+    private RelativeLayout rlprogress , rlprogressLoading;
 
     private ArrayList<String> arrayCompany = new ArrayList<String>();
 
@@ -118,7 +122,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
         btn_pribadi = findViewById(R.id.btn_pribadi);
         fotoIdCard = findViewById(R.id.iv_id_card);
         fotoPribadi = findViewById(R.id.iv_pribadi);
-
+        rlprogress = findViewById(R.id.rlprogress);
         btn_register = findViewById(R.id.btn_reg);
 
 
@@ -139,7 +143,8 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
         TAG_FisrtName = bundle.getString("nama");
         TAG_Gender = bundle.getString("jk");
-        TAG_Religion = bundle.getString("agama");
+        TAG_AGAMA = bundle.getString("agama");
+        TAG_Religion = bundle.getString("idagama");
         TAG_PlaceOfBirthDay = bundle.getString("tempatlahir");
         TAG_DateOfBirthDay = bundle.getString("tanggallahir");
         TAG_Address = bundle.getString("alamat");
@@ -157,7 +162,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
         nama.setText(TAG_FisrtName);
         jk.setText(_jk);
-        agama.setText(TAG_Religion);
+        agama.setText(TAG_AGAMA);
         tl.setText(TAG_PlaceOfBirthDay);
         ttl.setText(TAG_DateOfBirthDay);
         phone.setText(TAG_MobilePhone);
@@ -338,18 +343,13 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
     public void DoRegister(JsonRegister json, Context context){
 
-        pDialog = new ProgressDialog(context);
-        pDialog.setCancelable(false);
-        pDialog.setMessage("Memuat...");
-        pDialog.show();
-
-
+        showProgress(true);
         Call<ResponseRegister> call = API.Register(json);
         call.enqueue(new Callback<ResponseRegister>() {
             @Override
             public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
                 if(response.isSuccessful()) {
-                    pDialog.cancel();
+                    showProgress(false);
 
                     if (response.body().getMetadata() != null) {
 
@@ -357,33 +357,45 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
                         String status = response.body().getMetadata().getCode();
 
                         if (status.equals(Constant.ERR_200)) {
-                            pDialog.cancel();
-                            Toast.makeText(context, "Register Success", Toast.LENGTH_LONG).show();
-                            finish();
-                            startActivity(new Intent(Register_Next_Simpan_New.this,Login.class));
+                            showProgress(false);
+
+                            new KAlertDialog(Register_Next_Simpan_New.this, KAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Notification")
+                                    .setContentText("Register Berhasil")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismissWithAnimation();
+                                            finish();
+                                            startActivity(new Intent(Register_Next_Simpan_New.this,Login.class));
+                                        }
+                                    })
+                                    .show();
+
+
                         }else{
-                            pDialog.cancel();
-                            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                            showProgress(false);
+                           // Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                            Helper.notifikasi_warning(message,context);
+
                         }
 
                     }else{
-                        pDialog.cancel();
-                        Toast.makeText(context, "Error Response Data", Toast.LENGTH_LONG).show();
+                        showProgress(false);
+                        Helper.notifikasi_warning("Terjadi Gangguan",context);
                     }
 
                 }else{
-                    pDialog.cancel();
-                    Toast.makeText(context, "Error Response Data", Toast.LENGTH_LONG).show();
+                    showProgress(false);
+                    Helper.notifikasi_warning("Terjadi Gangguan",context);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseRegister> call, Throwable t) {
-
-                pDialog.cancel();
-
-                Toast.makeText(context, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
+                showProgress(false);
+                Helper.notifikasi_warning(t.getMessage(),context);
             }
         });
     }
@@ -457,5 +469,35 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
 
     }
+
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

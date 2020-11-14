@@ -177,6 +177,19 @@ public class DataEmpID {
     @SerializedName("isLogged")
     private String isLogged;
 
+    @SerializedName("agama")
+    private String agama;
+
+    public String getAgama() {
+        return agama;
+    }
+
+    public void setAgama(String agama) {
+        this.agama = agama;
+    }
+
+
+
 
     @SerializedName("sEmpID")
     private String sEmpID;
