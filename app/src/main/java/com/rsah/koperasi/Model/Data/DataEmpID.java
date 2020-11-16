@@ -101,6 +101,55 @@ public class DataEmpID {
     @SerializedName("dDtOut")
     private String dDtOut;
 
+    @SerializedName("nik")
+    private String nik;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("unitName")
+    private String unitName;
+
+    @SerializedName("unitCode")
+    private String unitCode;
+
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
+    }
+
+
+
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+
+
 
     @SerializedName("sShift")
     private String sShift;

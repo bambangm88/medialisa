@@ -1,7 +1,10 @@
 package com.rsah.koperasi.Helper;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.developer.kalert.KAlertDialog;
 import com.rsah.koperasi.Auth.Login;
@@ -9,6 +12,8 @@ import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
 
 import java.security.MessageDigest;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Helper {
@@ -146,6 +151,32 @@ public class Helper {
                 })
                 .show();
     }
+
+
+    public static void showDateDialog(Context mContext , final TextView text , String Format){
+
+        DatePickerDialog datePickerDialog;
+
+        final SimpleDateFormat dateFormatter = new SimpleDateFormat(Format, Locale.US);
+
+        Calendar newCalendar = Calendar.getInstance();
+
+        datePickerDialog = new DatePickerDialog(mContext , new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+
+                text.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.show();
+    }
+
 
 
 

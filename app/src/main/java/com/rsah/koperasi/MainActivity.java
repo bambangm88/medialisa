@@ -154,66 +154,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
 
 
-
-
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-        if (id == R.id.logout) {
-
-            show_dialog(MainActivity.this);
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void show_dialog(Context context){
-
-    AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage("Logout ?");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int id) {
-
-            sessionManager.logoutUser();
-            startActivity(new Intent(MainActivity.this, Login.class));
-            finish();
-
-
-        }
-    });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int id) {
-            dialog.cancel();
-        }
-    });
-
-    AlertDialog alert11 = builder1.create();
-        alert11.show();
-    }
 
     private void checkSaldo(){
 

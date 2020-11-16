@@ -15,9 +15,31 @@ public class DataPeserta {
     private String Address;
     @SerializedName("Email")
     private String Email;
+
     @SerializedName("MobilePhone")
     private String MobilePhone;
 
+    public String getMobilePhone() {
+        return MobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        MobilePhone = mobilePhone;
+    }
+
+
+
+    @SerializedName("tglLahir")
+    private String tglLahir;
+
+
+    public String getTglLahir() {
+        return tglLahir;
+    }
+
+    public void setTglLahir(String tglLahir) {
+        this.tglLahir = tglLahir;
+    }
 
     public String getMemberID() {
         return MemberID;
@@ -57,14 +79,6 @@ public class DataPeserta {
 
     public void setEmail(String email) {
         Email = email;
-    }
-
-    public String getMobilePhone() {
-        return MobilePhone;
-    }
-
-    public void setMobilePhone(String mobilePhone) {
-        MobilePhone = mobilePhone;
     }
 
 

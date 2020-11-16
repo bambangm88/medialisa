@@ -85,18 +85,11 @@ public class RegisterNew extends AppCompatActivity {
                         if (status.equals(Constant.ERR_200)) {
 
                             Intent i = new Intent(RegisterNew.this,Register_Next_Simpan_New.class);
-                            i.putExtra("nama", response.body().getResponse().getData().get(0).getsFisrtName());
-                            i.putExtra("jk", response.body().getResponse().getData().get(0).getaGender());
-                            i.putExtra("agama", response.body().getResponse().getData().get(0).getAgama());
-                            i.putExtra("idagama", response.body().getResponse().getData().get(0).getaReligion());
-                            i.putExtra("tempatlahir", response.body().getResponse().getData().get(0).getsPlaceOfBirthDay());
-                            i.putExtra("tanggallahir", response.body().getResponse().getData().get(0).getdDateOfBirthDay());
-                            i.putExtra("alamat", response.body().getResponse().getData().get(0).getsAddress());
-                            i.putExtra("nohp", response.body().getResponse().getData().get(0).getsMobilePhone());
-                            i.putExtra("nohp", response.body().getResponse().getData().get(0).getsMobilePhone());
-                            i.putExtra("city", response.body().getResponse().getData().get(0).getsCity());
-                            i.putExtra("state", response.body().getResponse().getData().get(0).getsState());
-                            i.putExtra("idCard", empid);
+                            i.putExtra("nik", response.body().getResponse().getData().get(0).getNik());
+                            i.putExtra("name", response.body().getResponse().getData().get(0).getName());
+                            i.putExtra("unitName", response.body().getResponse().getData().get(0).getUnitName());
+                            i.putExtra("unitCode", response.body().getResponse().getData().get(0).getUnitCode());
+
                             startActivity(i);
 
                         }else{

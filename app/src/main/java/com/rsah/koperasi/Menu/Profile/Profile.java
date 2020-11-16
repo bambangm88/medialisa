@@ -88,7 +88,7 @@ public class Profile extends AppCompatActivity {
                             nama.setText(response.body().getResponse().getData().get(0).getFisrtName());
                             phone.setText(response.body().getResponse().getData().get(0).getMobilePhone());
                             email.setText(response.body().getResponse().getData().get(0).getEmail());
-                            bod.setText(response.body().getResponse().getData().get(0).getDateOfBirthDay());
+                            bod.setText(response.body().getResponse().getData().get(0).getTglLahir());
                             alamat.setText(response.body().getResponse().getData().get(0).getAddress());
 
                         }else{

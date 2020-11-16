@@ -57,7 +57,7 @@ import static android.R.layout.simple_spinner_item;
 public class Register_Next_Simpan_New extends AppCompatActivity {
     int bitmap_size = 60; // range 1 - 100
     Bitmap bitmap, decoded;
-    ProgressDialog pDialog;
+
     private int GALLERY = 1, CAMERA = 2;
 
     ImageView fotoIdCard, fotoPribadi;
@@ -75,8 +75,9 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
     ApiService API;
 
 
-    EditText email , notelp , pwd ;
+    EditText email , notelp  ;
 
+    TextView ttl, unitName , nama ,nik ;
 
     public String TAG_FisrtName = "";
     public String TAG_Gender = "";
@@ -96,13 +97,20 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
     public String TAG_ImgIDCard = "";
     public String TAG_ImgFace = "";
     public String TAG_IdCard = "";
-    TextView nama , jk , agama , tl , ttl , phone , alamat ;
+
+    EditText  tl  , phone , alamat , pwd ;
+    Spinner agama , jk  ;
     EditText et_email , et_pwd ;
     Spinner company ;
     private RelativeLayout rlprogress , rlprogressLoading;
 
     private ArrayList<String> arrayCompany = new ArrayList<String>();
 
+    private ArrayList<String> arrayJk= new ArrayList<String>();
+
+    private ArrayList<String> arrayAgama= new ArrayList<String>();
+
+    Context mcontext ;
 
     private List<DataCompany> AllCompanyList = new ArrayList<>();
 
@@ -125,6 +133,8 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
         rlprogress = findViewById(R.id.rlprogress);
         btn_register = findViewById(R.id.btn_reg);
 
+        mcontext =this ;
+
 
         email = findViewById(R.id.et_email);
         pwd = findViewById(R.id.et_pwd);
@@ -137,42 +147,59 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         alamat = findViewById(R.id.alamat);
         company = findViewById(R.id.spCompany);
+        nik = findViewById(R.id.nik);
+        unitName = findViewById(R.id.company);
 
 
         Bundle bundle=getIntent().getExtras();
 
-        TAG_FisrtName = bundle.getString("nama");
-        TAG_Gender = bundle.getString("jk");
-        TAG_AGAMA = bundle.getString("agama");
-        TAG_Religion = bundle.getString("idagama");
-        TAG_PlaceOfBirthDay = bundle.getString("tempatlahir");
-        TAG_DateOfBirthDay = bundle.getString("tanggallahir");
-        TAG_Address = bundle.getString("alamat");
-        TAG_City = bundle.getString("city");
-        TAG_Province = bundle.getString("state");
-        TAG_MobilePhone = bundle.getString("nohp");
-        TAG_IdCard = bundle.getString("idCard");
+        TAG_IdCard = bundle.getString("nik");
+        TAG_FisrtName = bundle.getString("name");
+        TAG_CompanyCode = bundle.getString("unitCode");
+        String cmpName = bundle.getString("unitName");
 
-        String _jk = TAG_Gender ;
-        if (_jk.equals("M")){
-            _jk = "Laki-laki" ;
-        }else{
-            _jk = "Perempuan" ;
-        }
+
+
 
         nama.setText(TAG_FisrtName);
-        jk.setText(_jk);
-        agama.setText(TAG_AGAMA);
+        nik.setText(TAG_IdCard);
+        unitName.setText(cmpName);
         tl.setText(TAG_PlaceOfBirthDay);
         ttl.setText(TAG_DateOfBirthDay);
         phone.setText(TAG_MobilePhone);
         alamat.setText(TAG_Address);
 
 
+        arrayJk.add("Pilih");
+        arrayJk.add("Perempuan");
+        arrayJk.add("Laki-Laki");
 
-        pDialog = new ProgressDialog(Register_Next_Simpan_New.this);
-        pDialog.setCancelable(false);
-        pDialog.setMessage("Memuat...");
+        ArrayAdapter<String> spinnerJK = new ArrayAdapter<String>(Register_Next_Simpan_New.this, simple_spinner_item,arrayJk );
+        spinnerJK .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        jk.setAdapter(spinnerJK);
+
+
+        arrayAgama.add("Pilih");
+        arrayAgama.add("Islam");
+        arrayAgama.add("Katolik");
+        arrayAgama.add("Protestan");
+        arrayAgama.add("Hindu");
+        arrayAgama.add("Budha");
+        ArrayAdapter<String> spinnerAgama = new ArrayAdapter<String>(Register_Next_Simpan_New.this, simple_spinner_item,arrayAgama );
+        spinnerAgama .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        agama.setAdapter(spinnerAgama);
+
+
+        ttl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //takePhotoFromCamera();
+                Helper.showDateDialog(mcontext,ttl,"yyyy-MM-dd");
+            }
+        });
+
+
+
 
         //spCmp = findViewById(R.id.spCompany) ;
 
@@ -205,10 +232,15 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String cmp = company.getSelectedItem().toString();
+
                 String mail = email.getText().toString();
                 String hp = phone.getText().toString();
                 String pw = pwd.getText().toString();
+
+                String _tl = tl.getText().toString();
+                String _ttl = ttl.getText().toString();
+
+                String _address = alamat.getText().toString();
 
                 String fotoCard  = getStringImage(imageView2Bitmap(fotoIdCard));
                 String fotoProfile = getStringImage(imageView2Bitmap(fotoPribadi));
@@ -228,19 +260,29 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
 
 
-                if (cmp.isEmpty() || cmp.equals("-- Perusahaan --") ||  mail.isEmpty() || hp.isEmpty() || pw.isEmpty() || fotoCard.isEmpty() || fotoProfile.isEmpty()){
+                if ( jk.getSelectedItem().toString().equals("Pilih") || agama.getSelectedItem().toString().equals("Pilih") || mail.isEmpty() || hp.isEmpty() || pw.isEmpty() || fotoCard.isEmpty() || fotoProfile.isEmpty()){
 
-                    Toast.makeText(Register_Next_Simpan_New.this,"Silahkan Isi dan pilih foto",Toast.LENGTH_SHORT).show();
+                    Helper.notifikasi_warning("Silahkan Lengkap dan Pilih Foto",mcontext);
+
 
                 }else if(pw.length() < 8){
 
-                    Toast.makeText(Register_Next_Simpan_New.this,"Password Min 8 Karakter",Toast.LENGTH_SHORT).show();
+                    Helper.notifikasi_warning("Password Min 8 Karakter",mcontext);
 
                 }
                 else{
 
-                    TAG_CompanyCode = cmp;
+
                     TAG_Email = mail;
+                    TAG_DateOfBirthDay = _ttl;
+                    TAG_PlaceOfBirthDay = _tl;
+                    TAG_Address = _address;
+
+
+
+                    TAG_Gender = ""+jk.getSelectedItemPosition();
+                    TAG_Religion = ""+agama.getSelectedItemPosition();
+
                     TAG_MobilePhone = hp;
                     TAG_Password = pw;
                     TAG_ImgIDCard = fotoCard;
@@ -278,7 +320,8 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
 
 
-        fetchCompany() ;
+
+        //fetchCompany() ;
 
 
 
@@ -402,7 +445,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
 
     private void fetchCompany() {
-        pDialog.cancel();
+        showProgress(true);
         API.fetchCompany().enqueue(new Callback<ResponseCompany>() {
             @Override
             public void onResponse(Call<ResponseCompany> call, Response<ResponseCompany> response) {
@@ -411,7 +454,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
                         String message = response.body().getMetadata().getMessage();
                         String status = response.body().getMetadata().getCode();
                         if (status.equals(Constant.ERR_200)) {
-                            pDialog.cancel();
+                            showProgress(false);
                             AllCompanyList.addAll(response.body().getResponse().getData());
                             arrayCompany.add("-- Perusahaan --") ;
                             for(DataCompany model : AllCompanyList) {
@@ -423,22 +466,22 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                             company.setAdapter(spinnerArrayAdapter);
                         }else {
-                            pDialog.cancel();
+                            showProgress(false);
                             Toast.makeText(Register_Next_Simpan_New.this,message, Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        pDialog.cancel();
+                        showProgress(false);
                         Toast.makeText(Register_Next_Simpan_New.this,"Error response data", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    pDialog.cancel();
+                    showProgress(false);
                     Toast.makeText(Register_Next_Simpan_New.this,"Cek koneksi internet anda", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCompany> call, Throwable t) {
-                pDialog.cancel();
+                showProgress(false);
                 Toast.makeText(Register_Next_Simpan_New.this,t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
