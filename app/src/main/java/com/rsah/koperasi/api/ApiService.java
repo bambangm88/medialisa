@@ -16,8 +16,11 @@ import com.rsah.koperasi.Model.Json.JsonUbahPwd;
 import com.rsah.koperasi.Model.Response.ResponseBarang;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
 import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
+import com.rsah.koperasi.Model.Response.ResponseJangkaWaktu;
+import com.rsah.koperasi.Model.Response.ResponseJenisPinjaman;
 import com.rsah.koperasi.Model.Response.ResponseKeranjang;
 import com.rsah.koperasi.Model.Response.ResponseLogin;
+import com.rsah.koperasi.Model.Response.ResponseNominalPinjaman;
 import com.rsah.koperasi.Model.Response.ResponsePesanan;
 import com.rsah.koperasi.Model.Response.ResponseProfile;
 import com.rsah.koperasi.Model.Response.ResponseRegister;
@@ -46,6 +49,20 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("koperasi/listCompany")
     Call<ResponseCompany> fetchCompany();
+
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/listJenisPinjaman")
+    Call<ResponseJenisPinjaman> jenisPinjaman();
+
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/listNominalPinjaman")
+    Call<ResponseNominalPinjaman> nominalPinjaman();
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/listTenorPinjaman")
+    Call<ResponseJangkaWaktu> jangkaWaktuPinjaman();
 
 
     @Headers("Content-Type: application/json")

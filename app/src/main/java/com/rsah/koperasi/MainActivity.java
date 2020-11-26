@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Menu.Barang.MenuBarang;
 import com.rsah.koperasi.Menu.Pengaturan;
+import com.rsah.koperasi.Menu.Pinjaman.MainPinjaman;
 import com.rsah.koperasi.Menu.Profile.Profile;
 import com.rsah.koperasi.Menu.Saldo.DetailSaldo;
 
@@ -32,6 +34,8 @@ import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    TextView txtUser , txtEmail , txtTelp , id_karyawan , id_koperasi;
+    TextView txtUser , txtTelp , id_karyawan ;
 
     ImageView iv_face ;
 
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     SessionManager sessionManager ;
 
-    CardView cvSetting, cvPeserta , cvBarang , cvSaldo  ;
+    CardView cvSetting, cvPeserta , cvBarang , cvSaldo , cvPInjaman  ;
 
     private Context mContext;
     private ApiService API;
@@ -64,31 +68,41 @@ public class MainActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
 
         txtUser = findViewById(R.id.Username);
-        txtEmail = findViewById(R.id.email);
+       // txtEmail = findViewById(R.id.email);
         txtTelp = findViewById(R.id.telp);
         id_karyawan= findViewById(R.id.id_karyawan);
-        id_koperasi= findViewById(R.id.id_koperasi);
+        //id_koperasi= findViewById(R.id.id_koperasi);
 
         cvSetting = findViewById(R.id.cv_Setting);
         cvPeserta= findViewById(R.id.cv_Peserta);
         cvBarang= findViewById(R.id.cv_barang);
         cvSaldo= findViewById(R.id.card_saldo);
+        cvPInjaman= findViewById(R.id.cv_Pinjaman);
 
         iv_face = findViewById(R.id.iv_face);
 
         Toolbar toolbar ;
 
 
-        txtEmail.setText(sessionManager.getKeyEmail());
+       // txtEmail.setText(sessionManager.getKeyEmail());
         txtUser.setText(sessionManager.getUsername());
-        txtTelp.setText(sessionManager.getNoTelp());
-        id_karyawan.setText(sessionManager.getKeyIdCard());
-        id_koperasi.setText(sessionManager.getKeyId());
+        txtTelp.setText(sessionManager.getNoTelp() + " | " + sessionManager.getKeyEmail());
+        id_karyawan.setText("ID KARY : "+sessionManager.getKeyIdCard() + " | "+ "ID KOP : "+sessionManager.getKeyId());
+        //id_koperasi.setText("ID KOP : "+sessionManager.getKeyId());
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_pay);
         setSupportActionBar(toolbar);
 
         String url = this.getString(R.string.baseImageUrl)+sessionManager.getImageUrl() ;
+
+        
+
+
+
+
+
+
+
 
         Glide.with(this).load(url).into(iv_face);
 
@@ -119,6 +133,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cvPInjaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, MainPinjaman.class));
+
+            }
+        });
+
+
         cvBarang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 

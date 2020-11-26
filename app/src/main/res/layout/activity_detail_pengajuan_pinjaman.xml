@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Auth.Login">
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_pay"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="#fff"
+            android:theme="@style/mytoolbar"
+            app:elevation="4dp"
+            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:textAlignment="center"
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="INFORMASI PENGAJUAN"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorWhite"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Nama"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/nama"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="No Anggota"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/NIK"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:weightSum="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:text="Alamat"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="10dp"
+                            android:textColor="@color/white"
+                            android:text=""
+                            android:id="@+id/alamat"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@color/colorPrimary"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Unit"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/unit"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Jumlah Pinjaman"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/jumlahPinjaman"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Jenis Pinjaman"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/jenisPinjaman"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Jangka Waktu"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/jangkaWaktu"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@color/colorPrimary"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:text="Besar Cicilan"
+                                android:textColor="@color/white" />
+
+                            <TextView
+                                android:paddingTop="3dp"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="10dp"
+                                android:textColor="@color/white"
+                                android:text=""
+                                android:id="@+id/besarCicilan"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/colorPrimary"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_reg"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/gradientbg"
+                        android:text="AJUKAN"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/progress_loading"/>
+
+
+
+</RelativeLayout>
