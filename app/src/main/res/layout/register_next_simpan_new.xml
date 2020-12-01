@@ -282,14 +282,15 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:paddingBottom="3dp"
-
+                            android:hint="tempat lahir"
                             android:paddingLeft="10dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text=""
+                            android:background="@drawable/bgeditext"
                             android:id="@+id/tl"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
+
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -319,12 +320,13 @@
                             android:paddingBottom="3dp"
                             android:paddingTop="3dp"
                             android:paddingLeft="10dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text=""
+                            android:hint="tanggal lahir"
                             android:id="@+id/ttl"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/bgeditext"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -354,14 +356,14 @@
                             android:layout_height="wrap_content"/>
                         <EditText
                             android:paddingBottom="3dp"
-
+                            android:hint="alamat"
                             android:paddingLeft="10dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text=""
                             android:id="@+id/alamat"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/bgeditext"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -430,13 +432,14 @@
                         <EditText
                             android:paddingBottom="3dp"
                             android:paddingLeft="10dp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/colorPrimary"
                             android:text=""
+                            android:hint="no hp"
                             android:inputType="number"
                             android:id="@+id/phone"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
+                            android:background="@drawable/bgeditext"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

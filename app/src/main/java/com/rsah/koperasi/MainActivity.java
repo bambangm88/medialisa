@@ -1,5 +1,7 @@
 package com.rsah.koperasi;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +11,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Constant.Constant;
+import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Menu.Barang.MenuBarang;
 import com.rsah.koperasi.Menu.Pengaturan;
 import com.rsah.koperasi.Menu.Pinjaman.MainPinjaman;
@@ -95,7 +102,29 @@ public class MainActivity extends AppCompatActivity {
 
         String url = this.getString(R.string.baseImageUrl)+sessionManager.getImageUrl() ;
 
-        
+
+        Glide.with(this)
+                .asBitmap()
+                .load(url)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+
+                        int w = resource.getWidth() ;
+                        int h = resource.getHeight() ;
+
+                        if (w > h){
+                            iv_face.setImageBitmap(resource);
+                            iv_face.setRotation(90);
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+                    }
+                });
 
 
 
@@ -104,7 +133,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Glide.with(this).load(url).into(iv_face);
+
+
+
+
 
         mContext = this ;
         API = Server.getAPIService();
