@@ -88,7 +88,7 @@
 
                     <ImageView
                         android:layout_margin="10dp"
-                        android:src="@drawable/selfie"
+                        android:src="@drawable/pictselfie"
                         android:id="@+id/example_iv_id_card"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />

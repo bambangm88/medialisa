@@ -27,6 +27,19 @@ public class DataLogin {
     @SerializedName("CompanyName")
     private String CompanyName;
 
+    @SerializedName("CompanyCode")
+    private String CompanyCode;
+
+    public String getCompanyCode() {
+        return CompanyCode;
+    }
+
+    public void setCompanyCode(String companyCode) {
+        CompanyCode = companyCode;
+    }
+
+
+
     public String getCompanyName() {
         return CompanyName;
     }

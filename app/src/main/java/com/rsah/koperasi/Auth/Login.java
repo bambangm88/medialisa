@@ -44,8 +44,8 @@ public class Login extends AppCompatActivity {
     private Context mContext;
     private ApiService API;
 
-    SessionManager session;
-
+    private SessionManager session;
+    TextView LupaPassword ;
     public static List<DataLogin> AllEntityLogin = new ArrayList<>();
 
     @Override
@@ -60,6 +60,15 @@ public class Login extends AppCompatActivity {
 
         username = findViewById(R.id.et_username) ;
         password = findViewById(R.id.et_password);
+        LupaPassword = findViewById(R.id.lupaPassword);
+
+        LupaPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login.this, ForgotPassword.class);
+                startActivity(i);
+            }
+        });
 
 
         btn_login = findViewById(R.id.btn_login);
@@ -141,7 +150,8 @@ public class Login extends AppCompatActivity {
                                         model.getMobilePhone(),
                                         model.getImgFace(),
                                         model.getNo_IDCard(),
-                                        model.getCompanyName()
+                                        model.getCompanyName(),
+                                        model.getCompanyCode()
                                 );
 
                             }

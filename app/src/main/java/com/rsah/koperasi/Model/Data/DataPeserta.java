@@ -16,6 +16,19 @@ public class DataPeserta {
     @SerializedName("Email")
     private String Email;
 
+    @SerializedName("No_IDCard")
+    private String No_IDCard;
+
+    public String getNo_IDCard() {
+        return No_IDCard;
+    }
+
+    public void setNo_IDCard(String no_IDCard) {
+        No_IDCard = no_IDCard;
+    }
+
+
+
     @SerializedName("MobilePhone")
     private String MobilePhone;
 

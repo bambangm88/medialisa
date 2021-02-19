@@ -124,6 +124,80 @@
                         android:inputType="textEmailAddress"
                         android:textSize="20dp" />
 
+                    <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="No KTP"
+                    android:textColor="@color/colorUtama" />
+
+                    <EditText
+                        android:id="@+id/no_ktp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:maxLength="16"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="No Ktp"
+                        android:inputType="number"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Bank Rekening"
+                        android:textColor="@color/colorUtama" />
+
+                    <EditText
+                        android:id="@+id/bank_rek"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="Bank Rekening"
+                        android:inputType="text"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Nama Rekening"
+                        android:textColor="@color/colorUtama" />
+
+                    <EditText
+                        android:id="@+id/nama_rek"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="Nama Rekening"
+                        android:inputType="text"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="No Rekening"
+                        android:textColor="@color/colorUtama" />
+
+                    <EditText
+                        android:id="@+id/no_rek"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="No Rekening"
+                        android:inputType="text"
+                        android:textSize="20dp" />
+
+
 
                     <TextView
                         android:layout_width="match_parent"

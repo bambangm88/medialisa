@@ -49,10 +49,32 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_marginTop="130dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/search" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Silahkan Masukan NIK" />
+
+        <LinearLayout
             android:background="@drawable/round_edittext_background"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp">
+
+
+
 
             <com.rsah.koperasi.customfonts.TextViewSFProDisplayMedium
                 android:id="@+id/co"
@@ -94,12 +116,13 @@
         </LinearLayout>
 
         <Button
+            android:layout_gravity="center"
             android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/gradientbg"
+            android:background="@drawable/btn_primary"
             android:text="Verifikasi"
             android:textColor="#fff"
             android:textStyle="bold" />

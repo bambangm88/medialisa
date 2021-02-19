@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradientbg"
-    tools:context=".Auth.Login">
+    tools:context=".Auth.Upload_Foto.Foto_PRIBADI">
 
 
 
@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="UPLOAD ID CARD"
+                android:text="UPLOAD BUKTI TRANSFER"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -88,7 +88,7 @@
 
                     <ImageView
                         android:layout_margin="10dp"
-                        android:src="@drawable/pictidcard"
+                        android:src="@drawable/bukti_trf"
                         android:id="@+id/example_iv_id_card"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -108,7 +108,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/gradientbg"
-                    android:text="UPLOAD ID CARD"
+                    android:text="UPLOAD"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 

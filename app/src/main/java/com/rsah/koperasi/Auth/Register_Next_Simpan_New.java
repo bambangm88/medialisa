@@ -75,7 +75,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
     ApiService API;
 
 
-    EditText email , notelp  ;
+    EditText email , notelp , _ktp_rek , _nama_rek , _no_rek , _bank_rek ;
 
     TextView ttl, unitName , nama ,nik ;
 
@@ -149,6 +149,11 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
         company = findViewById(R.id.spCompany);
         nik = findViewById(R.id.nik);
         unitName = findViewById(R.id.company);
+
+        _ktp_rek = findViewById(R.id.ktp);
+        _nama_rek = findViewById(R.id.nama_rek);
+        _bank_rek = findViewById(R.id.bank_rek);
+        _no_rek = findViewById(R.id.no_rek);
 
 
         Bundle bundle=getIntent().getExtras();
@@ -245,25 +250,24 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
                 String fotoCard  = getStringImage(imageView2Bitmap(fotoIdCard));
                 String fotoProfile = getStringImage(imageView2Bitmap(fotoPribadi));
 
-
-
-
+                String nama_rek = _nama_rek.getText().toString();
+                String no_rek = _no_rek.getText().toString();
+                String bank_rek = _bank_rek.getText().toString();
+                String ktp_rek = _ktp_rek.getText().toString();
 
 
                 if (fotoPribadi.getTag() != "ada" || fotoIdCard.getTag() != "ada"  ){
 
                     fotoCard = "" ;
                     fotoProfile = "" ;
-
-
                 }
 
+                if ( jk.getSelectedItem().toString().equals("Pilih") || agama.getSelectedItem().toString().equals("Pilih")
+                        || mail.isEmpty() || hp.isEmpty() || pw.isEmpty() || fotoCard.isEmpty() || fotoProfile.isEmpty()
+                || ktp_rek.isEmpty() || bank_rek.isEmpty() || nama_rek.isEmpty() || no_rek.isEmpty()
+                ){
 
-
-                if ( jk.getSelectedItem().toString().equals("Pilih") || agama.getSelectedItem().toString().equals("Pilih") || mail.isEmpty() || hp.isEmpty() || pw.isEmpty() || fotoCard.isEmpty() || fotoProfile.isEmpty()){
-
-                    Helper.notifikasi_warning("Silahkan Lengkap dan Pilih Foto",mcontext);
-
+                    Helper.notifikasi_warning("Silahkan Lengkapi dan Pilih Foto",mcontext);
 
                 }else if(pw.length() < 8){
 
@@ -307,6 +311,10 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
                     json.setImgIDCard(TAG_ImgIDCard);
                     json.setImgFace(TAG_ImgFace);
                     json.setEmail(TAG_Email);
+                    json.setKtp(ktp_rek);
+                    json.setNama_rek(nama_rek);
+                    json.setBank_rek(bank_rek);
+                    json.setNo_rek(no_rek);
                     DoRegister(json,Register_Next_Simpan_New.this) ;
 
                 }

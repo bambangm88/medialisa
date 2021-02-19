@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class JsonRegister {
 
+
+    @SerializedName("MemberID")
+    private String MemberID;
+
     @SerializedName("IdCard")
     private String IdCard;
 
@@ -56,6 +60,52 @@ public class JsonRegister {
 
     @SerializedName("ImgFace")
     private String ImgFace;
+
+    @SerializedName("ktp")
+    private String ktp;
+
+    @SerializedName("nama_rek")
+    private String nama_rek;
+
+    @SerializedName("bank_rek")
+    private String bank_rek;
+
+    @SerializedName("no_rek")
+    private String no_rek;
+
+    public String getKtp() {
+        return ktp;
+    }
+
+    public void setKtp(String ktp) {
+        this.ktp = ktp;
+    }
+
+    public String getNama_rek() {
+        return nama_rek;
+    }
+
+    public void setNama_rek(String nama_rek) {
+        this.nama_rek = nama_rek;
+    }
+
+    public String getBank_rek() {
+        return bank_rek;
+    }
+
+    public void setBank_rek(String bank_rek) {
+        this.bank_rek = bank_rek;
+    }
+
+    public String getNo_rek() {
+        return no_rek;
+    }
+
+    public void setNo_rek(String no_rek) {
+        this.no_rek = no_rek;
+    }
+
+
 
     public String getIdCard() {
         return IdCard;
@@ -193,6 +243,13 @@ public class JsonRegister {
         ImgFace = imgFace;
     }
 
+    public String getMemberID() {
+        return MemberID;
+    }
+
+    public void setMemberID(String memberID) {
+        MemberID = memberID;
+    }
 
 
 

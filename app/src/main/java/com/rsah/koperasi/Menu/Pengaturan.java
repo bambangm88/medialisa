@@ -2,6 +2,7 @@ package com.rsah.koperasi.Menu;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.IntentCompat;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -65,7 +66,10 @@ public class Pengaturan extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         SessionManager sessionManager = new SessionManager(Pengaturan.this);
                         sessionManager.logoutUser();
-                        startActivity(new Intent(Pengaturan.this, Login.class));
+                        Intent intent = new Intent(Pengaturan.this, Login.class);
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         finish();
 
 

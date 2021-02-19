@@ -44,6 +44,7 @@ public class SessionManager {
 
     public static final String KEY_ID = "id_";
     public static final String KEY_COMPANY = "companyid_";
+    public static final String KEY_COMPANYCODE = "companycodeid_";
 
 
     // Constructor
@@ -57,7 +58,7 @@ public class SessionManager {
     /**
      * Create login session
      * */
-    public void createLoginSession( String username,String ID,String email,String noTelp , String imageUrl,String idCard , String company){ //storelogin
+    public void createLoginSession( String username,String ID,String email,String noTelp , String imageUrl,String idCard , String company , String CompanyCode){ //storelogin
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -79,6 +80,7 @@ public class SessionManager {
         editor.putString(KEY_ID_CARD, idCard);
 
         editor.putString(KEY_COMPANY, company);
+        editor.putString(KEY_COMPANYCODE, CompanyCode);
 
         editor.commit();
     }
@@ -136,6 +138,9 @@ public class SessionManager {
     }
     public String getKeyIdCompany() {
         return pref.getString(KEY_COMPANY, null);
+    }
+    public String getKeyCompanyCode() {
+        return pref.getString(KEY_COMPANYCODE, null);
     }
 
 

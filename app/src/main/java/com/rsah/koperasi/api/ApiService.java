@@ -12,8 +12,10 @@ import com.rsah.koperasi.Model.Json.JsonProfile;
 import com.rsah.koperasi.Model.Json.JsonRegister;
 import com.rsah.koperasi.Model.Json.JsonRegistrasiEmpID;
 import com.rsah.koperasi.Model.Json.JsonSaldo;
+import com.rsah.koperasi.Model.Json.JsonSimpananSukarela;
 import com.rsah.koperasi.Model.Json.JsonUbahPwd;
 import com.rsah.koperasi.Model.Response.ResponseBarang;
+import com.rsah.koperasi.Model.Response.ResponseCaraPembayaran;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
 import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
 import com.rsah.koperasi.Model.Response.ResponseJangkaWaktu;
@@ -26,6 +28,7 @@ import com.rsah.koperasi.Model.Response.ResponseProfile;
 import com.rsah.koperasi.Model.Response.ResponseRegister;
 import com.rsah.koperasi.Model.Response.ResponseRegistrasiEmpID;
 import com.rsah.koperasi.Model.Response.ResponseSaldo;
+import com.rsah.koperasi.Model.Response.ResponseSimpanan;
 import com.rsah.koperasi.Model.Response.ResponseUbahPwd;
 import com.rsah.koperasi.Model.ResponseData;
 import com.rsah.koperasi.Model.ResponseDataKabupaten;
@@ -69,11 +72,18 @@ public interface ApiService {
     @POST("koperasi/Register")
     Call<ResponseRegister> Register(@Body JsonRegister body);
 
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/EditProfile")
+    Call<ResponseRegister> EditProfile(@Body JsonRegister body);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/login")
     Call<ResponseLogin> Login(@Body JsonLogin body);
 
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/ForgotPassword")
+    Call<ResponseLogin> checkEmail(@Body JsonRegister body);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/UbahPwd")
@@ -94,6 +104,10 @@ public interface ApiService {
 
     @GET()
     Call<ResponseDataKelurahan> Kelurahan(@Url String url);
+
+
+    @GET("koperasi/caraPembayaran")
+    Call<ResponseCaraPembayaran> cara_pembayaran();
 
 
     @Headers("Content-Type: application/json")
@@ -123,6 +137,13 @@ public interface ApiService {
     @POST("koperasi/listPesanan")
     Call<ResponsePesanan> getPesanan(@Body JsonPesanan body);
 
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/listSimpananSukarela")
+    Call<ResponseSimpanan> getSimpananSukarela(@Body JsonSimpananSukarela body);
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/addSimpananSukarela")
+    Call<ResponseRegister> addSimpananSukarela(@Body JsonSimpananSukarela body);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/CekRegistrasiByEmpID")

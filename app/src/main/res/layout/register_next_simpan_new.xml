@@ -41,432 +41,27 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+
+
+
     <LinearLayout
+        android:background="@drawable/ic_bg_one"
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
 
-    <androidx.cardview.widget.CardView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/colorWhite"
-        android:elevation="5dp"
-        app:cardCornerRadius="10dp">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="3dp"
-                            android:paddingBottom="3dp"
-                            android:text="NIK"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:paddingTop="3dp"
-                            android:paddingBottom="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text=""
-                            android:id="@+id/nik"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:weightSum="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
-                        android:text="Nama"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/white"
-                        android:text=""
-                        android:id="@+id/nama"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@color/colorPrimary"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-                </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="3dp"
-                            android:paddingBottom="3dp"
-                            android:text="Unit"
-                            android:textColor="@color/white" />
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text=""
-                            android:id="@+id/company"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="Jenis Kelamin"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-
-                        <Spinner
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:layout_weight="1"
-                            android:id="@+id/jk"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/spinner"
-                            android:spinnerMode="dialog" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="Agama"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                        <Spinner
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:layout_weight="1"
-                            android:id="@+id/agama"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/spinner"
-                            android:spinnerMode="dialog" />
-
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="Tempat Lahir"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:paddingBottom="3dp"
-                            android:hint="tempat lahir"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/colorPrimary"
-                            android:text=""
-                            android:background="@drawable/bgeditext"
-                            android:id="@+id/tl"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="Tanggal Lahir"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/colorPrimary"
-                            android:text=""
-                            android:hint="tanggal lahir"
-                            android:id="@+id/ttl"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/bgeditext"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="Alamat"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:paddingBottom="3dp"
-                            android:hint="alamat"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/colorPrimary"
-                            android:text=""
-                            android:id="@+id/alamat"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/bgeditext"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/cardnewperiod"
-                        android:layout_marginTop="3dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="New Period"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text=""
-                            android:id="@+id/tvnewperiod"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-
-
-
-                    <LinearLayout
-                        android:layout_marginTop="5dp"
-                        android:weightSum="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:paddingBottom="3dp"
-                            android:paddingTop="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/white"
-                            android:text="No Hp"
-                            android:layout_marginRight="2dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/colorPrimary"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-                        <EditText
-                            android:paddingBottom="3dp"
-                            android:paddingLeft="10dp"
-                            android:textColor="@color/colorPrimary"
-                            android:text=""
-                            android:hint="no hp"
-                            android:inputType="number"
-                            android:id="@+id/phone"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="20dp"
-                            android:background="@drawable/bgeditext"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <Switch
-                            android:visibility="gone"
-                            android:id="@+id/swnewperiod"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="10dp"
-                            android:text="download new period" />
-
-                    </RelativeLayout>
-
-
-
-
-
-                </LinearLayout>
 
                 <TextView
                     android:visibility="gone"
@@ -487,6 +82,485 @@
                     android:layout_marginRight="25dp"
                     android:background="@drawable/spinner"
                     android:spinnerMode="dialog" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="NIK"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/nik"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:enabled="false"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="NIK"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Nama"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/nama"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:enabled="false"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Nama"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Unit"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/company"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:enabled="false"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Unit"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Jenis Kelamin"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/jk"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/spinner"
+                        android:spinnerMode="dialog" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Agama"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="10dp"
+                        android:layout_weight="1"
+                        android:id="@+id/agama"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/spinner"
+                        android:spinnerMode="dialog" />
+
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Tempat Lahir"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/tl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Tempat Lahir"
+                        android:inputType="text"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Tanggal Lahir"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/ttl"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Tanggal Lahir"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Alamat"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/alamat"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Alamat"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="No Hp"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/phone"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:maxLength="16"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="No HP"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="No KTP"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/ktp"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:maxLength="16"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="No KTP"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Bank Rekening"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/bank_rek"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Bank Rekening"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Nama Rekening"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/nama_rek"
+                        android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="Nama Rekening"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="No Rekening"
+                    android:textColor="@color/colorUtama" />
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/round_edittext_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp">
+
+
+                    <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                        android:id="@+id/no_rek"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/countrycode"
+                        android:background="@color/transparent"
+                        android:hint="No Rekening"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="15dp" />
+
+
+
+                </LinearLayout>
 
 
                 <TextView
@@ -565,6 +639,7 @@
 
 
                 <LinearLayout
+                    android:layout_marginBottom="100dp"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     android:layout_marginLeft="25dp"
@@ -621,18 +696,7 @@
 
 
 
-                <Button
-                    android:id="@+id/btn_reg"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/gradientbg"
-                    android:text="REGISTER"
-                    android:textColor="#fff"
-                    android:textStyle="bold" />
+
 
 
             </LinearLayout>
@@ -640,10 +704,21 @@
 
         </ScrollView>
 
-    </androidx.cardview.widget.CardView>
-
 
     </LinearLayout>
+
+
+
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradientbg"
+        android:text="REGISTER"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
     <include layout="@layout/progress_loading"/>
 
