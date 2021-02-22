@@ -61,6 +61,9 @@ public class SimpananAdapter extends RecyclerView.Adapter<SimpananAdapter.Adapte
         } else if (status.equals("01")){
             holder.status_.setText("UNCONFIRMED");
             holder.status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
+        }else if (status.equals("02")){
+             holder.status_.setText("DECLINE");
+            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
         }else{
             holder.status_.setText("NOT CONFIRMED");
             holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
@@ -68,8 +71,8 @@ public class SimpananAdapter extends RecyclerView.Adapter<SimpananAdapter.Adapte
 
 
 
-        holder.jumlah_.setText("Rp "+jumlah);
-        holder.date_.setText(tgl_trf);
+        holder.jumlah_.setText(Helper.changeToRupiah2(jumlah));
+        holder.date_.setText(tgl_trf.replace(".000",""));
 
 
     }
@@ -96,10 +99,6 @@ public class SimpananAdapter extends RecyclerView.Adapter<SimpananAdapter.Adapte
             date_ = itemView.findViewById(R.id.tvdate);
             jumlah_ = itemView.findViewById(R.id.tvjumlah);
             status_ = itemView.findViewById(R.id.tvstatus);
-
-
-
-
 
         }
     }
