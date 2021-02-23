@@ -10,6 +10,7 @@
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
@@ -20,18 +21,17 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
             android:background="@drawable/gradientbg"
-            android:theme="@style/mytoolbar"
+            android:theme="@style/ToolbarTheme"
             app:elevation="4dp"
             app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
             <TextView
-                android:layout_marginTop="3dp"
-                android:textAlignment="center"
+
                 android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="REGISTRASI DATA INFO"
+                android:text="Register Data Info"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -115,8 +115,6 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="15dp" />
-
-
 
                 </LinearLayout>
 
@@ -327,7 +325,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-
+                        android:focusable="false"
                         android:layout_marginRight="10dp"
                         android:layout_toRightOf="@+id/countrycode"
                         android:background="@color/transparent"

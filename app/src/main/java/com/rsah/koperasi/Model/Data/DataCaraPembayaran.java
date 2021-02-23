@@ -18,6 +18,20 @@ public class DataCaraPembayaran {
     @SerializedName("bank_rekening")
     private String bank_rekening;
 
+    @SerializedName("wa_admin")
+    private String wa_admin;
+
+    public String getWa_admin() {
+        return wa_admin;
+    }
+
+    public void setWa_admin(String wa_admin) {
+        this.wa_admin = wa_admin;
+    }
+
+
+
+
     public String getID() {
         return ID;
     }

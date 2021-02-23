@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_to_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+        <RelativeLayout
+
+            android:background="@drawable/gradientbg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Auth.Login">
+
+
+                <ScrollView
+                    android:background="@drawable/ic_bg_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/appbar"
+                    android:layout_marginTop="0dp">
+
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="vertical">
+
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Bank Rekening"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/bank_rek"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Nama"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Nama Rekening"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:id="@+id/nama_rek"
+                                                    android:enabled="false"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Nama Rekening"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="No Rekening"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/no_rek"
+                                                    android:inputType="number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="No Rekenening"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+                                        <Button
+                                            android:id="@+id/btn_edit"
+                                            android:layout_width="150dp"
+                                            android:layout_gravity="center"
+
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:background="@drawable/btn_primary"
+                                            android:text="edit"
+                                            android:layout_marginBottom="70dp"
+                                            android:textColor="#fff"
+                                            android:textStyle="bold" />
+
+                                        <Button
+                                            android:visibility="gone"
+                                            android:id="@+id/btn_simpan"
+                                            android:layout_width="150dp"
+                                            android:layout_gravity="center"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:background="@drawable/btn_red"
+                                            android:text="simpan"
+                                            android:layout_marginBottom="70dp"
+                                            android:textColor="#fff"
+                                            android:textStyle="bold" />
+
+
+
+
+
+
+
+                                </LinearLayout>
+
+
+
+                        </LinearLayout>
+                </ScrollView>
+
+                <include layout="@layout/progress_loading"/>
+
+        </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

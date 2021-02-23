@@ -3,40 +3,50 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background="@drawable/gradientbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
+
+
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_pay"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:layout_gravity="center"
-        android:background="@drawable/gradientbg"
-        android:theme="@style/mytoolbar"
-        app:elevation="4dp"
-        app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
-
-        <TextView
-            android:textAlignment="center"
-            android:id="@+id/toolbar_title"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_pay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
-            android:text="SETORAN SIMPANAN"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:background="@drawable/gradientbg"
+            android:theme="@style/ToolbarTheme"
+            app:elevation="4dp"
+            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
-    </androidx.appcompat.widget.Toolbar>
+            <TextView
 
-</com.google.android.material.appbar.AppBarLayout>
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cara Pembayaran"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
 
     <TextView
         android:layout_height="wrap_content"
@@ -53,7 +63,8 @@
 
 
     <ScrollView
-        android:layout_marginTop="60dp"
+        android:background="@drawable/ic_bg_one"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -65,17 +76,6 @@
             android:layout_height="fill_parent"
             android:orientation="vertical"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LAKUKAN TRANSFER KE REKENING"
-                android:paddingLeft="20dp"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:id="@+id/judul"
-                android:layout_marginTop="15dp"/>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -158,6 +158,18 @@
 
 
                 </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_wa"
+                    android:layout_width="150dp"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_primary"
+                    android:text="Hubungi Admin"
+                    android:layout_marginBottom="70dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
 
 
 

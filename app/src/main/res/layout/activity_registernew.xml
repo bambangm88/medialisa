@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradientbg"
     tools:context=".Auth.Login">
 
 
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
@@ -19,17 +21,17 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
             android:background="@drawable/gradientbg"
-            android:theme="@style/mytoolbar"
+            android:theme="@style/ToolbarTheme"
             app:elevation="4dp"
             app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
             <TextView
-                android:textAlignment="center"
+
                 android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="REGISTER"
+                android:text="Register"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -41,15 +43,22 @@
 
 
     <LinearLayout
+        android:background="@drawable/ic_bg_one"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:orientation="vertical"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 
@@ -130,7 +139,7 @@
 
 
     </LinearLayout>
-
+    </LinearLayout>
 
 
     <include layout="@layout/progress_loading"/>

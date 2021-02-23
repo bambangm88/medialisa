@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.developer.kalert.KAlertDialog;
 import com.karumi.dexter.Dexter;
@@ -155,6 +157,10 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
         _bank_rek = findViewById(R.id.bank_rek);
         _no_rek = findViewById(R.id.no_rek);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle=getIntent().getExtras();
 
@@ -490,7 +496,7 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseCompany> call, Throwable t) {
                 showProgress(false);
-                Toast.makeText(Register_Next_Simpan_New.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register_Next_Simpan_New.this,"Terjadi Gangguan Pada Server", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -534,6 +540,21 @@ public class Register_Next_Simpan_New extends AppCompatActivity {
 
 
 
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 
 

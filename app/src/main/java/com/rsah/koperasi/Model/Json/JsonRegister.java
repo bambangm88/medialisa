@@ -73,6 +73,20 @@ public class JsonRegister {
     @SerializedName("no_rek")
     private String no_rek;
 
+    @SerializedName("type")
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+
+
     public String getKtp() {
         return ktp;
     }

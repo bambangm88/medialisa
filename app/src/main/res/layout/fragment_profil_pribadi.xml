@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+        <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+            android:background="@drawable/gradientbg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Auth.Login">
+
+
+                <ScrollView
+                    android:background="@drawable/ic_bg_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/appbar"
+                    android:layout_marginTop="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="20dp"
+                                    android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="150dp"
+                                            android:layout_height="150dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginBottom="10dp">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/foto"
+                                                    android:src="@drawable/blank_image"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_marginTop="10dp"/>
+
+
+                                        </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Email"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:id="@+id/email"
+                                                    android:enabled="false"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Email"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="No Ktp"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:id="@+id/ktp"
+
+                                                    android:inputType="number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:enabled="false"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="No Ktp"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Nama"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/nama"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Nama"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Phone"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/phone"
+                                                    android:inputType="number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Phone"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="BOD"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/dateBod"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:editable="false"
+                                                    android:focusable="false"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="BOD"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="25dp"
+                                            android:layout_marginTop="10dp"
+                                            android:text="Alamat"
+                                            android:textColor="@color/colorUtama" />
+
+                                        <LinearLayout
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginRight="20dp"
+                                            android:background="@drawable/round_edittext_background"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:layout_marginTop="10dp">
+
+
+                                                <com.rsah.koperasi.customfonts.EditTextSFProDisplayRegular
+                                                    android:enabled="false"
+                                                    android:id="@+id/alamat"
+                                                    android:inputType="text"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_marginLeft="10dp"
+
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_toRightOf="@+id/countrycode"
+                                                    android:background="@color/transparent"
+                                                    android:hint="Alamat"
+                                                    android:text=""
+                                                    android:textColor="@color/black"
+                                                    android:textColorHint="@color/gray"
+                                                    android:textSize="15dp" />
+
+                                        </LinearLayout>
+
+
+
+
+
+
+                                        <Button
+                                            android:id="@+id/btn_edit"
+                                            android:layout_width="150dp"
+                                            android:layout_gravity="center"
+
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:background="@drawable/btn_primary"
+                                            android:text="edit"
+                                            android:layout_marginBottom="70dp"
+                                            android:textColor="#fff"
+                                            android:textStyle="bold" />
+
+                                        <Button
+                                            android:visibility="gone"
+                                            android:id="@+id/btn_simpan"
+                                            android:layout_width="150dp"
+                                            android:layout_gravity="center"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="20dp"
+                                            android:background="@drawable/btn_red"
+                                            android:text="simpan"
+                                            android:layout_marginBottom="70dp"
+                                            android:textColor="#fff"
+                                            android:textStyle="bold" />
+
+
+
+
+
+
+
+
+                                </LinearLayout>
+
+
+
+                        </LinearLayout>
+                </ScrollView>
+
+                <include layout="@layout/progress_loading"/>
+
+        </RelativeLayout>
+

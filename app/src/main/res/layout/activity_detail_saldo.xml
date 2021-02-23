@@ -16,30 +16,34 @@
 
 
 
+
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_pay"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="#fff"
+            android:layout_gravity="center"
+            android:background="@drawable/gradientbg"
+            android:theme="@style/ToolbarTheme"
             app:elevation="4dp"
-            android:theme="@style/mytoolbar"
-            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar" >
+            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
             <TextView
-                android:textSize="18dp"
-                android:layout_width="wrap_content"
+
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Detail Saldo"
-                android:textColor="@color/colorUtama"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:id="@+id/toolbar_title" />
+                android:text="Detail Saldo"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -130,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="Rp 20.000"
+                android:text="0"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -179,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="Rp 20.000"
+                android:text="0"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -228,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="Rp 20.000"
+                android:text="0"
                 android:textColor="@color/colorPrimary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -262,7 +266,7 @@
     </LinearLayout>
 
 
-
+    <include layout="@layout/progress_loading"/>
 
 
 </RelativeLayout>

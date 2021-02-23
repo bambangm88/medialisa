@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.developer.kalert.KAlertDialog;
 import com.rsah.koperasi.Auth.Login;
@@ -66,6 +68,12 @@ public class UploadSimpanan extends AppCompatActivity {
         Button btn_simpan = findViewById(R.id.btn_simpan) ;
         Button cara_pembayaran = findViewById(R.id.cara_pembayaran) ;
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         cara_pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +86,7 @@ public class UploadSimpanan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //takePhotoFromCamera();
-                Helper.showDateDialog(UploadSimpanan.this,et_trf,"yyyy-MM-dd");
+                Helper.showDateDialog(UploadSimpanan.this,et_trf,"yyyy-MM-dd hh:mm:ss");
             }
         });
 
@@ -190,7 +198,7 @@ public class UploadSimpanan extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseRegister> call, Throwable t) {
                 showProgress(false);
-                Helper.notifikasi_warning(t.getMessage(),context);
+                Helper.notifikasi_warning("Terjadi Gangguan Pada Server",context);
             }
         });
     }
@@ -235,6 +243,20 @@ public class UploadSimpanan extends AppCompatActivity {
 
 
 
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 }

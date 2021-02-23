@@ -5,14 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.developer.kalert.KAlertDialog;
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.MainActivity;
@@ -45,7 +49,7 @@ public class ForgotPassword extends AppCompatActivity {
     private ApiService API;
 
     SessionManager session;
-
+    private RelativeLayout rlprogress , rlprogressLoading;
     public static List<DataLogin> AllEntityLogin = new ArrayList<>();
 
     @Override
@@ -53,7 +57,7 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-
+        rlprogress = findViewById(R.id.rlprogress);
         session = new SessionManager(getApplicationContext());
 
         email = findViewById(R.id.et_email) ;
@@ -61,6 +65,11 @@ public class ForgotPassword extends AppCompatActivity {
 
         mContext = this ;
         API = Server.getAPIService();
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         pDialog = new ProgressDialog(ForgotPassword.this);
         pDialog.setCancelable(false);
@@ -71,7 +80,9 @@ public class ForgotPassword extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (email.getText().toString().equals("")){
-                    Toast.makeText(mContext, "Silahkan Isi", Toast.LENGTH_LONG).show();
+                   Helper.notifikasi_warning("Email tidak boleh kosong",ForgotPassword.this);
+                    //Toast.makeText(mContext, "Field tidak boleh kosong", Toast.LENGTH_LONG).show();
+
                     return;
                 }
 
@@ -87,7 +98,8 @@ public class ForgotPassword extends AppCompatActivity {
 
     private void checkEmail(JsonRegister json){
 
-        pDialog.show();
+       // pDialog.show();
+        showProgress(true);
         Call<ResponseLogin> call = API.checkEmail(json);
         call.enqueue(new Callback<ResponseLogin>() {
             @Override
@@ -99,36 +111,88 @@ public class ForgotPassword extends AppCompatActivity {
                         String status = response.body().getMetadata().getCode() ;
 
                         if(status.equals(Constant.ERR_200)){
-
-                            Toast.makeText(mContext, "Berhasil, Silahkan check email", Toast.LENGTH_LONG).show();
-                            finish();
+                            showProgress(false);
+                           // Toast.makeText(mContext, "Berhasil, Silahkan check email", Toast.LENGTH_LONG).show();
+                            new KAlertDialog(ForgotPassword.this, KAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Notification")
+                                    .setContentText("Berhasil, Silahkan Lihat Tautan Pada Email")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismissWithAnimation();
+                                            finish();
+                                        }
+                                    })
+                                    .show();
 
                         }else{
-                            pDialog.cancel();
-                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                            showProgress(false);
+                            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                            new KAlertDialog(ForgotPassword.this, KAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Notification")
+                                    .setContentText(message)
+                                    .setConfirmText("OK")
+                                    .show();
+                            email.setText("");
                         }
 
                     }else{
-                        pDialog.cancel();
-                        Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                        showProgress(false);
+                        Helper.notifikasi_warning("Error Response Data",ForgotPassword.this);
+
+                        //Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
 
                 }else{
-                    pDialog.cancel();
-                    Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                    showProgress(false);
+                    Helper.notifikasi_warning("Error Response Data",ForgotPassword.this);
+
+                   // Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable t) {
 
-                pDialog.cancel();
+                showProgress(false);
 
-                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
+                Helper.notifikasi_warning("Internal server error / check your connection",ForgotPassword.this);
+                //Toast.makeText(mContext, "Field tidak boleh kosong", Toast.LENGTH_LONG).show();
+
+
+                //Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
+                Log.e("Error", "onFailure: "+"Terjadi Gangguan Pada Server" );
             }
         });
     }
+
+
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
+
 
 
 }

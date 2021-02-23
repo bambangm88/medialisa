@@ -19,6 +19,7 @@ public class DataPeserta {
     @SerializedName("No_IDCard")
     private String No_IDCard;
 
+
     public String getNo_IDCard() {
         return No_IDCard;
     }
@@ -44,6 +45,69 @@ public class DataPeserta {
 
     @SerializedName("tglLahir")
     private String tglLahir;
+
+
+
+    @SerializedName("bank_rek")
+    private String bank_rek;
+
+    @SerializedName("nama_rek")
+    private String nama_rek;
+
+    @SerializedName("no_rek")
+    private String no_rek;
+
+
+    @SerializedName("no_ktp")
+    private String no_ktp;
+
+    @SerializedName("ImgFace")
+    private String ImgFace;
+
+    public String getImgFace() {
+        return ImgFace;
+    }
+
+    public void setImgFace(String imgFace) {
+        ImgFace = imgFace;
+    }
+
+
+
+    public String getNo_ktp() {
+        return no_ktp;
+    }
+
+    public void setNo_ktp(String no_ktp) {
+        this.no_ktp = no_ktp;
+    }
+
+    public String getBank_rek() {
+        return bank_rek;
+    }
+
+    public void setBank_rek(String bank_rek) {
+        this.bank_rek = bank_rek;
+    }
+
+    public String getNama_rek() {
+        return nama_rek;
+    }
+
+    public void setNama_rek(String nama_rek) {
+        this.nama_rek = nama_rek;
+    }
+
+    public String getNo_rek() {
+        return no_rek;
+    }
+
+    public void setNo_rek(String no_rek) {
+        this.no_rek = no_rek;
+    }
+
+
+
 
 
     public String getTglLahir() {

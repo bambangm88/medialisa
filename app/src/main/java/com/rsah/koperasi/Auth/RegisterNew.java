@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
@@ -43,6 +45,11 @@ public class RegisterNew extends AppCompatActivity {
         nik = findViewById(R.id.nik);
         searchNik = findViewById(R.id.btn_search);
         mcontext = this ;
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         searchNik.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +120,7 @@ public class RegisterNew extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseRegistrasiEmpID> call, Throwable t) {
                 showProgress(false);
-                Helper.notifikasi_warning(t.getMessage(),mcontext);
+                Helper.notifikasi_warning("Terjadi Gangguan Pada Server",mcontext);
             }
         });
     }
@@ -132,7 +139,21 @@ public class RegisterNew extends AppCompatActivity {
 
 
 
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 
 

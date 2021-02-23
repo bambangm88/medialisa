@@ -9,9 +9,13 @@
     </style>
 
 
-    <style name="mytoolbar"  parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="mytoolbar"  parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">@color/colorUtama</item>
     </style>
 
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 
 </resources>

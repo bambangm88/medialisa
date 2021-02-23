@@ -1,11 +1,13 @@
 package com.rsah.koperasi.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +57,11 @@ public class ChangePassword extends AppCompatActivity {
         pwd_confirm = findViewById(R.id.et_pwdConfirm);
         btn_ubah = findViewById(R.id.btn_ubah);
         session = new SessionManager(getApplicationContext());
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btn_ubah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,12 +145,26 @@ public class ChangePassword extends AppCompatActivity {
                 pDialog.cancel();
 
                 Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
+                Log.e("Error", "onFailure: "+"Terjadi Gangguan Pada Server");
             }
         });
     }
 
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 
 }

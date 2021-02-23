@@ -4,32 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradientbg"
     tools:context=".Menu.Barang.Barang">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_pay"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="#fff"
+            android:layout_gravity="center"
+            android:background="@drawable/gradientbg"
+            android:theme="@style/ToolbarTheme"
             app:elevation="4dp"
-            android:theme="@style/mytoolbar"
-            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar" >
+            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
             <TextView
-                android:textSize="18dp"
-                android:layout_width="wrap_content"
+
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SIMPANAN SUKARELA"
-                android:textColor="@color/colorUtama"
-                android:textStyle="bold"
                 android:layout_gravity="center"
-                android:id="@+id/toolbar_title" />
+                android:text="Simpanan Sukarela"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -38,11 +41,11 @@
 
 
 
-
         <LinearLayout
+
             android:layout_marginTop="55dp"
             android:orientation="vertical"
-            android:background="#fff"
+            android:background="@drawable/ic_bg_one"
               android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -74,5 +77,29 @@
         android:src="@drawable/ic_baseline_add_24" />
 
 
+    <LinearLayout
+        android:id="@+id/icon_simpanan_sukarela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:src="@drawable/tidak_masuk" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Anda tidak mempunyai data simpanan sukarela"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+
+    <include layout="@layout/progress_loading"/>
 
 </RelativeLayout>

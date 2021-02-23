@@ -7,8 +7,8 @@ android {
         applicationId "com.rsah.koperasi"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
-        versionName "4.0"
+        versionCode 6
+        versionName "6.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -58,7 +58,7 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
+    implementation 'com.github.TutorialsAndroid:KAlertDialog:v14.0.19'
 
 
     implementation 'com.jakewharton:butterknife:10.0.0'

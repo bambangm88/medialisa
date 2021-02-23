@@ -1,6 +1,7 @@
 package com.rsah.koperasi.Menu.Saldo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
@@ -9,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +36,7 @@ public class DetailSaldo extends AppCompatActivity {
     private Context mContext;
     private TextView textname,textcompanycode, textidkop,textsaldo , textsaldo_sukarela , textsaldo_wajib ;
     SwipeRefreshLayout refreshLayout;
+    private RelativeLayout rlprogress ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +50,19 @@ public class DetailSaldo extends AppCompatActivity {
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat...");
 
-
+        rlprogress = findViewById(R.id.rlprogress);
         textname = findViewById(R.id.textname);
         textcompanycode = findViewById(R.id.textcompanycode);
         textidkop = findViewById(R.id.textidkop);
         textsaldo= findViewById(R.id.textsaldo);
         textsaldo_sukarela= findViewById(R.id.textsaldo_sukarela);
         textsaldo_wajib= findViewById(R.id.textsaldo_wajib);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -87,7 +98,8 @@ public class DetailSaldo extends AppCompatActivity {
 
         JsonSaldo json = new JsonSaldo();
         json.setMemberID(sessionManager.getKeyId());
-        pDialog.show();
+       // pDialog.show();
+        showProgress(true);
         Call<ResponseSaldo> call = API.getSaldo(json);
         call.enqueue(new Callback<ResponseSaldo>() {
             @Override
@@ -101,7 +113,8 @@ public class DetailSaldo extends AppCompatActivity {
 
                         if(status.equals(Constant.ERR_200)){
 
-                            pDialog.cancel();
+
+                            showProgress(false);
                             String sal = response.body().getResponse().getData().get(0).getSaldo();
                             String sal_sukarela = response.body().getResponse().getData().get(0).getSaldo_sukarela();
                             String sal_wajib = response.body().getResponse().getData().get(0).getSaldo_wajib();
@@ -120,7 +133,8 @@ public class DetailSaldo extends AppCompatActivity {
                             //saldo.setText("Rp "+response.body().getDataSaldo().get(0).getSaldo());
 
                         }else{
-                            pDialog.cancel();
+                            //pDialog.cancel();
+                            showProgress(false);
                             //Toast.makeText(mContext, "Email / Password salah", Toast.LENGTH_LONG).show();
 
                             textsaldo.setText("Rp 0");
@@ -129,7 +143,8 @@ public class DetailSaldo extends AppCompatActivity {
                         }
 
                     }else{
-                        pDialog.cancel();
+                       // pDialog.cancel();
+                        showProgress(false);
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                         textsaldo.setText("Rp 0");
                         textsaldo_sukarela.setText("Rp 0");
@@ -137,7 +152,8 @@ public class DetailSaldo extends AppCompatActivity {
                     }
 
                 }else{
-                    pDialog.cancel();
+                   /// pDialog.cancel();
+                    showProgress(false);
                     Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     textsaldo.setText("Rp 0");
                     textsaldo_sukarela.setText("Rp 0");
@@ -148,13 +164,43 @@ public class DetailSaldo extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseSaldo> call, Throwable t) {
 
-                pDialog.cancel();
-
+               // pDialog.cancel();
+                showProgress(false);
                 Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: "+t.getMessage() );
             }
         });
     }
+
+
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
+
+
+
+
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
 
 
 

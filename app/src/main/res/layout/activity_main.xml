@@ -1,118 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipe_to_refresh_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:id="@+id/swipe_to_refresh_layout"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="2dp">
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/gradientbg"
+                android:elevation="2dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txtHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KOPERASI"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+
 <ScrollView
+    android:background="@drawable/gradientbg"
+    android:layout_marginTop="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainscroll"
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:background="@drawable/bg_home"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_pay"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_gravity="center"
-            android:background="@drawable/gradientbg"
-            android:theme="@style/mytoolbar"
-            app:elevation="4dp"
-            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
-            <TextView
-                android:layout_marginLeft="35dp"
-                android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="DASHBOARD"
-                android:textColor="#fff"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
          <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
+
+             <TextView
+                 android:layout_marginTop="15dp"
+                 android:layout_marginLeft="17dp"
+                 android:id="@+id/txtUcapan"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Selamat Siang"
+                 android:textColor="@color/white"
+                 android:textSize="10dp" />
+
+             <RelativeLayout
+                 android:layout_marginTop="40dp"
+                 android:layout_marginRight="15dp"
+                 android:layout_marginLeft="15dp"
+
+                 android:layout_width="match_parent"
+                 android:layout_height="165dp">
+
+
+
+
+
              <androidx.cardview.widget.CardView
                 android:id="@+id/cvlView"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+
                 app:cardCornerRadius="10dp"
                 android:elevation="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="160dp">
 
 
+
+
             <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/gradientbg"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
-            <LinearLayout
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="10dp"
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:layout_height="100dp"
+                    android:translationZ="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/blank_image"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/iv_face"
+                    app:civ_border_width="2dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_radius="3"
+                    app:civ_shadow_color="@color/colorPrimary"/>
+
+
+                <LinearLayout
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="30dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
+                    android:text="Nama"
+                    android:textSize="9dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textStyle="bold"
                     android:id="@+id/Username"
                     android:text="Nama"
+                    android:textSize="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:text="No Telp"
+                    android:textSize="9dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:visibility="gone"
                     android:textStyle="bold"
-                    android:textSize="17dp"
+                    android:id="@+id/noTelp"
+                    android:text="Nama"
+                    android:textSize="11dp"
                     android:textColor="@color/colorWhite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7dp"
-                    android:text="Telp"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/telp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
 
                 <TextView
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7dp"
-                    android:text="12345678"
-                    android:id="@+id/id_karyawan"
+                    android:layout_marginTop="5dp"
+                    android:text="Email"
+                    android:textSize="9dp"
                     android:textColor="@color/colorWhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/email"
+                    android:text="Email"
+                    android:textSize="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:text="ID Karyawan"
+                    android:textSize="9dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/id_karyawan_new"
+                    android:text="ID Karyawan"
+                    android:textSize="11dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:text="ID Koperasi"
+                        android:textSize="9dp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/id_koperasi_new"
+                        android:text="ID Koperasi"
+                        android:textSize="11dp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
 
             </LinearLayout>
@@ -123,23 +241,12 @@
         </LinearLayout>
 
 
+
          </androidx.cardview.widget.CardView>
 
-             <com.mikhaellopez.circularimageview.CircularImageView
-                 android:layout_width="100dp"
-                 android:layout_gravity="center"
-                 android:layout_height="100dp"
-                 android:translationZ="4dp"
-                 android:layout_marginTop="10dp"
-                 android:layout_marginBottom="5dp"
-                 android:layout_centerHorizontal="true"
-                 android:id="@+id/iv_face"
-                 app:civ_border_width="2dp"
-                 app:civ_shadow="true"
-                 app:civ_shadow_radius="3"
-                 app:civ_shadow_color="@color/colorPrimary"/>
 
 
+             </RelativeLayout>
 
 
 
@@ -161,12 +268,13 @@
                 android:weightSum="3"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="140dp">
+                android:layout_height="wrap_content">
 
 
                 <LinearLayout
 
                     android:layout_weight="1"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -175,36 +283,52 @@
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="80dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:src="@drawable/wallet"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="Lihat Saldo"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/wallet"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
 
                     </androidx.cardview.widget.CardView>
 
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:text="Lihat Saldo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
                 </LinearLayout>
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -214,39 +338,54 @@
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="80dp">
 
-                            <ImageView
-                                android:src="@drawable/member"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="Peserta"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/member"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
 
+
+
                     </androidx.cardview.widget.CardView>
 
-
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="Profile"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
 
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -254,35 +393,50 @@
 
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_shu"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="80dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:src="@drawable/count"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="SHU"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/count"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
 
                     </androidx.cardview.widget.CardView>
 
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="SHU"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
@@ -290,13 +444,15 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:weightSum="3"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="wrap_content">
 
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -306,27 +462,34 @@
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="80dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:src="@drawable/pijaman"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="Simpanan
-                                Sukarela"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/ic_money_bag"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
@@ -334,41 +497,56 @@
                     </androidx.cardview.widget.CardView>
 
 
-
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="Simpanan Sukarela"
+                        android:textSize="10dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_Setting"
+                        android:id="@+id/cv_pinjaman"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="80dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:src="@drawable/setting"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="Pengaturan"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/pijaman"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+
 
                         </LinearLayout>
 
@@ -376,7 +554,13 @@
                     </androidx.cardview.widget.CardView>
 
 
-
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="Pinjaman"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
 
 
@@ -385,8 +569,89 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_setting"
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/setting"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="Pengaturan"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:weightSum="3"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -396,26 +661,92 @@
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="80dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:src="@drawable/exit"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"/>
-                            <TextView
-                                android:text="Keluar"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
+
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/exit"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:text="Keluar"
+                        android:textSize="10dp"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_Settindg"
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/setting"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
@@ -424,6 +755,75 @@
 
 
 
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="Pengaturan"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_kesluar"
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"
+                                android:layout_width="60dp"
+                                android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:src="@drawable/exit"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:text="Keluar"
+                        android:textAlignment="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
 
 
@@ -590,4 +990,8 @@
 
 </ScrollView>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include layout="@layout/progress_loading"/>
+    </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+

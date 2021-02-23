@@ -17,9 +17,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Menu.Simpanan.CaraPembayaran"></activity>
+        <activity android:name=".Menu.VersionActivity"></activity>
         <activity android:name=".Menu.Simpanan.Simpanan" />
+        <activity android:name=".Menu.Pinjaman.TrackPinjaman" />
         <activity android:name=".Menu.Simpanan.listSimpanan" />
-        <activity android:name=".Menu.Simpanan.UploadSimpanan" />
+        <activity android:name=".Menu.Simpanan.UploadSimpanan" android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".Menu.Pinjaman.DetailPengajuanPinjaman" />
         <activity android:name=".Menu.Pinjaman.Pengajuan" />
         <activity android:name=".Menu.Pinjaman.MainPinjaman" />
@@ -29,9 +31,10 @@
         <activity android:name=".Menu.Barang.MenuBarang" />
         <activity android:name=".Menu.Barang.DetailBarang" />
         <activity android:name=".Menu.Barang.Barang" />
-        <activity android:name=".Auth.RegisterNew" />
-        <activity android:name=".Auth.Register_Next_Simpan_New" />
-        <activity android:name=".Menu.Profile.Profile" />
+        <activity android:name=".Auth.RegisterNew" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".Auth.Register_Next_Simpan_New" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".Menu.Profile.Profile"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".Auth.Upload_Foto.Foto_PRIBADI" />
         <activity android:name=".Auth.Upload_Foto.Foto_Bukti_Transfer" />
         <activity android:name=".Auth.Upload_Foto.Foto_ID_CARD" />

@@ -7,12 +7,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.rsah.koperasi.R;
 
@@ -40,6 +42,10 @@ public class Foto_Bukti_Transfer extends AppCompatActivity {
 
         btn_upload = findViewById(R.id.btn_upload);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         btn_upload.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +162,23 @@ public class Foto_Bukti_Transfer extends AppCompatActivity {
 
             // Toast.makeText(UploadBerkas.this, "encode"+getStringImage(imageView2Bitmap(berkas1)), Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }

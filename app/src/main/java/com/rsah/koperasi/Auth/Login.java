@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.developer.kalert.KAlertDialog;
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.MainActivity;
@@ -47,6 +50,7 @@ public class Login extends AppCompatActivity {
     private SessionManager session;
     TextView LupaPassword ;
     public static List<DataLogin> AllEntityLogin = new ArrayList<>();
+    private RelativeLayout rlprogress , rlprogressLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btnreg = findViewById(R.id.register);
-
+        rlprogress = findViewById(R.id.rlprogress);
 
         session = new SessionManager(getApplicationContext());
 
@@ -111,8 +115,8 @@ public class Login extends AppCompatActivity {
                     Login(json);
 
                 }else{
-
-                    Toast.makeText(mContext, "Field tidak boleh kosong", Toast.LENGTH_LONG).show();
+                    Helper.notifikasi_warning("Field tidak boleh kosong",Login.this);
+                    //Toast.makeText(mContext, "Field tidak boleh kosong", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -124,7 +128,8 @@ public class Login extends AppCompatActivity {
 
     private void Login(JsonLogin json){
 
-        pDialog.show();
+
+        showProgress(true);
         Call<ResponseLogin> call = API.Login(json);
         call.enqueue(new Callback<ResponseLogin>() {
             @Override
@@ -138,7 +143,7 @@ public class Login extends AppCompatActivity {
                         if(status.equals(Constant.ERR_200)){
 
                             pDialog.cancel();
-
+                            showProgress(false);
                             AllEntityLogin.addAll(response.body().getResponse().getData()) ;
 
                             for(DataLogin model : AllEntityLogin) {
@@ -156,15 +161,35 @@ public class Login extends AppCompatActivity {
 
                             }
 
-                            Intent intent = new Intent(Login.this,MainActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();
-                            finish();
+                            new KAlertDialog(Login.this, KAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Notification")
+                                    .setContentText("Login Berhasil")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                        @Override
+                                        public void onClick(KAlertDialog sDialog) {
+                                            sDialog.dismissWithAnimation();
+
+                                                Intent intent = new Intent(Login.this,MainActivity.class);
+                                                startActivity(intent);
+                                                //Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();
+                                                finish();
+
+                                        }
+                                    })
+                                    .show();
+
+
+
 
 
                         }else{
                             pDialog.cancel();
-                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+                            showProgress(false);
+                            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+
+                            Helper.notifikasi_warning(message,Login.this);
+
                         }
 
 
@@ -172,12 +197,16 @@ public class Login extends AppCompatActivity {
 
                     }else{
                         pDialog.cancel();
-                        Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                        showProgress(false);
+                      //  Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                        Helper.notifikasi_warning("Error Response Data",Login.this);
                     }
 
                 }else{
                     pDialog.cancel();
-                    Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                    showProgress(false);
+                    //Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
+                    Helper.notifikasi_warning("Error Response Data",Login.this);
                 }
             }
 
@@ -185,12 +214,24 @@ public class Login extends AppCompatActivity {
             public void onFailure(Call<ResponseLogin> call, Throwable t) {
 
                 pDialog.cancel();
-
-                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
+                showProgress(false);
+                //Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
+                Helper.notifikasi_warning("Terjadi Kesalahan / Cek Koneksimu",Login.this);
+                Log.e("Error", "onFailure: "+"Terjadi Gangguan Pada Server" );
             }
         });
     }
+
+
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
+
 
 
 }

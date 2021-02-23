@@ -1,11 +1,14 @@
 package com.rsah.koperasi.Menu.Simpanan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,7 +41,7 @@ public class CaraPembayaran extends AppCompatActivity {
     private ImageView iv_buktitrf ;
     SessionManager sessionManager ;
     private RelativeLayout rlprogress , rlprogressLoading;
-
+    private Button btn_wa ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,14 @@ public class CaraPembayaran extends AppCompatActivity {
         API = Server.getAPIService();
         rlprogress = findViewById(R.id.rlprogress);
         sessionManager = new SessionManager(this);
+        btn_wa = findViewById(R.id.btn_wa);
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            caraPembayaran();
+
+        caraPembayaran();
     }
 
     public void caraPembayaran(){
@@ -76,6 +85,7 @@ public class CaraPembayaran extends AppCompatActivity {
                             no_rek.setText(response.body().getResponse().getData().get(0).getNo_rekening());
                             nama_rek.setText(response.body().getResponse().getData().get(0).getNama_rekening());
                             bank_rek.setText(response.body().getResponse().getData().get(0).getBank_rekening());
+                            String wa = response.body().getResponse().getData().get(0).getWa_admin();
 
 
                             Button btn_salin_nominal = findViewById(R.id.btn_salin_rekening);
@@ -92,6 +102,12 @@ public class CaraPembayaran extends AppCompatActivity {
                                 }
                             });
 
+                            btn_wa.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    openWA(wa);
+                                }
+                            });
 
 
 
@@ -168,7 +184,7 @@ public class CaraPembayaran extends AppCompatActivity {
 
                 new KAlertDialog(CaraPembayaran.this, KAlertDialog.WARNING_TYPE)
                         .setTitleText("Notification")
-                        .setContentText("Terjadi Kesalahan")
+                        .setContentText("Terjadi Gangguan Pada Server")
                         .setConfirmText("OK")
                         .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
                             @Override
@@ -196,6 +212,42 @@ public class CaraPembayaran extends AppCompatActivity {
             rlprogress.setVisibility(View.GONE);
         }
     }
+
+
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+    private void openWA(String noWA) {
+
+        try {
+
+            String number = noWA;
+            String url = "https://api.whatsapp.com/send?phone="+number;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setPackage("com.whatsapp");
+            i.setData(Uri.parse(url));
+            startActivity(i);
+
+        }catch (Exception ex){
+            Toast.makeText(CaraPembayaran.this,"Whatsapp tidak ditemukan",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 
 
 }

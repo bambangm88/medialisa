@@ -6,8 +6,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,19 +23,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.developer.kalert.KAlertDialog;
 import com.rsah.koperasi.Auth.Login;
+import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Menu.Barang.MenuBarang;
 import com.rsah.koperasi.Menu.Pengaturan;
 import com.rsah.koperasi.Menu.Pinjaman.MainPinjaman;
+import com.rsah.koperasi.Menu.Pinjaman.TrackPinjaman;
 import com.rsah.koperasi.Menu.Profile.Profile;
 import com.rsah.koperasi.Menu.Saldo.DetailSaldo;
 
@@ -57,15 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    TextView txtUser , txtTelp , id_karyawan ;
+    TextView txtUser , txtTelp , email , idkop , idkary , txtUcapan ;
 
     ImageView iv_face ;
 
     ProgressDialog pDialog;
 
     SessionManager sessionManager ;
-
-    CardView cvSetting, cvPeserta , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan ;
+    private RelativeLayout rlprogress ;
+    CardView cvSetting, cvPeserta , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan , cv_shu ;
 
     private Context mContext;
     private ApiService API;
@@ -79,20 +87,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sessionManager = new SessionManager(this);
-
+        rlprogress = findViewById(R.id.rlprogress);
         txtUser = findViewById(R.id.Username);
        // txtEmail = findViewById(R.id.email);
-        txtTelp = findViewById(R.id.telp);
-        id_karyawan= findViewById(R.id.id_karyawan);
+        txtTelp = findViewById(R.id.noTelp);
+        email= findViewById(R.id.email);
+        idkop= findViewById(R.id.id_koperasi_new);
+        idkary= findViewById(R.id.id_karyawan_new);
+        txtUcapan= findViewById(R.id.txtUcapan);
         //id_koperasi= findViewById(R.id.id_koperasi);
 
-        cvSetting = findViewById(R.id.cv_Setting);
+        cvSetting = findViewById(R.id.cv_setting);
         cvPeserta= findViewById(R.id.cv_Peserta);
         cvBarang= findViewById(R.id.cv_barang);
         cvSaldo= findViewById(R.id.card_saldo);
         cvKeluar= findViewById(R.id.cv_keluar);
         cvSimpanan= findViewById(R.id.cv_simpanan);
-       // cvPInjaman= findViewById(R.id.cv_Pinjaman);
+        cv_shu= findViewById(R.id.cv_shu);
+        cvPInjaman= findViewById(R.id.cv_pinjaman);
 
         iv_face = findViewById(R.id.iv_face);
 
@@ -103,44 +115,47 @@ public class MainActivity extends AppCompatActivity {
 
        // txtEmail.setText(sessionManager.getKeyEmail());
         txtUser.setText(sessionManager.getUsername());
-        txtTelp.setText(sessionManager.getNoTelp() + " | " + sessionManager.getKeyEmail());
-        id_karyawan.setText("ID KARY : "+sessionManager.getKeyIdCard() + " | "+ "ID KOP : "+sessionManager.getKeyId());
+        txtTelp.setText(sessionManager.getNoTelp());
+        email.setText(sessionManager.getKeyEmail());
+        idkary.setText(sessionManager.getKeyIdCard());
+        idkop.setText(sessionManager.getKeyId());
         //id_koperasi.setText("ID KOP : "+sessionManager.getKeyId());
 
         String url = this.getString(R.string.baseImageUrl)+sessionManager.getImageUrl() ;
 
-        Glide.with(this)
-                .asBitmap()
-                .load(url)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+        if (!sessionManager.getImageUrl().equals("")) {
+            Glide.with(this)
+                    .asBitmap()
+                    .load(url)
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
 
-                        int w = resource.getWidth() ;
-                        int h = resource.getHeight() ;
+                            int w = resource.getWidth();
+                            int h = resource.getHeight();
 
-                        if (w > h){
-                            iv_face.setImageBitmap(resource);
-                            iv_face.setRotation(90);
-                        }else{
-                            iv_face.setImageBitmap(resource);
+                            if (w > h) {
+                                iv_face.setImageBitmap(resource);
+                                iv_face.setRotation(90);
+                            } else {
+                                iv_face.setImageBitmap(resource);
+                            }
+
+
                         }
 
-
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-                    }
-                });
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                        }
+                    });
+        }
 
 
 
 
+        Helper.cekUcapan(txtUcapan,sessionManager.getUsername() );
 
-
-
-
+        Helper.countDown(MainActivity.this);
 
 
 
@@ -173,14 +188,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* cvPInjaman.setOnClickListener(new View.OnClickListener() {
+       cvPInjaman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, MainPinjaman.class));
+                startActivity(new Intent(MainActivity.this, TrackPinjaman.class));
 
             }
-        });*/
+        });
 
        cvSimpanan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +216,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        cv_shu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new KAlertDialog(MainActivity.this, KAlertDialog.WARNING_TYPE)
+                        .setTitleText("Notification")
+                        .setContentText("SHU Dalam Pengembangan")
+                        .setConfirmText("OK")
+                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                            @Override
+                            public void onClick(KAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+
+                            }
+                        })
+                        .show();
+
+            }
+        });
+
+
 
 
         cvSaldo.setOnClickListener(new View.OnClickListener() {
@@ -229,8 +266,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        ScrollView scrollView = (ScrollView) findViewById(R.id.mainscroll);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+
+                // horizontal scroll position
+                int scrollX = scrollView.getScrollX();
+
+                // vertical scroll position
+                int scrollY = scrollView.getScrollY();
+
+                if (scrollY < 5 ){
+                    refreshLayout.setEnabled(true);
+                }else{
+                    refreshLayout.setEnabled(false);
+                }
+
+               // Toast.makeText(MainActivity.this,""+scrollY,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+
+
+
+
         refreshLayout.setColorSchemeResources(
                 android.R.color.holo_green_dark, android.R.color.holo_blue_dark,
                 android.R.color.holo_orange_dark, android.R.color.holo_red_dark);
@@ -243,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         refreshLayout.setRefreshing(false);
                     }
-                }, 3000);
+                }, 2000);
             }
         });
 
@@ -255,14 +319,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void show_dialog(){
 
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-        builder1.setMessage("Logout ?");
-        builder1.setCancelable(true);
+        new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                .setTitleText("Warning")
+                .setContentText("Anda yakin akan keluar ?")
+                .setConfirmText("Keluar")
+                .setCancelText("Tetap disini")
+                .cancelButtonColor(R.color.green, mContext)
+                .confirmButtonColor(R.color.red, mContext)
+                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        //getDataCustomerFromDBSetToTextview();
 
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+
+
                         SessionManager sessionManager = new SessionManager(MainActivity.this);
                         sessionManager.logoutUser();
                         Intent intent = new Intent(MainActivity.this, Login.class);
@@ -273,18 +350,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                     }
-                });
+                })
+                .show();
 
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
 
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+
+
     }
 
 
@@ -292,7 +363,8 @@ public class MainActivity extends AppCompatActivity {
 
         JsonProfile json = new JsonProfile();
         json.setMemberID(sessionManager.getKeyId());
-        pDialog.show();
+
+        showProgress(true);
         Call<ResponseProfile> call = API.getProfile(json);
         call.enqueue(new Callback<ResponseProfile>() {
             @Override
@@ -303,17 +375,27 @@ public class MainActivity extends AppCompatActivity {
                         String message = response.body().getMetadata().getMessage() ;
                         String status = response.body().getMetadata().getCode() ;
 
-                        if(status.equals(Constant.ERR_200)){
+                        if(status.equals(Constant.ERR_200)) {
 
-                            pDialog.cancel();
+                            showProgress(false);
 
                             // txtEmail.setText(sessionManager.getKeyEmail());
                             txtUser.setText(response.body().getResponse().getData().get(0).getFisrtName());
-                            txtTelp.setText(response.body().getResponse().getData().get(0).getMobilePhone() + " | " + response.body().getResponse().getData().get(0).getEmail());
-                            id_karyawan.setText("ID KARY : "+response.body().getResponse().getData().get(0).getNo_IDCard() + " | "+ "ID KOP : "+response.body().getResponse().getData().get(0).getMemberID());
+                            txtTelp.setText(response.body().getResponse().getData().get(0).getMobilePhone());
+                            email.setText(response.body().getResponse().getData().get(0).getEmail());
+                            idkary.setText(response.body().getResponse().getData().get(0).getNo_IDCard());
+                            idkop.setText(response.body().getResponse().getData().get(0).getMemberID());
                             //id_koperasi.setText("ID KOP : "+sessionManager.getKeyId());
 
-                            String url = MainActivity.this.getString(R.string.baseImageUrl)+sessionManager.getImageUrl() ;
+                            String imgFace = response.body().getResponse().getData().get(0).getImgFace();
+
+                            Helper.cekUcapan(txtUcapan, response.body().getResponse().getData().get(0).getFisrtName());
+
+
+                            String url = MainActivity.this.getString(R.string.baseImageUrl) + imgFace;
+
+                            if (!imgFace.equals("")) {
+
 
                             Glide.with(MainActivity.this)
                                     .asBitmap()
@@ -322,13 +404,13 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
 
-                                            int w = resource.getWidth() ;
-                                            int h = resource.getHeight() ;
+                                            int w = resource.getWidth();
+                                            int h = resource.getHeight();
 
-                                            if (w > h){
+                                            if (w > h) {
                                                 iv_face.setImageBitmap(resource);
                                                 iv_face.setRotation(90);
-                                            }else{
+                                            } else {
                                                 iv_face.setImageBitmap(resource);
                                             }
 
@@ -339,23 +421,23 @@ public class MainActivity extends AppCompatActivity {
                                         public void onLoadCleared(@Nullable Drawable placeholder) {
                                         }
                                     });
-
+                            }
 
 
 
                         }else{
-                            pDialog.cancel();
+                            showProgress(false);
                             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                             finish();
                         }
 
                     }else{
-                        pDialog.cancel();
+                        showProgress(false);
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
 
                 }else{
-                    pDialog.cancel();
+                    showProgress(false);
                     Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                 }
             }
@@ -363,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseProfile> call, Throwable t) {
 
-                pDialog.cancel();
+                showProgress(false);
 
                 Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
                 Log.e("Error", "onFailure: "+t.getMessage() );
@@ -372,6 +454,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // Helper.countDown(MainActivity.this);
+    }
 }

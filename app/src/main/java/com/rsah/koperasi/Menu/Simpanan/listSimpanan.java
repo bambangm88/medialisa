@@ -6,11 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,7 +56,8 @@ public class listSimpanan extends AppCompatActivity {
 
     private Context mContext;
     private FloatingActionButton fabAddSimpanan ;
-
+    private RelativeLayout rlprogress ;
+    private LinearLayout icon_simpanan_sukarela ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +65,11 @@ public class listSimpanan extends AppCompatActivity {
 
         mContext = this ;
         API = Server.getAPIService();
-
+        rlprogress = findViewById(R.id.rlprogress);
         sessionManager = new SessionManager(this);
 
         rvTeam = findViewById(R.id.rvSimpananSukarela);
+        icon_simpanan_sukarela = findViewById(R.id.icon_simpanan_sukarela);
 
         fabAddSimpanan = findViewById(R.id.btnAdd);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -75,6 +81,13 @@ public class listSimpanan extends AppCompatActivity {
         pDialog = new ProgressDialog(listSimpanan.this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat...");
+
+        Toolbar toolbar = findViewById(R.id.toolbar_pay);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        icon_simpanan_sukarela.setVisibility(View.INVISIBLE);
 
 
         JsonSimpananSukarela json = new JsonSimpananSukarela();
@@ -94,13 +107,14 @@ public class listSimpanan extends AppCompatActivity {
 
     private void getSimpanan(JsonSimpananSukarela json){
 
-        pDialog.show();
+        //pDialog.show();
+        showProgress(true);
         Call<ResponseSimpanan> call = API.getSimpananSukarela(json);
         call.enqueue(new Callback<ResponseSimpanan>() {
             @Override
             public void onResponse(Call<ResponseSimpanan> call, Response<ResponseSimpanan> response) {
                 if(response.isSuccessful()) {
-
+                    showProgress(false);
                     if (response.body().getMetadata() != null) {
 
                         String message = response.body().getMetadata().getMessage();
@@ -108,24 +122,28 @@ public class listSimpanan extends AppCompatActivity {
 
                         if (status.equals(Constant.ERR_200)) {
 
-                            pDialog.cancel();
+                            //pDialog.cancel();
+
                             AllSimpananList.addAll(response.body().getResponse().getData());
                             rvTeam.setAdapter(new SimpananAdapter(mContext, AllSimpananList));
                             Adapter.notifyDataSetChanged();
 
                         }else{
-                            pDialog.cancel();
+                            //pDialog.cancel();
+                            icon_simpanan_sukarela.setVisibility(View.VISIBLE);
                             Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
                         }
 
                     }else {
-                        pDialog.cancel();
+                       // pDialog.cancel();
+                        showProgress(false);
                         finish();
                         Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                     }
 
                 }else{
-                    pDialog.cancel();
+                   // pDialog.cancel();
+                    showProgress(false);
                     finish();
                     Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
                 }
@@ -134,18 +152,42 @@ public class listSimpanan extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseSimpanan> call, Throwable t) {
 
-                pDialog.cancel();
+               // pDialog.cancel();
+                showProgress(false);
                 finish();
                 Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
+                Log.e("Error", "onFailure: "+"Terjadi Gangguan Pada Server" );
             }
         });
     }
 
 
 
+    private void showProgress(Boolean bool){
+
+        if (bool){
+            rlprogress.setVisibility(View.VISIBLE);
+        }else {
+            rlprogress.setVisibility(View.GONE);
+        }
+    }
 
 
+    //homeback
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 
 }

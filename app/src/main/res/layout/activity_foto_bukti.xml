@@ -9,7 +9,11 @@
 
 
 
+
+
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
@@ -20,17 +24,17 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
             android:background="@drawable/gradientbg"
-            android:theme="@style/mytoolbar"
+            android:theme="@style/ToolbarTheme"
             app:elevation="4dp"
             app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
 
             <TextView
-                android:textAlignment="center"
+
                 android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="UPLOAD BUKTI TRANSFER"
+                android:text="Upload Bukti Transfer"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -38,6 +42,14 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_bg_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
 
@@ -100,14 +112,15 @@
 
 
                 <Button
+                    android:layout_gravity="center"
                     android:id="@+id/btn_upload"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/gradientbg"
+                    android:background="@drawable/btn_primary"
                     android:text="UPLOAD"
                     android:textColor="#fff"
                     android:textStyle="bold" />
@@ -121,7 +134,7 @@
     </androidx.cardview.widget.CardView>
 
 
-
+    </LinearLayout>
 
 
 
