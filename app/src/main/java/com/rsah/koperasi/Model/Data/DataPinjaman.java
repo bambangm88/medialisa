@@ -40,8 +40,8 @@ public class DataPinjaman {
     @SerializedName("lamaAngsuran")
     private String lamaAngsuran;
 
-    @SerializedName("orderIdPinjaman")
-    private String orderIdPinjaman;
+    @SerializedName("OrderIdPinjaman")
+    private String OrderIdPinjaman;
 
     @SerializedName("StatusDesc")
     private String StatusDesc;
@@ -130,11 +130,11 @@ public class DataPinjaman {
     }
 
     public String getOrderIdPinjaman() {
-        return orderIdPinjaman;
+        return OrderIdPinjaman;
     }
 
     public void setOrderIdPinjaman(String orderIdPinjaman) {
-        this.orderIdPinjaman = orderIdPinjaman;
+        this.OrderIdPinjaman = orderIdPinjaman;
     }
 
 

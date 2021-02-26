@@ -1,14 +1,18 @@
 package com.rsah.koperasi.Menu.Barang.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rsah.koperasi.Helper.Helper;
+import com.rsah.koperasi.Menu.Pinjaman.DetailPinjamanActivity;
 import com.rsah.koperasi.Model.Data.DataPinjaman;
 import com.rsah.koperasi.Model.Data.DataSimpanan;
 import com.rsah.koperasi.R;
@@ -50,61 +54,27 @@ public class PinjamanAdapter extends RecyclerView.Adapter<PinjamanAdapter.Adapte
         String jumlah = responsePaymentMethod.getJumlahPinjaman();
         String status = responsePaymentMethod.getStatus();
         String statusDesc = responsePaymentMethod.getStatusDesc();
+        String invoice = responsePaymentMethod.getOrderIdPinjaman();
+
+        Helper.colostatuspinjaman(status,statusDesc,holder.status_,mContext);
 
 
-        if (status.equals("1")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
-        } else if (status.equals("2")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
-        }else if (status.equals("3")){
-             holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
-        }else if (status.equals("4")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.green));
-        }else if (status.equals("5")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }else if (status.equals("6")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.green));
-        }else if (status.equals("7")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.green));
-        }else if (status.equals("8")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.green));
-        }else if (status.equals("9")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }
-        else if (status.equals("10")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.green));
-        }
-        else if (status.equals("11")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }
-        else if (status.equals("12")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }
-        else if (status.equals("13")){
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }else{
-            holder.status_.setText(statusDesc);
-            holder.status_.setTextColor(mContext.getResources().getColor(R.color.red));
-        }
 
 
 
         holder.jumlah_.setText(Helper.changeToRupiah2(jumlah));
 
         holder.date_.setText(Helper.parseDate(tgl_trf ));
+
+
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext,DetailPinjamanActivity.class);
+                i.putExtra("invoice", invoice);
+                mContext.startActivity(i);
+            }
+        });
 
 
     }
@@ -119,7 +89,7 @@ public class PinjamanAdapter extends RecyclerView.Adapter<PinjamanAdapter.Adapte
 
 
         TextView date_ , jumlah_ , status_ ;
-
+        LinearLayout card ;
 
 
 
@@ -131,6 +101,7 @@ public class PinjamanAdapter extends RecyclerView.Adapter<PinjamanAdapter.Adapte
             date_ = itemView.findViewById(R.id.tvdate);
             jumlah_ = itemView.findViewById(R.id.tvjumlah);
             status_ = itemView.findViewById(R.id.tvstatus);
+            card = itemView.findViewById(R.id.rootLayout);
 
         }
     }

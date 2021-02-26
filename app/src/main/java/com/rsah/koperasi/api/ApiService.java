@@ -27,6 +27,7 @@ import com.rsah.koperasi.Model.Response.ResponseNominalPinjaman;
 import com.rsah.koperasi.Model.Response.ResponsePesanan;
 import com.rsah.koperasi.Model.Response.ResponsePinjaman;
 import com.rsah.koperasi.Model.Response.ResponseProfile;
+import com.rsah.koperasi.Model.Response.ResponseRecordPinjaman;
 import com.rsah.koperasi.Model.Response.ResponseRegister;
 import com.rsah.koperasi.Model.Response.ResponseRegistrasiEmpID;
 import com.rsah.koperasi.Model.Response.ResponseSaldo;
@@ -129,6 +130,16 @@ public interface ApiService {
 
 
     @Headers("Content-Type: application/json")
+    @POST("koperasi/pinjamanByReference")
+    Call<ResponsePinjaman> getPinjamanByRef(@Body JsonProfile body);
+
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/pinjamanByReference")
+    Call<ResponsePinjaman> pinjamanDetail(@Body JsonProfile body);
+
+
+    @Headers("Content-Type: application/json")
     @POST("koperasi/InsertBarangToKeranjang")
     Call<ResponseInsertBarang> requestInsertKrj(@Body JsonInsertBarang body);
 
@@ -147,6 +158,10 @@ public interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("koperasi/listPinjaman")
     Call<ResponsePinjaman> getPinjaman(@Body JsonSimpananSukarela body);
+
+    @Headers("Content-Type: application/json")
+    @POST("koperasi/listRecordPinjaman")
+    Call<ResponseRecordPinjaman> getRecordPinjaman(@Body JsonProfile body);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/addSimpananSukarela")

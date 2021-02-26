@@ -363,10 +363,7 @@ public class Helper {
     }
 
 
-    public static String convertFormatDate(String text){
-        String newstring = new SimpleDateFormat("dd-MM-yyyy").format(text);
-        return  newstring ;
-    }
+
 
     public static String parseDate(String inputDateString) {
         String dateTime ="" ;
@@ -386,6 +383,58 @@ public class Helper {
 
 
         return dateTime ;
+    }
+    
+    
+    public static void colostatuspinjaman(String status, String statusDesc, TextView status_, Context mContext){
+        if (status.equals("1")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
+        } else if (status.equals("2")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
+        }else if (status.equals("3")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.yellow));
+        }else if (status.equals("4")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.green));
+        }else if (status.equals("5")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }else if (status.equals("6")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.green));
+        }else if (status.equals("7")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.green));
+        }else if (status.equals("8")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.green));
+        }else if (status.equals("9")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
+        else if (status.equals("10")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.green));
+        }
+        else if (status.equals("11")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
+        else if (status.equals("12")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
+        else if (status.equals("13")){
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }else{
+            status_.setText(statusDesc);
+            status_.setTextColor(mContext.getResources().getColor(R.color.red));
+        }
+
     }
 
 
