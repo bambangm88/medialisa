@@ -10,6 +10,19 @@ public class JsonProfile {
     @SerializedName("reference")
     private String reference;
 
+    @SerializedName("CicilanReference")
+    private String CicilanReference;
+
+
+    public String getCicilanReference() {
+        return CicilanReference;
+    }
+
+    public void setCicilanReference(String cicilanReference) {
+        CicilanReference = cicilanReference;
+    }
+
+
     public String getReference() {
         return reference;
     }

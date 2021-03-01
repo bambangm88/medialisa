@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Menu.Pinjaman.DetailPinjamanActivity"></activity>
+        <activity android:name=".Menu.Pinjaman.SimulasiCicilan" />
         <activity android:name=".Menu.Simpanan.CaraPembayaran" />
         <activity android:name=".Menu.Pinjaman.RecordPinjaman" />
         <activity android:name=".Menu.VersionActivity" />

@@ -43,6 +43,19 @@ public class DataPinjaman {
     @SerializedName("OrderIdPinjaman")
     private String OrderIdPinjaman;
 
+    @SerializedName("JatuhTempo")
+    private String JatuhTempo;
+
+    public String getJatuhTempo() {
+        return JatuhTempo;
+    }
+
+    public void setJatuhTempo(String jatuhTempo) {
+        JatuhTempo = jatuhTempo;
+    }
+
+
+
     @SerializedName("StatusDesc")
     private String StatusDesc;
 

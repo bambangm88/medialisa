@@ -21,14 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rsah.koperasi.Constant.Constant;
-import com.rsah.koperasi.Menu.Barang.Adapter.PinjamanAdapter;
 import com.rsah.koperasi.Menu.Barang.Adapter.RecordPinjamanAdapter;
+import com.rsah.koperasi.Menu.Barang.Adapter.SimulasiPinjamanAdapter;
 import com.rsah.koperasi.Menu.Simpanan.UploadSimpanan;
-import com.rsah.koperasi.Model.Data.DataPinjaman;
 import com.rsah.koperasi.Model.Data.DataRecordPinjaman;
 import com.rsah.koperasi.Model.Json.JsonProfile;
-import com.rsah.koperasi.Model.Json.JsonSimpananSukarela;
-import com.rsah.koperasi.Model.Response.ResponsePinjaman;
 import com.rsah.koperasi.Model.Response.ResponseRecordPinjaman;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.api.ApiService;
@@ -42,7 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecordPinjaman extends AppCompatActivity {
+public class SimulasiCicilan extends AppCompatActivity {
 
 
 
@@ -53,7 +50,7 @@ public class RecordPinjaman extends AppCompatActivity {
 
     private RecyclerView rvTeam;
     private List<DataRecordPinjaman> AllPinjamanList = new ArrayList<>();
-    private RecordPinjamanAdapter Adapter;
+    private SimulasiPinjamanAdapter Adapter;
 
     private Context mContext;
     private FloatingActionButton fabAddSimpanan ;
@@ -62,7 +59,7 @@ public class RecordPinjaman extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_pinjaman);
+        setContentView(R.layout.activity_simulasi_cicilan);
 
         mContext = this ;
         API = Server.getAPIService();
@@ -77,9 +74,9 @@ public class RecordPinjaman extends AppCompatActivity {
         rvTeam.setLayoutManager(mLayoutManager);
         rvTeam.setItemAnimator(new DefaultItemAnimator());
 
-        Adapter = new RecordPinjamanAdapter(this, AllPinjamanList);
+        Adapter = new SimulasiPinjamanAdapter(this, AllPinjamanList);
 
-        pDialog = new ProgressDialog(RecordPinjaman.this);
+        pDialog = new ProgressDialog(SimulasiCicilan.this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Memuat...");
 
@@ -96,13 +93,13 @@ public class RecordPinjaman extends AppCompatActivity {
         Log.e("TAG", "onCreate: reffff "+ref );
         JsonProfile json = new JsonProfile();
         json.setReference(ref);
-        json.setCicilanReference("");
+        json.setCicilanReference("ANGSURAN");
         getPinjaman(json);
 
         fabAddSimpanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RecordPinjaman.this,UploadSimpanan.class));
+                startActivity(new Intent(SimulasiCicilan.this,UploadSimpanan.class));
             }
         });
 
@@ -129,7 +126,7 @@ public class RecordPinjaman extends AppCompatActivity {
 
                             //pDialog.cancel();
                             AllPinjamanList.addAll(response.body().getResponse().getData());
-                            rvTeam.setAdapter(new RecordPinjamanAdapter(mContext, AllPinjamanList));
+                            rvTeam.setAdapter(new SimulasiPinjamanAdapter(mContext, AllPinjamanList));
                             Adapter.notifyDataSetChanged();
 
                         }else{
