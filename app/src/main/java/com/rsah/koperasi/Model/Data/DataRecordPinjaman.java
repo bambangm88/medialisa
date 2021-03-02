@@ -34,8 +34,34 @@ public class DataRecordPinjaman {
     @SerializedName("JumlahDibayar")
     private String JumlahDibayar;
 
+
+
     @SerializedName("JatuhTempo")
     private String JatuhTempo;
+
+    @SerializedName("JumlahBayar")
+    private String JumlahBayar;
+
+    @SerializedName("TanggalBayar")
+    private String TanggalBayar;
+
+    public String getJumlahBayar() {
+        return JumlahBayar;
+    }
+
+    public void setJumlahBayar(String jumlahBayar) {
+        JumlahBayar = jumlahBayar;
+    }
+
+    public String getTanggalBayar() {
+        return TanggalBayar;
+    }
+
+    public void setTanggalBayar(String tanggalBayar) {
+        TanggalBayar = tanggalBayar;
+    }
+
+
 
     public String getCicilanReference() {
         return CicilanReference;

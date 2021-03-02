@@ -180,7 +180,7 @@
                         android:layout_marginTop="6dp"
                         android:layout_gravity="center_vertical"
                         android:textColor="@color/white"
-                        android:text="Jatuh Tempo"
+                        android:text="Tanggal Bayar"
                         android:textAlignment="center"
                         android:gravity="center_vertical"
                         android:textStyle="bold"
@@ -242,7 +242,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Anda tidak mempunyai data record status pinjaman"
+            android:text="Anda tidak mempunyai data simulasi cicilan"
             android:textSize="12dp" />
     </LinearLayout>
 

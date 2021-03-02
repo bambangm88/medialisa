@@ -111,7 +111,7 @@ public class SimulasiCicilan extends AppCompatActivity {
 
         //pDialog.show();
         showProgress(true);
-        Call<ResponseRecordPinjaman> call = API.getRecordPinjaman(json);
+        Call<ResponseRecordPinjaman> call = API.getSimulasiCicilan(json);
         call.enqueue(new Callback<ResponseRecordPinjaman>() {
             @Override
             public void onResponse(Call<ResponseRecordPinjaman> call, Response<ResponseRecordPinjaman> response) {

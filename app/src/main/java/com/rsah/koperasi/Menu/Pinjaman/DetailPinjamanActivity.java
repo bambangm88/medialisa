@@ -151,6 +151,10 @@ public class DetailPinjamanActivity extends AppCompatActivity {
 
                             Helper.colostatuspinjaman(statusX,statusdesc,pstatus,mContext);
 
+                            if (statusX.equals("6")){
+                                btnSimulasiCicilan.setVisibility(View.VISIBLE);
+                            }
+
 
                         }else{
                             //pDialog.cancel();

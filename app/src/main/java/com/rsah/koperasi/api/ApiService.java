@@ -164,6 +164,10 @@ public interface ApiService {
     Call<ResponseRecordPinjaman> getRecordPinjaman(@Body JsonProfile body);
 
     @Headers("Content-Type: application/json")
+    @POST("koperasi/simulasiCicilan")
+    Call<ResponseRecordPinjaman> getSimulasiCicilan(@Body JsonProfile body);
+
+    @Headers("Content-Type: application/json")
     @POST("koperasi/addSimpananSukarela")
     Call<ResponseRegister> addSimpananSukarela(@Body JsonSimpananSukarela body);
 
