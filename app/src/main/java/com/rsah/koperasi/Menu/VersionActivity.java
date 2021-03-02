@@ -86,6 +86,8 @@ public class VersionActivity extends AppCompatActivity {
                         namaApp.setText(versionResponse.getResponse().getData().get(0).getNama());
                         developer.setText(versionResponse.getResponse().getData().get(0).getAuthor());
 
+                        cekVersion();
+
                     }else{
                         Helper.notifikasi_warning(message,VersionActivity.this);
                     }

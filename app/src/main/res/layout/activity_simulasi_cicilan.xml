@@ -51,6 +51,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:background="@drawable/gradientbg"
                 android:layout_width="match_parent"

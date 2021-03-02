@@ -34,6 +34,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.developer.kalert.KAlertDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
 import com.rsah.koperasi.Constant.Constant;
@@ -47,10 +48,13 @@ import com.rsah.koperasi.Menu.Saldo.DetailSaldo;
 
 import com.rsah.koperasi.Menu.Simpanan.Simpanan;
 import com.rsah.koperasi.Menu.Simpanan.listSimpanan;
+import com.rsah.koperasi.Menu.VersionActivity;
 import com.rsah.koperasi.Model.Json.JsonProfile;
 import com.rsah.koperasi.Model.Json.JsonSaldo;
+import com.rsah.koperasi.Model.Json.JsonVersion;
 import com.rsah.koperasi.Model.Response.ResponseProfile;
 import com.rsah.koperasi.Model.Response.ResponseSaldo;
+import com.rsah.koperasi.Model.Response.VersionResponse;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
 import com.rsah.koperasi.sessionManager.SessionManager;
@@ -292,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        cekVersion();
 
 
         refreshLayout.setColorSchemeResources(
@@ -462,6 +466,67 @@ public class MainActivity extends AppCompatActivity {
             rlprogress.setVisibility(View.GONE);
         }
     }
+
+
+
+    private void cekVersion() {
+        showProgress(true);
+        JsonVersion json = new JsonVersion();
+        //json.setVersionCode(String.valueOf(BuildConfig.VERSION_CODE));
+        json.setAppIdentity("KOPERASI");
+        Call<VersionResponse> call = API.versionApp(json);
+        call.enqueue(new Callback<VersionResponse>() {
+            @Override
+            public void onResponse(Call<VersionResponse> call, Response<VersionResponse> response) {
+                VersionResponse versionResponse = response.body();
+                showProgress(false);
+                if (response.isSuccessful()) {
+
+                    String message = response.body().getMetadata().getMessage() ;
+                    String status = response.body().getMetadata().getCode() ;
+
+                    if(status.equals(Constant.ERR_200)){
+                        String vCode = String.valueOf(BuildConfig.VERSION_CODE) ;
+                        if (vCode.equals(versionResponse.getResponse().getData().get(0).getVersion().replace(".0",""))){
+                           // Helper.notifVersion("Aplikasi Koperasi", MainActivity.this, "Aplikasi sudah yang terbaru", "0", "", "OK");
+
+                        }else{
+                            Helper.notifVersion(versionResponse.getResponse().getData().get(0).getVersion(),MainActivity.this, "Download Update Versi Terbaru ", "1", versionResponse.getResponse().getData().get(0).getLink(), "Download");
+                        }
+
+                    }else{
+                        Helper.notifikasi_warning(message,MainActivity.this);
+                    }
+
+
+                } else {
+
+                    Helper.notifikasi_warning("Terjadi Kesalahan",MainActivity.this);
+
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VersionResponse> call, Throwable t) {
+                showProgress(true);
+//                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar
+                        .make(findViewById(R.id.lay_version), "Koneksi Tidak Stabil, Periksa Koneksi Internet Anda", Snackbar.LENGTH_LONG)
+                        .setAction("RETRY", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        });
+                snackbar.show();
+                Log.e("Error", "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
 
 
     @Override
