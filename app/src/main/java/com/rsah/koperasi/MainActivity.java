@@ -1,65 +1,45 @@
 package com.rsah.koperasi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.developer.kalert.KAlertDialog;
-import com.google.android.material.snackbar.Snackbar;
+import com.rsah.koperasi.Adapter.SosmedAdapter;
+import com.rsah.koperasi.Adapter.TrandingAdapter;
 import com.rsah.koperasi.Auth.Login;
-import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
-import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
-import com.rsah.koperasi.Menu.Barang.MenuBarang;
-import com.rsah.koperasi.Menu.Pengaturan;
-import com.rsah.koperasi.Menu.Pinjaman.MainPinjaman;
-import com.rsah.koperasi.Menu.Pinjaman.TrackPinjaman;
-import com.rsah.koperasi.Menu.Profile.Profile;
-import com.rsah.koperasi.Menu.Saldo.DetailSaldo;
+import com.rsah.koperasi.Menu.Analysis;
+import com.rsah.koperasi.Menu.Crawling;
 
-import com.rsah.koperasi.Menu.Simpanan.Simpanan;
-import com.rsah.koperasi.Menu.Simpanan.listSimpanan;
-import com.rsah.koperasi.Menu.VersionActivity;
-import com.rsah.koperasi.Model.Json.JsonProfile;
-import com.rsah.koperasi.Model.Json.JsonSaldo;
-import com.rsah.koperasi.Model.Json.JsonVersion;
-import com.rsah.koperasi.Model.Response.ResponseProfile;
-import com.rsah.koperasi.Model.Response.ResponseSaldo;
-import com.rsah.koperasi.Model.Response.VersionResponse;
+import com.rsah.koperasi.Model.Data.DataTrandingWorkSpace;
+import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
+import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
+import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,14 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressDialog pDialog;
 
-    SessionManager sessionManager ;
+    SessionManager session ;
     private RelativeLayout rlprogress ;
-    CardView cvSetting, cvPeserta , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan , cv_shu ;
-
+    CardView cvCrawling, cvAnalysis , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan , cv_shu ;
+    LinearLayout card_tranding , card_sosmed ;
     private Context mContext;
     private ApiService API;
 
     public static String saldo ;
+
+    private RecyclerView rvTranding,rvdasboard_sosmed;
+    private List<DataTrandingWorkSpace> AllTrandingList = new ArrayList<>();
+    private ResponseDashboardSosmed AllSosmedList ;
+    private TrandingAdapter Adapter;
+    private SosmedAdapter Adapter_Sosmed;
 
     SwipeRefreshLayout refreshLayout;
     @Override
@@ -90,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sessionManager = new SessionManager(this);
+        session = new SessionManager(this);
         rlprogress = findViewById(R.id.rlprogress);
         txtUser = findViewById(R.id.Username);
        // txtEmail = findViewById(R.id.email);
@@ -98,6 +84,24 @@ public class MainActivity extends AppCompatActivity {
         email= findViewById(R.id.email);
 
         txtUcapan= findViewById(R.id.txtUcapan);
+        cvCrawling= findViewById(R.id.card_crawling);
+        cvAnalysis = findViewById(R.id.cv_analysis);
+
+        cvCrawling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, Crawling.class));
+            }
+        });
+
+        cvAnalysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, Analysis.class));
+            }
+        });
+
+
 
         iv_face = findViewById(R.id.iv_face);
 
@@ -110,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Helper.cekUcapan(txtUcapan,sessionManager.getUsername() );
+        //Helper.cekUcapan(txtUcapan,session.getUsername() );
 
         Helper.countDown(MainActivity.this);
 
@@ -163,10 +167,11 @@ public class MainActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                checkProfile();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        setting_recycle_tranding();
+                        setting_recycle_sosmed();
                         refreshLayout.setRefreshing(false);
                     }
                 }, 2000);
@@ -175,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
 
        // checkProfile();
 
+        setting_recycle_tranding();
+        setting_recycle_sosmed();
 
     }
 
@@ -221,99 +228,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void checkProfile(){
 
-        JsonProfile json = new JsonProfile();
-        json.setMemberID(sessionManager.getKeyId());
-
-        showProgress(true);
-        Call<ResponseProfile> call = API.getProfile(json);
-        call.enqueue(new Callback<ResponseProfile>() {
-            @Override
-            public void onResponse(Call<ResponseProfile> call, Response<ResponseProfile> response) {
-                if(response.isSuccessful()) {
-                    if (response.body().getMetadata() != null) {
-
-                        String message = response.body().getMetadata().getMessage() ;
-                        String status = response.body().getMetadata().getCode() ;
-
-                        if(status.equals(Constant.ERR_200)) {
-
-                            showProgress(false);
-
-                            // txtEmail.setText(sessionManager.getKeyEmail());
-                            txtUser.setText(response.body().getResponse().getData().get(0).getFisrtName());
-                            txtTelp.setText(response.body().getResponse().getData().get(0).getMobilePhone());
-                            email.setText(response.body().getResponse().getData().get(0).getEmail());
-                            idkary.setText(response.body().getResponse().getData().get(0).getNo_IDCard());
-                            idkop.setText(response.body().getResponse().getData().get(0).getMemberID());
-                            //id_koperasi.setText("ID KOP : "+sessionManager.getKeyId());
-
-                            String imgFace = response.body().getResponse().getData().get(0).getImgFace();
-
-                            Helper.cekUcapan(txtUcapan, response.body().getResponse().getData().get(0).getFisrtName());
-
-
-                            String url = MainActivity.this.getString(R.string.baseImageUrl) + imgFace;
-
-                            if (!imgFace.equals("")) {
-
-
-                            Glide.with(MainActivity.this)
-                                    .asBitmap()
-                                    .load(url)
-                                    .into(new CustomTarget<Bitmap>() {
-                                        @Override
-                                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-
-                                            int w = resource.getWidth();
-                                            int h = resource.getHeight();
-
-                                            if (w > h) {
-                                                iv_face.setImageBitmap(resource);
-                                                iv_face.setRotation(90);
-                                            } else {
-                                                iv_face.setImageBitmap(resource);
-                                            }
-
-
-                                        }
-
-                                        @Override
-                                        public void onLoadCleared(@Nullable Drawable placeholder) {
-                                        }
-                                    });
-                            }
-
-
-
-                        }else{
-                            showProgress(false);
-                            Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-
-                    }else{
-                        showProgress(false);
-                        Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
-                    }
-
-                }else{
-                    showProgress(false);
-                    Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseProfile> call, Throwable t) {
-
-                showProgress(false);
-
-                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
-                Log.e("Error", "onFailure: "+t.getMessage() );
-            }
-        });
-    }
 
 
     private void showProgress(Boolean bool){
@@ -327,60 +242,116 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void cekVersion() {
+
+
+
+    private void setting_recycle_tranding(){
+        card_tranding = findViewById(R.id.card_tranding);
+        rvTranding = findViewById(R.id.rvTranding);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvTranding.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        rvTranding.setItemAnimator(new DefaultItemAnimator());
+        Adapter = new TrandingAdapter(this, AllTrandingList);
+        request_tranding();
+    }
+
+    private void setting_recycle_sosmed(){
+        card_sosmed = findViewById(R.id.card_sosmed);
+        rvdasboard_sosmed= findViewById(R.id.rvSosmed);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvdasboard_sosmed.setLayoutManager(new GridLayoutManager(this, 2));
+        rvdasboard_sosmed.setItemAnimator(new DefaultItemAnimator());
+        Adapter_Sosmed = new SosmedAdapter(this, AllSosmedList);
+        request_dsb_social_media();
+    }
+
+
+    private void request_tranding(){
+
+        AllTrandingList.clear();
+        ResponseLogin user = Helper.DecodeFromJsonResponseLogin(session.getDataLogin());
+        String token = "Bearer "+user.getAccess_token();
         showProgress(true);
-        JsonVersion json = new JsonVersion();
-        //json.setVersionCode(String.valueOf(BuildConfig.VERSION_CODE));
-        json.setAppIdentity("KOPERASI");
-        Call<VersionResponse> call = API.versionApp(json);
-        call.enqueue(new Callback<VersionResponse>() {
+        Call<ResponsTrandingWorkSpace> call = API.dashboardTranding(token);
+        call.enqueue(new Callback<ResponsTrandingWorkSpace>() {
             @Override
-            public void onResponse(Call<VersionResponse> call, Response<VersionResponse> response) {
-                VersionResponse versionResponse = response.body();
-                showProgress(false);
-                if (response.isSuccessful()) {
+            public void onResponse(Call<ResponsTrandingWorkSpace> call, Response<ResponsTrandingWorkSpace> response) {
+                if(response.isSuccessful()) {
 
-                    String message = response.body().getMetadata().getMessage() ;
-                    String status = response.body().getMetadata().getCode() ;
+                    pDialog.cancel();
+                    showProgress(false);
 
-                    if(status.equals(Constant.ERR_200)){
-                        String vCode = String.valueOf(BuildConfig.VERSION_CODE) ;
-                        if (vCode.equals(versionResponse.getResponse().getData().get(0).getVersion().replace(".0",""))){
-                           // Helper.notifVersion("Aplikasi Koperasi", MainActivity.this, "Aplikasi sudah yang terbaru", "0", "", "OK");
-
-                        }else{
-                            Helper.notifVersion(versionResponse.getResponse().getData().get(0).getVersion(),MainActivity.this, "Download Update Versi Terbaru ", "1", versionResponse.getResponse().getData().get(0).getLink(), "Download");
-                        }
+                    if (response.code() == 200){
+                        card_tranding.setVisibility(View.VISIBLE);
+                        AllTrandingList.addAll(response.body().getData_tranding());
+                        rvTranding.setAdapter(new TrandingAdapter(mContext, AllTrandingList));
+                        Adapter.notifyDataSetChanged();
 
                     }else{
-                        Helper.notifikasi_warning(message,MainActivity.this);
+
+                        pDialog.cancel();
+                        showProgress(false);
+
                     }
 
 
-                } else {
+                }else if(response.code() == 403){
+                    pDialog.cancel();
+                    showProgress(false);
 
-                    Helper.notifikasi_warning("Terjadi Kesalahan",MainActivity.this);
+                }else{
 
-
+                    pDialog.cancel();
+                    showProgress(false);
 
                 }
             }
 
             @Override
-            public void onFailure(Call<VersionResponse> call, Throwable t) {
-                showProgress(true);
-//                Toast.makeText(mContext, "Internal server error / check your connection", Toast.LENGTH_SHORT).show();
-                Snackbar snackbar = Snackbar
-                        .make(findViewById(R.id.lay_version), "Koneksi Tidak Stabil, Periksa Koneksi Internet Anda", Snackbar.LENGTH_LONG)
-                        .setAction("RETRY", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        });
-                snackbar.show();
-                Log.e("Error", "onFailure: " + t.getMessage());
+            public void onFailure(Call<ResponsTrandingWorkSpace> call, Throwable t) {
+
+                pDialog.cancel();
+                showProgress(false);
+
+            }
+        });
+    }
+
+
+    private void request_dsb_social_media(){
+
+        AllSosmedList = null ;
+        ResponseLogin user = Helper.DecodeFromJsonResponseLogin(session.getDataLogin());
+        String token = "Bearer "+user.getAccess_token();
+
+        Call<ResponseDashboardSosmed> call = API.dashboardSosmed(token);
+        call.enqueue(new Callback<ResponseDashboardSosmed>() {
+            @Override
+            public void onResponse(Call<ResponseDashboardSosmed> call, Response<ResponseDashboardSosmed> response) {
+                if(response.isSuccessful()) {
+
+                    if (response.code() == 200){
+                        card_sosmed.setVisibility(View.VISIBLE);
+                        AllSosmedList = response.body();
+                        rvdasboard_sosmed.setAdapter(new SosmedAdapter(mContext, AllSosmedList));
+                        Adapter_Sosmed.notifyDataSetChanged();
+
+                    }else{
+
+
+                    }
+
+
+                }else if(response.code() == 403){
+
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDashboardSosmed> call, Throwable t) {
+
             }
         });
     }

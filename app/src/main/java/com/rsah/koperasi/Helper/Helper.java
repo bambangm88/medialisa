@@ -18,8 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.kalert.KAlertDialog;
+import com.google.gson.Gson;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
+import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
+import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
@@ -27,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -38,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.view.View.getDefaultSize;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class Helper {
@@ -437,6 +442,33 @@ public class Helper {
 
     }
 
+    public static String ConvertResponseDataLoginToJson(ResponseLogin model) {
+        Gson gson = new Gson();
+        String stringUser = gson.toJson(model);
+        return stringUser;
+    }
+    public static ResponseLogin DecodeFromJsonResponseLogin (String json){
+        String  jsonString =json; //http request
+        ResponseLogin data =new ResponseLogin() ;
+        Gson gson = new Gson();
+        data= gson.fromJson(jsonString,ResponseLogin.class);
+        return data ;
+    }
 
+    //put this code in an asynctask and call it there
+    public static boolean isConnectedToServer() {
+
+        try{
+            URL myUrl = new URL("https://www.google.com/");
+            URLConnection connection = myUrl.openConnection();
+            connection.setConnectTimeout(60);
+            connection.connect();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+
+    }
 
 }

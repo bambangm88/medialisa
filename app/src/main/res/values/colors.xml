@@ -24,6 +24,7 @@
     <color name="colorP">#e83e8c</color>
     <color name="colorgradient">#FF6D6D</color>
     <color name="colorgradienttransparent">#8FFF6D6D</color>
+    <color name="progressvackground">#e4f3f2</color>
     <color name="white">#fff</color>
     <color name="black">#2F2F2F</color>
     <color name="orange">#ff120b</color>

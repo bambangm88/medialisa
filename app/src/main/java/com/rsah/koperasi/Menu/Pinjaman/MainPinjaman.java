@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.rsah.koperasi.MainActivity;
-import com.rsah.koperasi.Menu.Pengaturan;
 import com.rsah.koperasi.R;
 
 public class MainPinjaman extends AppCompatActivity {

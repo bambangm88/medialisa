@@ -145,6 +145,7 @@ public class Login extends AppCompatActivity {
                                     public void onClick(KAlertDialog sDialog) {
                                         sDialog.dismissWithAnimation();
 
+                                        session.createNewLoginSession(Helper.ConvertResponseDataLoginToJson(response.body()));
                                         Intent intent = new Intent(Login.this,MainActivity.class);
                                         startActivity(intent);
                                         //Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();

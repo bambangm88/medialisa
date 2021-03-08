@@ -15,9 +15,11 @@ import com.rsah.koperasi.Model.Json.JsonSaldo;
 import com.rsah.koperasi.Model.Json.JsonSimpananSukarela;
 import com.rsah.koperasi.Model.Json.JsonUbahPwd;
 import com.rsah.koperasi.Model.Json.JsonVersion;
+import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseBarang;
 import com.rsah.koperasi.Model.Response.ResponseCaraPembayaran;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
+import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
 import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
 import com.rsah.koperasi.Model.Response.ResponseJangkaWaktu;
 import com.rsah.koperasi.Model.Response.ResponseJenisPinjaman;
@@ -44,6 +46,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Url;
@@ -84,6 +87,13 @@ public interface ApiService {
     @POST("login")
     Call<ResponseLogin> Login(@Body JsonLogin body);
 
+
+    @GET("dashboard/dsb_sosmed")
+    Call<ResponseDashboardSosmed> dashboardSosmed(@Header("Authorization") String authHeader);
+
+
+    @GET("dashboard/tranding_workspace")
+    Call<ResponsTrandingWorkSpace> dashboardTranding(@Header("Authorization") String authHeader);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/ForgotPassword")

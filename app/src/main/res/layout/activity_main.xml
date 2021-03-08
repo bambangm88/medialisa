@@ -175,11 +175,11 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_saldo"
+                        android:id="@+id/card_crawling"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp">
+                        android:layout_height="70dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -240,7 +240,7 @@
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp">
+                            android:layout_height="70dp">
 
 
                             <LinearLayout
@@ -292,11 +292,11 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_shu"
+                        android:id="@+id/cv_analysis"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp">
+                        android:layout_height="70dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -351,7 +351,7 @@
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp">
+                        android:layout_height="70dp">
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -409,6 +409,69 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/card_tranding"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/font_menu_color"
+                android:layout_marginTop="30dp"
+                android:text="#Trending Topic"
+                android:layout_marginLeft="25dp"
+                android:textSize="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="3dp"
+                android:id="@+id/rvTranding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="16dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/card_sosmed"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/font_menu_color"
+                android:layout_marginTop="30dp"
+                android:text="Social Media"
+                android:layout_marginLeft="25dp"
+                android:textSize="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="3dp"
+                android:id="@+id/rvSosmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

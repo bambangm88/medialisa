@@ -46,6 +46,8 @@ public class SessionManager {
     public static final String KEY_COMPANY = "companyid_";
     public static final String KEY_COMPANYCODE = "companycodeid_";
 
+    public static final String KEY_DATA_LOGIN= "datalogin_";
+
 
     // Constructor
     public SessionManager(Context context){
@@ -82,6 +84,16 @@ public class SessionManager {
         editor.putString(KEY_COMPANY, company);
         editor.putString(KEY_COMPANYCODE, CompanyCode);
 
+        editor.commit();
+    }
+
+
+    public void createNewLoginSession( String data){ //storelogin
+        // Storing login value as TRUE
+        editor.putBoolean(IS_LOGIN, true);
+
+        editor.putString(KEY_DATA_LOGIN, data);
+        //  editor.putString(KEY_PASSWORD, password);
         editor.commit();
     }
 
@@ -144,6 +156,11 @@ public class SessionManager {
     }
 
 
+
+
+    public String getDataLogin (){
+        return pref.getString(KEY_DATA_LOGIN, null);
+    }
 
 
     public String getStatus(){
