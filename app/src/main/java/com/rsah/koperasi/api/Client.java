@@ -36,7 +36,6 @@ public class Client {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request newRequest = chain.request().newBuilder()
-                                .addHeader("Authorization", Helper.Hash_SHA256(USER_AUTH+PWD_AUTH+KEY_AUTH))
                                 .build();
                         return chain.proceed(newRequest);
                     }

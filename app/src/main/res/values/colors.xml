@@ -3,7 +3,7 @@
     <color name="colorPrimary">#4788C8</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorUtama">#4788C8</color>
+    <color name="colorUtama">#e4f3f2</color>
     <color name="colorWhite">#fff</color>
 
     <color name="colorRusak">#e74a3b</color>
@@ -52,4 +52,5 @@
     <color name="splashbackground">#E2F2FE</color>
     <color name="divider">#e2e2e2</color>
     <color name="higlight">#20c997</color>
+    <color name="font_menu_color">#339999</color>
 </resources>

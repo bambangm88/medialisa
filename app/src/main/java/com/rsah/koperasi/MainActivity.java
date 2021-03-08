@@ -94,21 +94,10 @@ public class MainActivity extends AppCompatActivity {
         rlprogress = findViewById(R.id.rlprogress);
         txtUser = findViewById(R.id.Username);
        // txtEmail = findViewById(R.id.email);
-        txtTelp = findViewById(R.id.noTelp);
-        email= findViewById(R.id.email);
-        idkop= findViewById(R.id.id_koperasi_new);
-        idkary= findViewById(R.id.id_karyawan_new);
-        txtUcapan= findViewById(R.id.txtUcapan);
-        //id_koperasi= findViewById(R.id.id_koperasi);
 
-        cvSetting = findViewById(R.id.cv_setting);
-        cvPeserta= findViewById(R.id.cv_Peserta);
-        cvBarang= findViewById(R.id.cv_barang);
-        cvSaldo= findViewById(R.id.card_saldo);
-        cvKeluar= findViewById(R.id.cv_keluar);
-        cvSimpanan= findViewById(R.id.cv_simpanan);
-        cv_shu= findViewById(R.id.cv_shu);
-        cvPInjaman= findViewById(R.id.cv_pinjaman);
+        email= findViewById(R.id.email);
+
+        txtUcapan= findViewById(R.id.txtUcapan);
 
         iv_face = findViewById(R.id.iv_face);
 
@@ -117,42 +106,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-       // txtEmail.setText(sessionManager.getKeyEmail());
-        txtUser.setText(sessionManager.getUsername());
-        txtTelp.setText(sessionManager.getNoTelp());
-        email.setText(sessionManager.getKeyEmail());
-        idkary.setText(sessionManager.getKeyIdCard());
-        idkop.setText(sessionManager.getKeyId());
-        //id_koperasi.setText("ID KOP : "+sessionManager.getKeyId());
-
-        String url = this.getString(R.string.baseImageUrl)+sessionManager.getImageUrl() ;
-
-        if (!sessionManager.getImageUrl().equals("")) {
-            Glide.with(this)
-                    .asBitmap()
-                    .load(url)
-                    .into(new CustomTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-
-                            int w = resource.getWidth();
-                            int h = resource.getHeight();
-
-                            if (w > h) {
-                                iv_face.setImageBitmap(resource);
-                                iv_face.setRotation(90);
-                            } else {
-                                iv_face.setImageBitmap(resource);
-                            }
-
-
-                        }
-
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-                        }
-                    });
-        }
 
 
 
@@ -174,102 +127,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        cvSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this, Pengaturan.class));
-
-            }
-        });
-
-        cvPeserta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this, Profile.class));
-
-            }
-        });
-
-       cvPInjaman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this, TrackPinjaman.class));
-
-            }
-        });
-
-       cvSimpanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-               // startActivity(new Intent(MainActivity.this, Simpanan.class));
-                startActivity(new Intent(MainActivity.this, listSimpanan.class));
-
-            }
-        });
 
 
-        cvBarang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this, MenuBarang.class));
-
-            }
-        });
-
-        cv_shu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new KAlertDialog(MainActivity.this, KAlertDialog.WARNING_TYPE)
-                        .setTitleText("Notification")
-                        .setContentText("SHU Dalam Pengembangan")
-                        .setConfirmText("OK")
-                        .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                            @Override
-                            public void onClick(KAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-
-                            }
-                        })
-                        .show();
-
-            }
-        });
-
-
-
-
-        cvSaldo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i = new Intent(mContext, DetailSaldo.class);
-                i.putExtra("idkop", sessionManager.getKeyId());
-                i.putExtra("companyname", sessionManager.getKeyIdCompany());
-                i.putExtra("name", sessionManager.getUsername());
-                i.putExtra("saldo", saldo);
-
-
-                mContext.startActivity(i);
-
-
-            }
-        });
-
-
-        cvKeluar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                show_dialog();
-
-            }
-        });
         ScrollView scrollView = (ScrollView) findViewById(R.id.mainscroll);
         refreshLayout = findViewById(R.id.swipe_to_refresh_layout);
         scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
@@ -296,8 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        cekVersion();
-
+        //
 
         refreshLayout.setColorSchemeResources(
                 android.R.color.holo_green_dark, android.R.color.holo_blue_dark,
@@ -315,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        checkProfile();
+       // checkProfile();
 
 
     }

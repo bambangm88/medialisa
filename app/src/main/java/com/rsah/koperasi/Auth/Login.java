@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnreg = findViewById(R.id.register);
+        //btnreg = findViewById(R.id.register);
         rlprogress = findViewById(R.id.rlprogress);
 
         session = new SessionManager(getApplicationContext());
@@ -93,12 +93,7 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
-        btnreg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login.this,RegisterNew.class));
-            }
-        });
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,78 +130,55 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                 if(response.isSuccessful()) {
-                    if (response.body().getMetadata() != null) {
 
-                        String message = response.body().getMetadata().getMessage() ;
-                        String status = response.body().getMetadata().getCode() ;
-
-                        if(status.equals(Constant.ERR_200)){
-
-                            pDialog.cancel();
-                            showProgress(false);
-                            AllEntityLogin.addAll(response.body().getResponse().getData()) ;
-
-                            for(DataLogin model : AllEntityLogin) {
-
-                                session.createLoginSession(
-                                        model.getFisrtName(),
-                                        model.getMemberID(),
-                                        model.getEmail(),
-                                        model.getMobilePhone(),
-                                        model.getImgFace(),
-                                        model.getNo_IDCard(),
-                                        model.getCompanyName(),
-                                        model.getCompanyCode()
-                                );
-
-                            }
-
-                            new KAlertDialog(Login.this, KAlertDialog.SUCCESS_TYPE)
-                                    .setTitleText("Notification")
-                                    .setContentText("Login Berhasil")
-                                    .setConfirmText("OK")
-                                    .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
-                                        @Override
-                                        public void onClick(KAlertDialog sDialog) {
-                                            sDialog.dismissWithAnimation();
-
-                                                Intent intent = new Intent(Login.this,MainActivity.class);
-                                                startActivity(intent);
-                                                //Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();
-                                                finish();
-
-                                        }
-                                    })
-                                    .show();
-
-
-
-
-
-                        }else{
-                            pDialog.cancel();
-                            showProgress(false);
-                            //Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
-
-                            Helper.notifikasi_warning(message,Login.this);
-
-                        }
-
-
-
-
-                    }else{
-                        pDialog.cancel();
-                        showProgress(false);
-                      //  Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
-                        Helper.notifikasi_warning("Error Response Data",Login.this);
-                    }
-
-                }else{
                     pDialog.cancel();
                     showProgress(false);
-                    //Toast.makeText(mContext, "Error Response Data", Toast.LENGTH_LONG).show();
-                    Helper.notifikasi_warning("Error Response Data",Login.this);
+
+                    if (response.code() == 200){
+
+                        new KAlertDialog(Login.this, KAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Notification")
+                                .setContentText("Login Berhasil")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                    @Override
+                                    public void onClick(KAlertDialog sDialog) {
+                                        sDialog.dismissWithAnimation();
+
+                                        Intent intent = new Intent(Login.this,MainActivity.class);
+                                        startActivity(intent);
+                                        //Toast.makeText(mContext, "Login Berhasil", Toast.LENGTH_LONG).show();
+                                        finish();
+
+                                    }
+                                })
+                                .show();
+
+                    }else{
+
+                        pDialog.cancel();
+                        showProgress(false);
+
+                        Helper.notifikasi_warning("Invalid Username or password",Login.this);
+                    }
+
+
+                }else if(response.code() == 403){
+                    pDialog.cancel();
+                    showProgress(false);
+
+                    Helper.notifikasi_warning("invalid username or password",Login.this);
+
+
+
+
+                }else{
+
+                    pDialog.cancel();
+                    showProgress(false);
+
+                    Helper.notifikasi_warning("Internal Server Error",Login.this);
+
                 }
             }
 

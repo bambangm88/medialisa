@@ -81,7 +81,7 @@ public interface ApiService {
     Call<ResponseRegister> EditProfile(@Body JsonRegister body);
 
     @Headers("Content-Type: application/json")
-    @POST("koperasi/login")
+    @POST("login")
     Call<ResponseLogin> Login(@Body JsonLogin body);
 
 
