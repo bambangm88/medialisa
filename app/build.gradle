@@ -68,5 +68,9 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
 
+
     implementation 'com.github.TutorialsAndroid:KAlertDialog:v14.0.19'
+
+    /*2). add library chart*/
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }

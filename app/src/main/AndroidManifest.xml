@@ -16,8 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Menu.CrawlingCollection.SocialServiceMonitoring" />
         <activity android:name=".Menu.Analysis" />
-        <activity android:name=".Menu.Pinjaman.DetailPinjamanActivity"></activity>
+        <activity android:name=".Menu.Pinjaman.DetailPinjamanActivity" />
         <activity android:name=".Menu.Pinjaman.SimulasiCicilan" />
         <activity android:name=".Menu.Simpanan.CaraPembayaran" />
         <activity android:name=".Menu.Pinjaman.RecordPinjaman" />
@@ -49,7 +50,7 @@
         <activity android:name=".Auth.Upload_Foto.Foto_PRIBADI" />
         <activity android:name=".Auth.Upload_Foto.Foto_Bukti_Transfer" />
         <activity android:name=".Auth.Upload_Foto.Foto_ID_CARD" />
-        <activity android:name=".Menu.Crawling" />
+        <activity android:name=".Menu.CrawlingCollection.Crawling" />
         <activity android:name=".Menu.ChangePassword" />
         <activity android:name=".Auth.ForgotPassword" />
         <activity android:name=".MainActivity" />

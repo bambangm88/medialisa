@@ -17,6 +17,7 @@ import com.rsah.koperasi.Model.Json.JsonUbahPwd;
 import com.rsah.koperasi.Model.Json.JsonVersion;
 import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseBarang;
+import com.rsah.koperasi.Model.Response.ResponseCCServiceMonitoring;
 import com.rsah.koperasi.Model.Response.ResponseCaraPembayaran;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
@@ -24,6 +25,7 @@ import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
 import com.rsah.koperasi.Model.Response.ResponseJangkaWaktu;
 import com.rsah.koperasi.Model.Response.ResponseJenisPinjaman;
 import com.rsah.koperasi.Model.Response.ResponseKeranjang;
+import com.rsah.koperasi.Model.Response.ResponseLatestSosmed;
 import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.Model.Response.ResponseNominalPinjaman;
 import com.rsah.koperasi.Model.Response.ResponsePesanan;
@@ -91,9 +93,14 @@ public interface ApiService {
     @GET("dashboard/dsb_sosmed")
     Call<ResponseDashboardSosmed> dashboardSosmed(@Header("Authorization") String authHeader);
 
+    @GET("dashboard/latest_sosmed")
+    Call<ResponseLatestSosmed> latestSosmed(@Header("Authorization") String authHeader);
 
     @GET("dashboard/tranding_workspace")
     Call<ResponsTrandingWorkSpace> dashboardTranding(@Header("Authorization") String authHeader);
+
+    @GET("colection_crawling/services_monitoring")
+    Call<ResponseCCServiceMonitoring> ccServiceMonitoring(@Header("Authorization") String authHeader);
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/ForgotPassword")

@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.rsah.koperasi.BuildConfig;
 import com.rsah.koperasi.Constant.Constant;
 import com.rsah.koperasi.Helper.Helper;
+import com.rsah.koperasi.Menu.CrawlingCollection.Crawling;
 import com.rsah.koperasi.Model.Json.JsonVersion;
 import com.rsah.koperasi.Model.Response.VersionResponse;
 import com.rsah.koperasi.R;

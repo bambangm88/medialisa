@@ -473,6 +473,40 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginBottom="100dp"
+            android:visibility="gone"
+            android:id="@+id/card_latest_sosmed"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/font_menu_color"
+                android:layout_marginTop="30dp"
+                android:text="Latest Post Social Media"
+                android:layout_marginLeft="25dp"
+                android:textSize="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="3dp"
+                    android:id="@+id/rvLatestSosmed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 

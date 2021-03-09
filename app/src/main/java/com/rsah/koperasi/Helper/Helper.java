@@ -21,6 +21,7 @@ import com.developer.kalert.KAlertDialog;
 import com.google.gson.Gson;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
+import com.rsah.koperasi.Menu.CrawlingCollection.SocialServiceMonitoring;
 import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.R;
@@ -368,6 +369,28 @@ public class Helper {
     }
 
 
+    public static void sessionBerakhir(Context mContext){
+        new KAlertDialog(mContext, KAlertDialog.ERROR_TYPE)
+                .setTitleText("Session Anda Berakhir")
+                .setContentText("Silahkan Login Kembali")
+                .setConfirmText("OK")
+                .confirmButtonColor(R.color.red_btn_bg_color, mContext)
+                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        //getDataCustomerFromDBSetToTextview();
+                        SessionManager sessionManager = new SessionManager(mContext);
+                        sessionManager.logoutUser();
+                        Intent intent = new Intent(mContext, Login.class);
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        mContext.startActivity(intent);
+
+                    }
+                })
+                .show();
+    }
 
 
     public static String parseDate(String inputDateString) {

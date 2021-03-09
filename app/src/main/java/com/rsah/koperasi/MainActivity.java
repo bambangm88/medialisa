@@ -23,16 +23,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.developer.kalert.KAlertDialog;
+import com.rsah.koperasi.Adapter.LatestSosmedAdapter;
 import com.rsah.koperasi.Adapter.SosmedAdapter;
 import com.rsah.koperasi.Adapter.TrandingAdapter;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Menu.Analysis;
-import com.rsah.koperasi.Menu.Crawling;
+import com.rsah.koperasi.Menu.CrawlingCollection.Crawling;
 
 import com.rsah.koperasi.Model.Data.DataTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
+import com.rsah.koperasi.Model.Response.ResponseLatestSosmed;
 import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.api.ApiService;
 import com.rsah.koperasi.api.Server;
@@ -58,17 +60,19 @@ public class MainActivity extends AppCompatActivity {
     SessionManager session ;
     private RelativeLayout rlprogress ;
     CardView cvCrawling, cvAnalysis , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan , cv_shu ;
-    LinearLayout card_tranding , card_sosmed ;
+    LinearLayout card_tranding , card_sosmed , card_latest_sosmed;
     private Context mContext;
     private ApiService API;
 
     public static String saldo ;
 
-    private RecyclerView rvTranding,rvdasboard_sosmed;
+    private RecyclerView rvTranding,rvdasboard_sosmed,rvlatest_sosmed;
     private List<DataTrandingWorkSpace> AllTrandingList = new ArrayList<>();
     private ResponseDashboardSosmed AllSosmedList ;
+    private ResponseLatestSosmed AllLatestSosmedList ;
     private TrandingAdapter Adapter;
     private SosmedAdapter Adapter_Sosmed;
+    private LatestSosmedAdapter Latest_Adapter_Sosmed;
 
     SwipeRefreshLayout refreshLayout;
     @Override
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                     refreshLayout.setEnabled(false);
                 }
 
-               // Toast.makeText(MainActivity.this,""+scrollY,Toast.LENGTH_LONG).show();
+               // Toast.makeText(SocialServiceMonitoring.this,""+scrollY,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -182,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
         setting_recycle_tranding();
         setting_recycle_sosmed();
-
+        setting_recycle_latest_sosmed();
     }
 
 
@@ -266,6 +270,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void setting_recycle_latest_sosmed(){
+        card_latest_sosmed= findViewById(R.id.card_latest_sosmed);
+        rvlatest_sosmed= findViewById(R.id.rvLatestSosmed);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvlatest_sosmed.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+        rvlatest_sosmed.setItemAnimator(new DefaultItemAnimator());
+        Latest_Adapter_Sosmed = new LatestSosmedAdapter(this, AllLatestSosmedList);
+        request_latest_social_media();
+    }
+
+
     private void request_tranding(){
 
         AllTrandingList.clear();
@@ -276,43 +291,51 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponsTrandingWorkSpace>() {
             @Override
             public void onResponse(Call<ResponsTrandingWorkSpace> call, Response<ResponsTrandingWorkSpace> response) {
+                showProgress(false);
                 if(response.isSuccessful()) {
-
-                    pDialog.cancel();
-                    showProgress(false);
-
                     if (response.code() == 200){
                         card_tranding.setVisibility(View.VISIBLE);
                         AllTrandingList.addAll(response.body().getData_tranding());
                         rvTranding.setAdapter(new TrandingAdapter(mContext, AllTrandingList));
                         Adapter.notifyDataSetChanged();
-
-                    }else{
-
-                        pDialog.cancel();
-                        showProgress(false);
-
                     }
 
+                }
 
-                }else if(response.code() == 403){
-                    pDialog.cancel();
-                    showProgress(false);
+                if (response.code() == 401){
 
-                }else{
+                    new KAlertDialog(mContext, KAlertDialog.ERROR_TYPE)
+                            .setTitleText("Session Anda Berakhir")
+                            .setContentText("Silahkan Login Kembali")
+                            .setConfirmText("OK")
+                            .confirmButtonColor(R.color.red_btn_bg_color, mContext)
+                            .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                                @Override
+                                public void onClick(KAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    //getDataCustomerFromDBSetToTextview();
+                                    SessionManager sessionManager = new SessionManager(MainActivity.this);
+                                    sessionManager.logoutUser();
+                                    Intent intent = new Intent(MainActivity.this, Login.class);
 
-                    pDialog.cancel();
-                    showProgress(false);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+
+                                }
+                            })
+                            .show();
+
+
+
+
 
                 }
             }
 
             @Override
             public void onFailure(Call<ResponsTrandingWorkSpace> call, Throwable t) {
-
-                pDialog.cancel();
                 showProgress(false);
-
             }
         });
     }
@@ -336,15 +359,7 @@ public class MainActivity extends AppCompatActivity {
                         rvdasboard_sosmed.setAdapter(new SosmedAdapter(mContext, AllSosmedList));
                         Adapter_Sosmed.notifyDataSetChanged();
 
-                    }else{
-
-
                     }
-
-
-                }else if(response.code() == 403){
-
-                }else{
 
                 }
             }
@@ -357,10 +372,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void request_latest_social_media(){
+
+        AllSosmedList = null ;
+        ResponseLogin user = Helper.DecodeFromJsonResponseLogin(session.getDataLogin());
+        String token = "Bearer "+user.getAccess_token();
+
+        Call<ResponseLatestSosmed> call = API.latestSosmed(token);
+        call.enqueue(new Callback<ResponseLatestSosmed>() {
+            @Override
+            public void onResponse(Call<ResponseLatestSosmed> call, Response<ResponseLatestSosmed> response) {
+                if(response.isSuccessful()) {
+
+                    if (response.code() == 200) {
+                        card_latest_sosmed.setVisibility(View.VISIBLE);
+                        AllLatestSosmedList = response.body();
+                        rvlatest_sosmed.setAdapter(new LatestSosmedAdapter(mContext,AllLatestSosmedList));
+                        Latest_Adapter_Sosmed.notifyDataSetChanged();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLatestSosmed> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-       // Helper.countDown(MainActivity.this);
+       // Helper.countDown(SocialServiceMonitoring.this);
     }
 }

@@ -1,4 +1,4 @@
-package com.rsah.koperasi.Menu;
+package com.rsah.koperasi.Menu.CrawlingCollection;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,43 +11,34 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.rsah.koperasi.Auth.Login;
+import com.rsah.koperasi.Menu.ChangePassword;
+import com.rsah.koperasi.Menu.VersionActivity;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
 public class Crawling extends AppCompatActivity {
 
 
-    LinearLayout ubahPwd , keluar  , version;
+    LinearLayout card_service_monitoring, keluar  , version;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pengaturan);
+        setContentView(R.layout.activity_crawling);
 
-        ubahPwd = findViewById(R.id.ubahPwd) ;
-        version = findViewById(R.id.version) ;
-        //keluar = findViewById(R.id.btnKeluar) ;
+        card_service_monitoring = findViewById(R.id.card_service_monitoring) ;
 
-
-
-        ubahPwd.setOnClickListener(new View.OnClickListener() {
+        card_service_monitoring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(Crawling.this, ChangePassword.class));
+                startActivity(new Intent(Crawling.this, SocialServiceMonitoring.class));
 
             }
         });
 
-        version.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivity(new Intent(Crawling.this, VersionActivity.class));
-
-            }
-        });
 
         ImageView btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
