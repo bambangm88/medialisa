@@ -31,6 +31,8 @@ import com.rsah.koperasi.Helper.Helper;
 import com.rsah.koperasi.Menu.Analysis;
 import com.rsah.koperasi.Menu.CrawlingCollection.Crawling;
 
+import com.rsah.koperasi.Menu.Hastag;
+import com.rsah.koperasi.Menu.Setting;
 import com.rsah.koperasi.Model.Data.DataTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     SessionManager session ;
     private RelativeLayout rlprogress ;
-    CardView cvCrawling, cvAnalysis , cvBarang , cvSaldo , cvPInjaman , cvKeluar , cvSimpanan , cv_shu ;
+    CardView cvCrawling, cvAnalysis , cvHastag ,cvSetting;
     LinearLayout card_tranding , card_sosmed , card_latest_sosmed;
     private Context mContext;
     private ApiService API;
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         txtUcapan= findViewById(R.id.txtUcapan);
         cvCrawling= findViewById(R.id.card_crawling);
         cvAnalysis = findViewById(R.id.cv_analysis);
+        cvSetting = findViewById(R.id.cv_setting);
+        cvHastag= findViewById(R.id.cv_hastag);
 
         cvCrawling.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cvSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, Setting.class));
+            }
+        });
+
+        cvHastag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, Hastag.class));
+            }
+        });
 
 
         iv_face = findViewById(R.id.iv_face);

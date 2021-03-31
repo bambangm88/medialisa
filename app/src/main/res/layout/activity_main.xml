@@ -231,7 +231,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_Peserta"
+                        android:id="@+id/cv_hastag"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
@@ -252,7 +252,7 @@
 
 
                                 <ImageView
-                                    android:src="@drawable/socialmedia"
+                                    android:src="@drawable/hastag"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="5dp"
@@ -271,10 +271,8 @@
 
                     <TextView
                         android:textColor="@color/font_menu_color"
-
                         android:textSize="10dp"
-                        android:text="Social Media
-                         Master"
+                        android:text="Hastag"
                         android:textAlignment="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
@@ -347,7 +345,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_simpanan"
+                        android:id="@+id/cv_setting"
                         app:cardCornerRadius="10dp"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
@@ -370,7 +368,7 @@
 
 
                                 <ImageView
-                                    android:src="@drawable/explorer"
+                                    android:src="@drawable/setting"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginTop="5dp"
@@ -389,7 +387,7 @@
                     <TextView
                         android:textColor="@color/font_menu_color"
 
-                        android:text="Explorer"
+                        android:text="Setting"
                         android:textSize="10dp"
                         android:textAlignment="center"
                         android:layout_width="match_parent"

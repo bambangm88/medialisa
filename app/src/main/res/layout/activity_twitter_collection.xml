@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu.CrawlingCollection.TwitterCollection">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_pay"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="center"
+                android:background="@drawable/gradientbg"
+                android:theme="@style/ToolbarTheme"
+                app:elevation="4dp"
+                app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:src="@drawable/ic_close_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Twitter Collection"
+                    android:textColor="@color/font_menu_color"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCollection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/unvailable"
+        android:src="@drawable/unvailable"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+
+
+    <include layout="@layout/progress_loading"/>
+
+
+</RelativeLayout>

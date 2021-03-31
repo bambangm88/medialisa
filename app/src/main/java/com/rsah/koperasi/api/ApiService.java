@@ -4,6 +4,7 @@ package com.rsah.koperasi.api;
 
 
 
+import com.rsah.koperasi.Model.Json.JsonCollection;
 import com.rsah.koperasi.Model.Json.JsonInsertBarang;
 import com.rsah.koperasi.Model.Json.JsonKeranjang;
 import com.rsah.koperasi.Model.Json.JsonLogin;
@@ -19,6 +20,7 @@ import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseBarang;
 import com.rsah.koperasi.Model.Response.ResponseCCServiceMonitoring;
 import com.rsah.koperasi.Model.Response.ResponseCaraPembayaran;
+import com.rsah.koperasi.Model.Response.ResponseCollection;
 import com.rsah.koperasi.Model.Response.ResponseCompany;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
 import com.rsah.koperasi.Model.Response.ResponseInsertBarang;
@@ -101,6 +103,12 @@ public interface ApiService {
 
     @GET("colection_crawling/services_monitoring")
     Call<ResponseCCServiceMonitoring> ccServiceMonitoring(@Header("Authorization") String authHeader);
+
+    @Headers("Content-Type: application/json")
+    @POST()
+    Call<ResponseCollection> collectionService(@Header("Authorization") String authHeader, @Body JsonCollection body,@Url String url);
+
+
 
     @Headers("Content-Type: application/json")
     @POST("koperasi/ForgotPassword")

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".Menu.DashboardRecycler">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -31,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Service Monitoring"
+                android:text="Social Media"
                 android:textColor="@color/font_menu_color"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -41,12 +43,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <!--3). you can add library-->
-    <com.github.mikephil.charting.charts.PieChart
-        android:layout_marginTop="70dp"
-        android:id="@+id/chart1"
+    <LinearLayout
+
+        android:layout_marginTop="55dp"
+        android:orientation="vertical"
+        android:background="@drawable/ic_bg_one"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <include layout="@layout/progress_loading"/>
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/rvSimpananSukarela"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="70dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="16dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

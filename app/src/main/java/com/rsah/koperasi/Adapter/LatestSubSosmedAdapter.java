@@ -1,6 +1,7 @@
 package com.rsah.koperasi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rsah.koperasi.Menu.DashboardRecycler;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
 import com.rsah.koperasi.Model.Response.ResponseLatestSosmed;
 import com.rsah.koperasi.R;
@@ -49,6 +51,16 @@ public class LatestSubSosmedAdapter extends RecyclerView.Adapter<LatestSubSosmed
         //double f = dsb_fb.getTanggal_posting());
         //holder.persen.setText(String.format("%.2f", f)+" %");
 
+        holder.rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DashboardRecycler.class);
+                intent.putExtra("reference", "latestsosmed");
+                mContext.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -62,7 +74,7 @@ public class LatestSubSosmedAdapter extends RecyclerView.Adapter<LatestSubSosmed
 
         TextView text_ , persen , desc_ ;
         LinearLayout card ;
-
+        LinearLayout rootLayout ;
 
 
         public AdapterHolder(View itemView) {
@@ -72,7 +84,7 @@ public class LatestSubSosmedAdapter extends RecyclerView.Adapter<LatestSubSosmed
 
             text_ = itemView.findViewById(R.id.text_subsosmed);
             persen = itemView.findViewById(R.id.text_persen);
-
+            rootLayout = itemView.findViewById(R.id.rootLayout);
 
         }
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,8 @@ public class VersionActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refresh;
 
+
+
     private void findElement(){
         API = Server.getAPIService();
         session = new SessionManager(getApplicationContext());
@@ -47,10 +50,7 @@ public class VersionActivity extends AppCompatActivity {
         developer = findViewById(R.id.developer);
         namaApp = findViewById(R.id.namaApp);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_pay);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 
@@ -66,7 +66,16 @@ public class VersionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_version);
         findElement();
         setListener();
-        getInfoAplikasi();
+        ImageView btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+        // getInfoAplikasi();
     }
 
     private void getInfoAplikasi() {
@@ -118,15 +127,15 @@ public class VersionActivity extends AppCompatActivity {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getInfoAplikasi();
-                refresh.setRefreshing(false);
+                //getInfoAplikasi();
+               // refresh.setRefreshing(false);
             }
         });
 
         btnCekVersi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cekVersion();
+               // cekVersion();
             }
         });
     }
@@ -195,22 +204,6 @@ public class VersionActivity extends AppCompatActivity {
         } else {
             rlProgress.setVisibility(View.GONE);
         }
-    }
-
-    //homeback
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                //Write your logic here
-
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
     }
 
 

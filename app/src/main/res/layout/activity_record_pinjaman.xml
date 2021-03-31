@@ -42,7 +42,6 @@
 
 
         <LinearLayout
-
             android:layout_marginTop="55dp"
             android:orientation="vertical"
             android:background="@drawable/ic_bg_one"

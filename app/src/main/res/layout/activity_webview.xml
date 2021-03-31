@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".Menu.Webview">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -31,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Service Monitoring"
+                android:text="Medialisa"
                 android:textColor="@color/font_menu_color"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -41,12 +44,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <!--3). you can add library-->
-    <com.github.mikephil.charting.charts.PieChart
-        android:layout_marginTop="70dp"
-        android:id="@+id/chart1"
+    <WebView
+        android:layout_marginTop="50dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <include layout="@layout/progress_loading"/>
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>

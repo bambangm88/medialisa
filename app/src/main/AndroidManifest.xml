@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Menu.DashboardRecycler"></activity>
+        <activity android:name=".Menu.Hastag" />
+        <activity android:name=".Menu.Setting" />
+        <activity android:name=".Menu.Webview" />
+        <activity android:name=".Menu.CrawlingCollection.DetailTwitterCollection" />
+        <activity android:name=".Menu.CrawlingCollection.TwitterCollection" />
         <activity android:name=".Menu.CrawlingCollection.SocialServiceMonitoring" />
         <activity android:name=".Menu.Analysis" />
         <activity android:name=".Menu.Pinjaman.DetailPinjamanActivity" />

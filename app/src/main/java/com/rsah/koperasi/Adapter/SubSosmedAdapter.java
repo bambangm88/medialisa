@@ -1,6 +1,7 @@
 package com.rsah.koperasi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rsah.koperasi.Menu.DashboardRecycler;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
@@ -48,6 +50,16 @@ public class SubSosmedAdapter extends RecyclerView.Adapter<SubSosmedAdapter.Adap
         double f = Double.parseDouble(dsb_fb.getPercent_number());
         holder.persen.setText(String.format("%.2f", f)+" %");
 
+
+        holder.rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DashboardRecycler.class);
+                intent.putExtra("reference", "sosmed");
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -61,7 +73,7 @@ public class SubSosmedAdapter extends RecyclerView.Adapter<SubSosmedAdapter.Adap
 
         TextView text_ , persen , desc_ ;
         LinearLayout card ;
-
+        LinearLayout rootLayout ;
 
 
         public AdapterHolder(View itemView) {
@@ -71,6 +83,7 @@ public class SubSosmedAdapter extends RecyclerView.Adapter<SubSosmedAdapter.Adap
 
             text_ = itemView.findViewById(R.id.text_subsosmed);
             persen = itemView.findViewById(R.id.text_persen);
+            rootLayout = itemView.findViewById(R.id.rootLayout);
 
 
         }

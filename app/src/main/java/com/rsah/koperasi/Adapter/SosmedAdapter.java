@@ -1,10 +1,12 @@
 package com.rsah.koperasi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rsah.koperasi.Menu.Barang.Adapter.RecordPinjamanAdapter;
+import com.rsah.koperasi.Menu.CrawlingCollection.DetailTwitterCollection;
+import com.rsah.koperasi.Menu.DashboardRecycler;
 import com.rsah.koperasi.Model.Data.DataRecordPinjaman;
 import com.rsah.koperasi.Model.Data.DataTrandingWorkSpace;
 import com.rsah.koperasi.Model.Response.ResponseDashboardSosmed;
@@ -132,6 +136,21 @@ public class SosmedAdapter extends RecyclerView.Adapter<SosmedAdapter.AdapterHol
         }
 
 
+
+        holder.rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DashboardRecycler.class);
+                intent.putExtra("reference", "sosmed");
+                mContext.startActivity(intent);
+            }
+        });
+
+
+
+
+
+
     }
 
     @Override
@@ -144,7 +163,7 @@ public class SosmedAdapter extends RecyclerView.Adapter<SosmedAdapter.AdapterHol
 
 
         TextView text_ , status , desc_ ;
-        LinearLayout card ;
+        LinearLayout rootLayout ;
         RecyclerView subRV ;
 
 
@@ -155,6 +174,7 @@ public class SosmedAdapter extends RecyclerView.Adapter<SosmedAdapter.AdapterHol
 
             text_ = itemView.findViewById(R.id.judulSosmed);
             subRV = itemView.findViewById(R.id.subrvSosmed);
+            rootLayout = itemView.findViewById(R.id.rootLayout);
 
 
         }

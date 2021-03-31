@@ -71,7 +71,7 @@
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
-                    android:id="@+id/version"
+                    android:id="@+id/twitter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -99,7 +99,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Twitter Collection"
+                            android:text="Twitter"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -168,7 +168,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Facebook Collection"
+                            android:text="Facebook"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -237,7 +237,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Youtube Collection"
+                            android:text="Youtube"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -306,7 +306,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Instagram Collection"
+                        android:text="Instagram"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -376,7 +376,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Forum Collection"
+                            android:text="Forum"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />

@@ -13,14 +13,15 @@ import android.widget.LinearLayout;
 import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Menu.ChangePassword;
 import com.rsah.koperasi.Menu.VersionActivity;
+import com.rsah.koperasi.Menu.Webview;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
 public class Crawling extends AppCompatActivity {
 
 
-    LinearLayout card_service_monitoring, keluar  , version;
-
+    LinearLayout card_service_monitoring, card_twitter_collection,card_forum_collection, card_facebook_collection ,card_ig_collection, card_youtube_collection ;
+    public static String reference = "" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class Crawling extends AppCompatActivity {
         setContentView(R.layout.activity_crawling);
 
         card_service_monitoring = findViewById(R.id.card_service_monitoring) ;
+        card_twitter_collection = findViewById(R.id.card_twitter) ;
+        card_facebook_collection = findViewById(R.id.facebook_collection) ;
+        card_youtube_collection = findViewById(R.id.youtube_collection) ;
+        card_ig_collection = findViewById(R.id.instagram_collection) ;
+        card_forum_collection = findViewById(R.id.forum_collection) ;
 
         card_service_monitoring.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +44,61 @@ public class Crawling extends AppCompatActivity {
             }
         });
 
+        card_facebook_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Crawling.this, TwitterCollection.class);
+                intent.putExtra("ref", "facebook");
+                reference = "facebook" ;
+                startActivity(intent);
+            }
+        });
+
+
+        card_twitter_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Crawling.this, TwitterCollection.class);
+                intent.putExtra("ref", "twitter");
+                reference = "twitter" ;
+                startActivity(intent);
+
+            }
+        });
+
+        card_youtube_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Crawling.this, TwitterCollection.class);
+                intent.putExtra("ref", "youtube");
+                reference = "youtube" ;
+                startActivity(intent);
+
+            }
+        });
+
+        card_ig_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Crawling.this, TwitterCollection.class);
+                intent.putExtra("ref", "ig");
+                reference = "ig" ;
+                startActivity(intent);
+
+            }
+        });
+
+        card_forum_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Crawling.this, TwitterCollection.class);
+                intent.putExtra("ref", "forum");
+                reference = "forum" ;
+                startActivity(intent);
+
+            }
+        });
 
 
         ImageView btn_back = findViewById(R.id.btn_back);

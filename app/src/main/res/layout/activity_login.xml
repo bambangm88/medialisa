@@ -98,7 +98,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_toRightOf="@+id/countrycode"
                         android:background="@color/transparent"
-                        android:hint="Email / nohp"
+                        android:hint="Email"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
                         android:textSize="13dp" />
@@ -161,6 +161,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"

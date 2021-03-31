@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu.CrawlingCollection.DetailTwitterCollection">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_pay"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@drawable/gradientbg"
+            android:theme="@style/ToolbarTheme"
+            app:elevation="4dp"
+            app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:src="@drawable/ic_close_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Twitter Collection Detail"
+                android:textColor="@color/font_menu_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textSize="11dp"
+                    android:textColor="@color/font_menu_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="URL Akun" />
+
+                <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="12dp"
+                    android:id="@+id/urlAkun"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"></EditText>
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="11dp"
+                    android:textColor="@color/font_menu_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Time" />
+
+                <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="12dp"
+                    android:id="@+id/time"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"></EditText>
+
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="11dp"
+                    android:textColor="@color/font_menu_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Caption" />
+
+                <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="12dp"
+                    android:id="@+id/caption"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"></EditText>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="11dp"
+                    android:textColor="@color/font_menu_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="URL" />
+
+                <EditText
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="12dp"
+                    android:id="@+id/url"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"></EditText>
+
+                <RelativeLayout
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/border_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="10dp"
+                        android:id="@+id/link"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:paddingLeft="20dp"
+                        android:paddingEnd="20dp"
+                        android:textColor="@color/font_menu_color"
+                        android:text="Go to link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="11dp"
+                    android:textColor="@color/font_menu_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Komentar :" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginBottom="100dp"
+                        android:id="@+id/rvCollectionDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingRight="8dp"></androidx.recyclerview.widget.RecyclerView>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

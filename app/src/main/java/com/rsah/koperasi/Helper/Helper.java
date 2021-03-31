@@ -23,12 +23,14 @@ import com.rsah.koperasi.Auth.Login;
 import com.rsah.koperasi.Auth.Register_Next_Simpan_New;
 import com.rsah.koperasi.Menu.CrawlingCollection.SocialServiceMonitoring;
 import com.rsah.koperasi.Model.Response.ResponsTrandingWorkSpace;
+import com.rsah.koperasi.Model.Response.ResponseCollection;
 import com.rsah.koperasi.Model.Response.ResponseLogin;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -39,8 +41,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import static android.view.View.getDefaultSize;
@@ -392,6 +396,37 @@ public class Helper {
                 .show();
     }
 
+    public static void Logout(Context mContext){
+        new KAlertDialog(mContext, KAlertDialog.WARNING_TYPE)
+                .setTitleText("Keluar")
+                .setContentText("Apakah yakin akan keluar ?")
+                .setConfirmText("Keluar")
+                .setCancelText("Tetap disini")
+                .cancelButtonColor(R.color.green, mContext)
+                .confirmButtonColor(R.color.red_btn_bg_color, mContext)
+                .setCancelClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .setConfirmClickListener(new KAlertDialog.KAlertClickListener() {
+                    @Override
+                    public void onClick(KAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        //getDataCustomerFromDBSetToTextview();
+                        SessionManager sessionManager = new SessionManager(mContext) ;
+                        sessionManager.logoutUser();
+                        Intent i = new Intent(mContext, Login.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        ((Activity) mContext).startActivity(i);
+                    }
+                })
+                .show();
+    }
+
 
     public static String parseDate(String inputDateString) {
         String dateTime ="" ;
@@ -478,6 +513,13 @@ public class Helper {
         return data ;
     }
 
+    public static ResponseCollection.komentar DecodeFromJsonKomentar(String json){
+        String  jsonString =json; //http request
+        ResponseCollection.komentar data =null ;
+        Gson gson = new Gson();
+        data=(gson.fromJson(jsonString,  ResponseCollection.komentar.class));
+        return data ;
+    }
     //put this code in an asynctask and call it there
     public static boolean isConnectedToServer() {
 

@@ -11,41 +11,48 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rsah.koperasi.Auth.Login;
-
+import com.rsah.koperasi.Menu.CrawlingCollection.Crawling;
+import com.rsah.koperasi.Menu.CrawlingCollection.SocialServiceMonitoring;
 import com.rsah.koperasi.Menu.CrawlingCollection.TwitterCollection;
 import com.rsah.koperasi.R;
 import com.rsah.koperasi.sessionManager.SessionManager;
 
-import static com.rsah.koperasi.Menu.CrawlingCollection.Crawling.reference;
-
-public class Analysis extends AppCompatActivity {
+public class Hastag extends AppCompatActivity {
 
 
-    LinearLayout ubahPwd , keluar  , version;
     LinearLayout card_service_monitoring, card_twitter_collection,card_forum_collection, card_facebook_collection ,card_ig_collection, card_youtube_collection ;
-
+    public static String reference = "" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_analysis);
+        setContentView(R.layout.activity_hastag);
 
-
-        card_twitter_collection = findViewById(R.id.twitter) ;
+        card_service_monitoring = findViewById(R.id.card_service_monitoring) ;
+        card_twitter_collection = findViewById(R.id.card_twitter) ;
         card_facebook_collection = findViewById(R.id.facebook_collection) ;
         card_youtube_collection = findViewById(R.id.youtube_collection) ;
         card_ig_collection = findViewById(R.id.instagram_collection) ;
         card_forum_collection = findViewById(R.id.forum_collection) ;
+        card_forum_collection.setVisibility(View.GONE);
+        card_service_monitoring.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
+                /*Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "hastag-twitter");
+                reference = "hastag-twitter" ;
+                startActivity(intent);*/
+            }
+        });
 
         card_facebook_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Analysis.this, TwitterCollection.class);
-                intent.putExtra("ref", "Analysis-facebook");
-                reference = "Analysis-facebook" ;
+                Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "hastag-fb");
+                reference = "hastag-fb" ;
                 startActivity(intent);
             }
         });
@@ -54,9 +61,9 @@ public class Analysis extends AppCompatActivity {
         card_twitter_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Analysis.this, TwitterCollection.class);
-                intent.putExtra("ref", "Analysis-twitter");
-                reference = "Analysis-twitter" ;
+                Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "hastag-twitter");
+                reference = "hastag-twitter" ;
                 startActivity(intent);
 
             }
@@ -65,9 +72,9 @@ public class Analysis extends AppCompatActivity {
         card_youtube_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Analysis.this, TwitterCollection.class);
-                intent.putExtra("ref", "Analysis-youtube");
-                reference = "Analysis-youtube" ;
+                Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "hastag-yt");
+                reference = "hastag-yt" ;
                 startActivity(intent);
 
             }
@@ -76,9 +83,9 @@ public class Analysis extends AppCompatActivity {
         card_ig_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Analysis.this, TwitterCollection.class);
-                intent.putExtra("ref", "Analysis-ig");
-                reference = "Analysis-ig" ;
+                Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "hastag-ig");
+                reference = "hastag-ig" ;
                 startActivity(intent);
 
             }
@@ -87,10 +94,11 @@ public class Analysis extends AppCompatActivity {
         card_forum_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Analysis.this, TwitterCollection.class);
-                intent.putExtra("ref", "Analysis-forum");
-                reference = "Analysis-forum" ;
+                Intent intent = new Intent(Hastag.this, TwitterCollection.class);
+                intent.putExtra("ref", "forum");
+                reference = "forum" ;
                 startActivity(intent);
+
             }
         });
 
@@ -111,7 +119,7 @@ public class Analysis extends AppCompatActivity {
 
     public void show_dialog(){
 
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(Analysis.this);
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(Hastag.this);
         builder1.setMessage("Logout ?");
         builder1.setCancelable(true);
 
@@ -119,9 +127,9 @@ public class Analysis extends AppCompatActivity {
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SessionManager sessionManager = new SessionManager(Analysis.this);
+                        SessionManager sessionManager = new SessionManager(Hastag.this);
                         sessionManager.logoutUser();
-                        Intent intent = new Intent(Analysis.this, Login.class);
+                        Intent intent = new Intent(Hastag.this, Login.class);
 
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);

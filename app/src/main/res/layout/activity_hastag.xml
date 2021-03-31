@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Collection dan Crawling"
+                android:text="Hastag"
                 android:textColor="@color/font_menu_color"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -86,7 +86,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_margin="25dp"
-                            android:src="@drawable/monitoring" />
+                            android:src="@drawable/master" />
 
                     </LinearLayout>
 
@@ -100,7 +100,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Service Monitoring"
+                            android:text="Master View"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -169,7 +169,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Twitter Collection"
+                            android:text="Twitter"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -238,7 +238,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Facebook Collection"
+                            android:text="Facebook"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -307,7 +307,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Youtube Collection"
+                            android:text="Youtube"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
@@ -376,7 +376,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Instagram Collection"
+                        android:text="Instagram"
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -446,7 +446,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Forum Collection"
+                            android:text="Forum"
                             android:textColor="@color/black"
                             android:textSize="20dp"
                             android:textStyle="bold" />
